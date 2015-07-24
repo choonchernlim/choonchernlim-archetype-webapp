@@ -25,7 +25,7 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
     <groupId>com.github.choonchernlim</groupId>
     <artifactId>choonchernlim-archetype-webapp</artifactId>
     <packaging>pom</packaging>
-    <version>1.7.0</version>
+    <version>0.0.0</version>
     <name>${project.artifactId}</name>
 
     <!--!

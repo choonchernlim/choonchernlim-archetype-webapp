@@ -9,10 +9,9 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <p>This project is generated using this archetype: <code>com.github.choonchernlim:choonchernlim-archetype-webapp:1.7.0</code>.
-            To learn more, please refer to the
-            <a href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">release notes</a>.
-            This documentation helps you to understand, enable or modify features based on your project needs.
+        <p>This project is generated using <a href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">choonchernlim-archetype-webapp</a>
+            archetype. This documentation helps you to understand, enable or modify features based on your project
+            needs.
         </p>
     </div>
 </div>
@@ -151,7 +150,7 @@ appdev.profile.activation.prefixes=
             </div>
         </div>
 
-        <p><code>src/main/java/edu/mayo/commons/archetypes/domain</code></p>
+        <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/domain</code></p>
 
         <div class="row">
             <div class="col-xs-offset-1 col-xs-10">

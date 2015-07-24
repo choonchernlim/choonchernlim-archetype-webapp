@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>choonchernlim-archetype-webapp-webapp</artifactId>
-        <version>1.7.0</version>
+        <version>0.0.0</version>
     </parent>
 
     <artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>

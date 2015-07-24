@@ -1,12 +1,15 @@
 #!/bin/sh
 
+# Generates archetype from project, sanitize it, remove existing version from local repo, install it in local repo
+
 set -e
 
-# TODO Update the version!
-ARCHETYPE_VERSION='1.7.0'
+# Get archetype version from `archetype/archetype.properties`
+ARCHETYPE_VERSION=`awk -F= '/^archetype.version/ { print $2 }' archetype/archetype.properties`
 
-BASE_PATH='/Users/limc/Documents/development/workspace/intellij/websphere-archetype-hcpr/target/generated-sources/archetype'
-ARCHETYPE_RESOURCES_PATH="${BASE_PATH}/src/main/resources/archetype-resources"
+ARCHETYPE_RESOURCES_PATH="`pwd`/target/generated-sources/archetype/src/main/resources/archetype-resources"
+
+LOCAL_ARCHETYPE_PATH="$HOME/.m2/repository/com/github/choonchernlim/choonchernlim-archetype-webapp/$ARCHETYPE_VERSION/"
 
 # Asserts that the file path exists
 # $1 = file path
@@ -114,51 +117,62 @@ find_string_occurence() {
     local searchString=$3
 
     display_line
-    echo "Files that contain '${searchString}'. ( Hits expected: ${expectedCount} ):-"
+    echo "Files that contain '${searchString}'. ( Should have ${expectedCount} ):-"
     find "${path}" -type f -exec grep -e "${searchString}" {} \; -print
 }
 
+# Note: JaCoCo has to be disabled to prevent this exception:-
+#
+#    [ERROR] Failed to execute goal on project choonchernlim-archetype-webapp-webapp-ear: Could not resolve
+#    dependencies for project com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-ear:ear:0.0.0:
+#    Could not find artifact com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-war:war:0.0.0
+#    in central (https://repo.maven.apache.org/maven2) -> [Help 1]
 
-currentPath="${BASE_PATH}/pom.xml"
-replace_string_in_file "${currentPath}" '<artifactId>webspherearchetype-archetype</artifactId>' '<artifactId>websphere-archetype-hcpr</artifactId>'
-replace_string_in_file "${currentPath}" '<name>webspherearchetype-archetype</name>' '<name>websphere-archetype-hcpr</name>'
+echo "Creating Maven archetype from project"
+mvn clean archetype:create-from-project -Pdisable-jacoco -Darchetype.properties=archetype/archetype.properties
+display_line
 
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-ear/pom.xml"
-replace_string_in_file "${currentPath}" '<groupId>edu.mayo.commons.archetypes</groupId>' '<groupId>${package}</groupId>'
-replace_string_in_file "${currentPath}" '<artifactId>webspherearchetype-war</artifactId>' '<artifactId>${rootArtifactId}-war</artifactId>'
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-war/src/main/webapp/WEB-INF/jsp/view/home.jsp"
-replace_string_in_file "${currentPath}" '${package}:websphere-archetype-hcpr:${version}' "edu.mayo.commons.archetypes:websphere-archetype-hcpr:${ARCHETYPE_VERSION}"
-replace_string_in_file "${currentPath}" 'websphere-archetype-hcpr/${version}' "websphere-archetype-hcpr/${ARCHETYPE_VERSION}"
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
+replace_string_in_file "${currentPath}" '<groupId>com.github.choonchernlim</groupId>' '<groupId>${package}</groupId>'
+replace_string_in_file "${currentPath}" '<artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>' '<artifactId>${rootArtifactId}-webapp-war</artifactId>'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/pom.xml"
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
 
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-ear/pom.xml"
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
 
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-war/pom.xml"
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/pom.xml"
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
 
 display_line
 echo "${ARCHETYPE_RESOURCES_PATH}"
-echo "- Delete .idea/ dir."
-echo "- Delete README-ARCHETYPE.md and sanitize-archetype.sh."
-echo "- Delete *.iml files."
+echo "- Delete dirs: .idea/, archetype/"
+echo "- Delete files: .gitignore, LICENSE, *.iml"
 
 rm -rf "${ARCHETYPE_RESOURCES_PATH}/.idea"
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/README-ARCHETYPE.md"
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/sanitize-archetype.sh"
+rm -rf "${ARCHETYPE_RESOURCES_PATH}/archetype"
+rm -rf "${ARCHETYPE_RESOURCES_PATH}/.gitignore"
+rm -rf "${ARCHETYPE_RESOURCES_PATH}/LICENSE"
 find "${ARCHETYPE_RESOURCES_PATH}" -name "*.iml" -delete
 
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 4 '\${version}'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'webspherearchetype'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 1 'archetypes'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 1 'edu.mayo.commons.archetypes'
+find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 1 'choonchernlim-archetype-webapp'
+find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
+find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
+display_line
 
+echo "Remove existing archetype from local repository..."
+rm -rf "$LOCAL_ARCHETYPE_PATH"
+display_line
+
+echo "Installing new archetype in local repository..."
+(cd target/generated-sources/archetype; mvn clean install)
 
 display_line
 echo 'Done'
+
+
