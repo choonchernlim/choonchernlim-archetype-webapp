@@ -122,21 +122,22 @@ find_string_occurence() {
     find "${path}" -type f -exec grep -e "${searchString}" {} \; -print
 }
 
-# Note: JaCoCo has to be disabled to prevent this exception:-
+# Create archetype from existing project. JaCoCo has to be disabled to prevent this exception:-
 #
 #    [ERROR] Failed to execute goal on project choonchernlim-archetype-webapp-webapp-ear: Could not resolve
 #    dependencies for project com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-ear:ear:0.0.0:
 #    Could not find artifact com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-war:war:0.0.0
 #    in central (https://repo.maven.apache.org/maven2) -> [Help 1]
-
-echo "Creating Maven archetype from project"
+echo "Creating Maven archetype from existing project..."
 mvn clean archetype:create-from-project -Pdisable-jacoco -Darchetype.properties=archetype/archetype.properties
 display_line
 
-# TODO add parent pom.xml to archetype pom.xml!
-#PARENT_POM=`awk '/<parent>/,/<\/parent>/' pom.xml`
-#echo "$ARCHETYPE_BASE_PATH/pom.xml"
-#sed -i '' 's/modelVersion/a/g' "$ARCHETYPE_BASE_PATH/pom.xml"
+# Pluck out `<parent>...</parent>` from `pom.xml` and replace all line breaks with blank string to prevent `sed`
+# from throwing "unescaped newline inside substitute pattern" error... archetype pom.xml doesn't look
+# formatted now, but it works
+echo "Adding parent pom to archetype pom..."
+PARENT_POM=`awk '/<parent>/,/<\/parent>/' pom.xml | tr '\n' ' '`
+sed -i '' "s|</modelVersion>|</modelVersion> ${PARENT_POM}|g" "$ARCHETYPE_BASE_PATH/pom.xml"
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
 replace_string_in_file "${currentPath}" '<groupId>com.github.choonchernlim</groupId>' '<groupId>${package}</groupId>'
