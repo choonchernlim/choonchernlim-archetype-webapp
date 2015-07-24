@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.choonchernlim</groupId>
+        <artifactId>choonchernlim-archetype-webapp</artifactId>
+        <version>1.7.0</version>
+    </parent>
+
+    <artifactId>choonchernlim-archetype-webapp-webapp</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>choonchernlim-archetype-webapp-webapp-ear</module>
+        <module>choonchernlim-archetype-webapp-webapp-war</module>
+    </modules>
+
+    <build>
+        <finalName>${project.parent.artifactId}</finalName>
+    </build>
+</project>

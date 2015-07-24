@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- TODO Spring Security: Uncomment to configure security
+    <security:http pattern="/resources/**" security="none"/>
+    <security:http pattern="/errors/**" security="none"/>
+    <security:http pattern="/login" security="none"/>
+
+    <security:http auto-config="true">
+        <security:form-login login-page="/login"
+                             authentication-failure-url="/login?login_error=1"
+                             default-target-url="/"
+                             always-use-default-target="true"/>
+        <security:logout logout-success-url="/"/>
+        <security:intercept-url pattern="/**" access="ROLE_USER"/>
+    </security:http>
+
+    <bean id="customAuthenticationProvider" class="..."/>
+
+    <security:authentication-manager>
+        <security:authentication-provider ref="customAuthenticationProvider"/>
+    </security:authentication-manager>
+    -->
+
+</beans>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+
+    <!--<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
+    <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+    <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--<property name="hibernateProperties">-->
+    <!--<props>-->
+    <!--<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>-->
+    <!--<prop key="hibernate.show_sql">false</prop>-->
+
+    <!--&lt;!&ndash;!-->
+    <!--Instead of defining @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime") on-->
+    <!--all Joda Time object, auto register the user type-->
+    <!--&ndash;&gt;-->
+    <!--<prop key="jadira.usertype.autoRegisterUserTypes">true</prop>-->
+    <!--&lt;!&ndash;!-->
+    <!--This is important for H2 to work with Hibernate. If this is not specified, then the `dbo` has to be-->
+    <!--specified at domain classes, like this: `@Table(name = "dbo.domain")`.-->
+    <!--&ndash;&gt;-->
+    <!--<prop key="hibernate.default_schema">dbo</prop>-->
+    <!--</props>-->
+    <!--</property>-->
+    <!--<property name="packagesToScan">-->
+    <!--<list>-->
+    <!--<value>com.github.choonchernlim.choonchernlimArchetypeWebapp.domain</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+    <!--<property name="targetObject">-->
+    <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+    <!--<property name="targetClass" value="java.lang.System"/>-->
+    <!--<property name="targetMethod" value="getProperties"/>-->
+    <!--</bean>-->
+    <!--</property>-->
+    <!--<property name="targetMethod" value="putAll"/>-->
+    <!--<property name="arguments">-->
+    <!--<util:properties>-->
+    <!--<prop key="org.jboss.logging.provider">slf4j</prop>-->
+    <!--</util:properties>-->
+    <!--</property>-->
+    <!--</bean>-->
+</beans>
