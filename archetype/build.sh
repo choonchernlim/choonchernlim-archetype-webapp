@@ -7,7 +7,8 @@ set -e
 # Get archetype version from `archetype/archetype.properties`
 ARCHETYPE_VERSION=`awk -F= '/^archetype.version/ { print $2 }' archetype/archetype.properties`
 
-ARCHETYPE_RESOURCES_PATH="`pwd`/target/generated-sources/archetype/src/main/resources/archetype-resources"
+ARCHETYPE_BASE_PATH="`pwd`/target/generated-sources/archetype"
+ARCHETYPE_RESOURCES_PATH="$ARCHETYPE_BASE_PATH/src/main/resources/archetype-resources"
 
 LOCAL_ARCHETYPE_PATH="$HOME/.m2/repository/com/github/choonchernlim/choonchernlim-archetype-webapp/$ARCHETYPE_VERSION/"
 
@@ -131,6 +132,11 @@ find_string_occurence() {
 echo "Creating Maven archetype from project"
 mvn clean archetype:create-from-project -Pdisable-jacoco -Darchetype.properties=archetype/archetype.properties
 display_line
+
+# TODO add parent pom.xml to archetype pom.xml!
+#PARENT_POM=`awk '/<parent>/,/<\/parent>/' pom.xml`
+#echo "$ARCHETYPE_BASE_PATH/pom.xml"
+#sed -i '' 's/modelVersion/a/g' "$ARCHETYPE_BASE_PATH/pom.xml"
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
 replace_string_in_file "${currentPath}" '<groupId>com.github.choonchernlim</groupId>' '<groupId>${package}</groupId>'

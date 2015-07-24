@@ -24,4 +24,5 @@ Execute shell script.
 
 Push to Nexus
 
-    mvn clean deploy
+    (cd target/generated-sources/archetype; mvn clean deploy -Pexternal-release -Possrh)
+
