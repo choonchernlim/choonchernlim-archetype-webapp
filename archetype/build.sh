@@ -133,11 +133,12 @@ mvn clean archetype:create-from-project -Pdisable-jacoco -Darchetype.properties=
 display_line
 
 # Pluck out `<parent>...</parent>` from `pom.xml` and replace all line breaks with blank string to prevent `sed`
-# from throwing "unescaped newline inside substitute pattern" error... archetype pom.xml doesn't look
-# formatted now, but it works
+# from throwing "unescaped newline inside substitute pattern" error. Then, use xmllint to reformat the file back.
 echo "Adding parent pom to archetype pom..."
 PARENT_POM=`awk '/<parent>/,/<\/parent>/' pom.xml | tr '\n' ' '`
 sed -i '' "s|</modelVersion>|</modelVersion> ${PARENT_POM}|g" "$ARCHETYPE_BASE_PATH/pom.xml"
+export XMLLINT_INDENT="    "
+xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/pom.xml"
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
 replace_string_in_file "${currentPath}" '<groupId>com.github.choonchernlim</groupId>' '<groupId>${package}</groupId>'
@@ -181,5 +182,3 @@ echo "Installing new archetype in local repository..."
 
 display_line
 echo 'Done'
-
-
