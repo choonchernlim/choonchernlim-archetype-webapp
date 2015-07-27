@@ -4,23 +4,11 @@
   "devDependencies": {
     "bluebird": "2.9.x",
     "browserify": "9.0.x",
-    "browserify-istanbul": "^0.2.1",
     "gulp": "3.8.x",
-    "gulp-util": "^3.0.4",
-    "jasmine-core": "^2.1.3",
-    "jasmine-jquery": "^2.0.6",
     "jquery": "^2.1.3",
-    "karma": "^0.12.28",
-    "karma-browserify": "^4.0.0",
-    "karma-coverage": "0.2.6",
-    "karma-jasmine": "^0.3.2",
-    "karma-jasmine-ajax": "^0.1.4",
-    "karma-jasmine-jquery": "^0.1.1",
-    "karma-junit-reporter": "^0.2.2",
-    "karma-phantomjs-launcher": "^0.1.4",
     "moment": "^2.9.0",
     "underscore": "^1.8.2",
     "underscore.string": "^3.0.3",
-    "watchify": "^2.6.0"
+    "vinyl-source-stream": "1.1.x"
   }
 }

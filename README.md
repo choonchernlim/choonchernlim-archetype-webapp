@@ -6,6 +6,7 @@ TBD
 
 * In order to get Jetty Maven Plugin working, create an environment variable `JETTY_ENV_XML` pointing to `jetty-env.xml` file. This file contains the data source information.
 
+* Frontend Maven Plugin requires at least Maven 3.1.0.
 
 # Dependency and Plugin Limitations
 
