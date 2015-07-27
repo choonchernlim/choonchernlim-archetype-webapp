@@ -19,15 +19,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
-                <version>2.9.1</version>
                 <configuration>
-                    <displayName>${project.parent.artifactId}</displayName>
+                    <displayName>${project.parent.parent.artifactId}</displayName>
                     <modules>
                         <webModule>
                             <groupId>com.github.choonchernlim</groupId>
                             <artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>
-                            <bundleFileName>${project.parent.artifactId}.war</bundleFileName>
-                            <contextRoot>${project.parent.artifactId}</contextRoot>
+                            <bundleFileName>${project.parent.parent.artifactId}.war</bundleFileName>
+                            <contextRoot>${project.parent.parent.artifactId}</contextRoot>
                         </webModule>
                     </modules>
                 </configuration>

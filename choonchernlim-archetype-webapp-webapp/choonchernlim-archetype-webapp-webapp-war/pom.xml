@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--!
-# WAR Module POM
-* In order to get Jetty working, you will need to an external `jetty-env.xml` that is referenced by an environment variable `JETTY_ENV_XML` to configure your JNDIs.
--->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -18,19 +13,14 @@
     <artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>
     <packaging>war</packaging>
 
-    <!--!
-    ## Dependencies
-
-    Most (if not all) dependencies listed here do not have a version defined because they are already defined
-    under the parent POM's `dependencyManagement` section.
-    -->
     <dependencies>
+        <!-- Groovy. -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
         </dependency>
 
-        <!--! Scope = provided. -->
+        <!-- Scope = provided. -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -40,13 +30,13 @@
             <artifactId>jsp-api</artifactId>
         </dependency>
 
-        <!--! Scope = runtime. -->
+        <!-- Scope = runtime. -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
 
-        <!--! Logger. -->
+        <!-- Logger. -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -73,8 +63,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+        </dependency>
 
-        <!--! Utilities. -->
+        <!-- Utilities. -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -95,8 +89,13 @@
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>findbugs</artifactId>
+        </dependency>
 
-        <!--! Commons. -->
+
+        <!-- Commons. -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -114,21 +113,17 @@
             <artifactId>commons-collections4</artifactId>
         </dependency>
 
-        <!--! Hibernate. -->
+        <!-- Hibernate. -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jadira.usertype</groupId>
             <artifactId>usertype.core</artifactId>
         </dependency>
 
-        <!--! Spring. -->
+        <!-- Spring. -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -158,7 +153,7 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
-        <!--! Spring Security. -->
+        <!-- Spring Security. -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
@@ -176,7 +171,7 @@
             <artifactId>spring-security-taglibs</artifactId>
         </dependency>
 
-        <!--! Joda time. -->
+        <!-- Joda time. -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -190,13 +185,11 @@
             <artifactId>joda-time-jsptags</artifactId>
         </dependency>
 
-        <!--! Sitemesh. -->
+        <!-- Scope = test. -->
         <dependency>
-            <groupId>opensymphony</groupId>
-            <artifactId>sitemesh</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
         </dependency>
-
-        <!--! Test scope. -->
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
@@ -206,12 +199,16 @@
             <artifactId>spock-spring</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-testlib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -225,85 +222,68 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.dbunit</groupId>
-            <artifactId>dbunit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>net.sourceforge.jtds</groupId>
-            <artifactId>jtds</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-module-junit4</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito</artifactId>
-        </dependency>
     </dependencies>
 
-    <!--!
-    ## Build Configuration
-    -->
     <build>
-        <!--!
-        ### Plugins
-        -->
         <plugins>
-            <!--!
-            WAR plugin.
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
                 <configuration>
-                    <packagingExcludes>
-                        WEB-INF/web.xml,
-                        WEB-INF/classes/log4j.xml
-                    </packagingExcludes>
+                    <packagingExcludes>WEB-INF/web.xml, WEB-INF/classes/log4j.xml</packagingExcludes>
                 </configuration>
             </plugin>
 
-            <!--!
-            Jetty plugin.
+            <!--
+            Setting system property in Jetty Maven Plugin for Log4J doesn't work anymore. So, using this plugin
+            to set `log4j.configuration` system property instead.
+
+            http://stackoverflow.com/questions/9995347/slf4j-log4j-not-initialized-in-jetty-maven-plugin
             -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>log4j.configuration</name>
+                                    <value>file:${project.basedir}/src/main/resources/log4j.xml</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.15.v20140411</version>
                 <configuration>
                     <stopKey>jetty-stop-key</stopKey>
                     <stopPort>7778</stopPort>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <!--!
-                    Displays server log in the console. If it gets to be too chatty, this can be disabled.
-                    -->
+                    <!-- Displays server log in the console. If it gets to be too chatty, this can be disabled. -->
                     <requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
-                        <extended>false</extended>
+                        <extended>true</extended>
                         <logTimeZone>CST</logTimeZone>
                     </requestLog>
                     <webApp>
-                        <!--!
+                        <!--
                         The `${project.parent.artifactId}` should be defined as the context path, so the project
-                        root link will be `/<context-path>` to be consistent with DCIS WAS environment.
+                        root link will be `/<context-path>` to be consistent with WAS environment.
                         -->
                         <contextPath>/${project.parent.artifactId}</contextPath>
-                        <!--!
+                        <!--
                         The `JETTY_ENV_XML` environment variable points to the `jetty-env.xml` file that contains
                         all JNDI information.
                         -->
                         <jettyEnvXml>${env.JETTY_ENV_XML}</jettyEnvXml>
-                        <!--!
+                        <!--
                         Forces Jetty to scan just jars that match the provided pattern to significantly speed up the
                         server startup.
                         -->
@@ -311,7 +291,7 @@
                         </webInfIncludeJarPattern>
                     </webApp>
                     <connectors>
-                        <!--!
+                        <!--
                         `SocketConnector` is used instead of the preferred NIO's `SelectChannelConnector` because
                         Windows appears to have static file locking problems.
                         -->
@@ -320,14 +300,24 @@
                         </connector>
                     </connectors>
                 </configuration>
-                <!--!
+                <!--
                 These dependencies are required in order to run Jetty. Most of the dependencies are database
                 drivers that may be defined in the `jetty-env.xml`.
                 -->
                 <dependencies>
                     <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                        <version>${log4j.version}</version>
+                    </dependency>
+                    <dependency>
                         <groupId>org.slf4j</groupId>
                         <artifactId>slf4j-api</artifactId>
+                        <version>${slf4j.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
                         <version>${slf4j.version}</version>
                     </dependency>
                     <dependency>
@@ -341,32 +331,36 @@
                         <version>${mysql.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>com.sybase.jdbc4.jdbc</groupId>
-                        <artifactId>jconn4</artifactId>
-                        <version>${jconn4.version}</version>
-                    </dependency>
-                    <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
                         <version>${h2.version}</version>
                     </dependency>
-                    <dependency>
-                        <groupId>com.ibm.db2.jcc</groupId>
-                        <artifactId>db2jcc4</artifactId>
-                        <version>${db2jcc4.version}</version>
-                        <classifier>${db2jcc4.classifier}</classifier>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.ibm.db2.jcc</groupId>
-                        <artifactId>db2jcc_license_cisuz</artifactId>
-                        <version>${db2jcc4.version}</version>
-                        <classifier>${db2jcc4.classifier}</classifier>
-                    </dependency>
+                    <!-- TODO Jetty: Sybase and DB2 drivers
+                    Sybase and DB2 drivers are disabled by default because they don't exist in any public
+                    repositories. If your project requires these dependencies, manually install them in your local
+                    repo or your local Nexus before uncommenting the below.
+                    -->
+                    <!--<dependency>-->
+                    <!--<groupId>com.sybase.jdbc4.jdbc</groupId>-->
+                    <!--<artifactId>jconn4</artifactId>-->
+                    <!--<version>${jconn4.version}</version>-->
+                    <!--</dependency>-->
+                    <!--<dependency>-->
+                    <!--<groupId>com.ibm.db2.jcc</groupId>-->
+                    <!--<artifactId>db2jcc4</artifactId>-->
+                    <!--<version>${db2jcc4.version}</version>-->
+                    <!--<classifier>${db2jcc4.classifier}</classifier>-->
+                    <!--</dependency>-->
+                    <!--<dependency>-->
+                    <!--<groupId>com.ibm.db2.jcc</groupId>-->
+                    <!--<artifactId>db2jcc_license_cisuz</artifactId>-->
+                    <!--<version>${db2jcc4.version}</version>-->
+                    <!--<classifier>${db2jcc4.classifier}</classifier>-->
+                    <!--</dependency>-->
                 </dependencies>
             </plugin>
         </plugins>
     </build>
-
 
 </project>
 

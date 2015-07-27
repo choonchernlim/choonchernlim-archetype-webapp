@@ -30,6 +30,7 @@ public class HomeController {
     /*! `GET  /` - displays the home page with a "hello world" message. */
     @RequestMapping(method = RequestMethod.GET)
     public String main(Model model) {
+        System.out.println("######");
         LOGGER.debug("Testing SLF4J-Log4J bridge...");
 
         model.addAttribute("message", homeService.getHelloWorld());

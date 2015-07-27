@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--!
-# Root POM
-
-This root pom.xml serves as both a parent pom and an aggregator pom.
-As a parent pom, settings that are global to all modules will be defined here.
-As an aggregator pom, any `mvn` command executed at the root project level will automatically be propagated to all modules.
--->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--! ## Parent POM
-
-    Leveraging standard-parent parent pom that configures `mvn site` for Maven 3 and Docco plugin, and
-    these configurations are 100% compatible with Jenkins and Sonar.
-    -->
+    <!-- This parent POM handles all build reports that are 100% compatible with Maven Site, Jenkins and Sonar. -->
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>build-reports</artifactId>
@@ -28,37 +17,29 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
     <version>0.0.0</version>
     <name>${project.artifactId}</name>
 
-    <!--!
-    ## Aggregator Pom Configuration
-
-    To make this root pom.xml to be an aggregator pom, all modules within this project are defined here.
-    This way, whenever a `mvn` command is executed at the root level (ex: `mvn clean site`),
-    it will be propagated to all listed modules.
-    -->
     <modules>
         <module>choonchernlim-archetype-webapp-webapp</module>
     </modules>
 
-    <!--!
-    ## Properties
-    -->
     <properties>
         <jdk.version>1.6</jdk.version>
 
-        <org.springframework.version>4.0.6.RELEASE</org.springframework.version>
-        <org.springframework.test.version>3.2.10.RELEASE</org.springframework.test.version>
-        <org.springframework.security.version>3.2.4.RELEASE</org.springframework.security.version>
+        <groovy-all.version>2.4.4</groovy-all.version>
+        <groovy-eclipse-compiler.version>2.9.2-01</groovy-eclipse-compiler.version>
+        <groovy-eclipse-batch.version>2.4.3-01</groovy-eclipse-batch.version>
 
-        <goodies.version>2.1.0</goodies.version>
-        <slf4j.version>1.7.7</slf4j.version>
+        <org.springframework.version>4.1.7.RELEASE</org.springframework.version>
+        <org.springframework.test.version>3.2.14.RELEASE</org.springframework.test.version>
+        <org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>
+        <org.springframework.ws.version>2.2.1.RELEASE</org.springframework.ws.version>
+
+        <slf4j.version>1.7.12</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <jackson.version>2.3.3</jackson.version>
-
-        <spock.version>1.0-groovy-2.3-SNAPSHOT</spock.version>
-        <powermock.version>1.5.5</powermock.version>
+        <jackson.version>2.6.0</jackson.version>
+        <spock.version>1.0-groovy-2.4</spock.version>
         <hamcrest.version>1.3</hamcrest.version>
 
-        <h2.version>1.4.180</h2.version>
+        <h2.version>1.4.187</h2.version>
         <jconn4.version>7.0</jconn4.version>
         <mysql.version>5.1.21</mysql.version>
         <jtds.version>1.2.4</jtds.version>
@@ -66,19 +47,16 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
         <db2jcc4.classifier>FP005</db2jcc4.classifier>
     </properties>
 
-    <!--!
-    ## Dependency Management
-    -->
     <dependencyManagement>
         <dependencies>
-            <!--! Groovy. -->
+            <!-- Groovy. -->
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
-                <version>2.3.7</version>
+                <version>${groovy-all.version}</version>
             </dependency>
 
-            <!--! Scope = provided. -->
+            <!-- Scope = provided. -->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
@@ -92,7 +70,7 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <scope>provided</scope>
             </dependency>
 
-            <!--! Scope = runtime. -->
+            <!-- Scope = runtime. -->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
@@ -100,7 +78,7 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <scope>runtime</scope>
             </dependency>
 
-            <!--! Logger. -->
+            <!-- Logger. -->
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
@@ -133,12 +111,17 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-joda</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
 
-            <!--! Utilities. -->
+            <!-- Utilities. -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>17.0</version>
+                <version>18.0</version>
             </dependency>
             <dependency>
                 <groupId>javax.mail</groupId>
@@ -148,24 +131,29 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
-                <version>4.3.2</version>
+                <version>4.4.1</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.3.2</version>
+                <version>4.4.1</version>
             </dependency>
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib-nodep</artifactId>
                 <version>3.1</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>findbugs</artifactId>
+                <version>2.0.3</version>
+            </dependency>
 
-            <!--! Commons. -->
+            <!-- Commons. -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.3.2</version>
+                <version>3.4</version>
             </dependency>
             <dependency>
                 <groupId>commons-dbcp</groupId>
@@ -183,29 +171,24 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <version>4.0</version>
             </dependency>
 
-            <!--! Hibernate. -->
+            <!-- Hibernate. -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>4.2.16.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.common</groupId>
-                <artifactId>hibernate-commons-annotations</artifactId>
-                <version>4.0.5.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>5.1.2.Final</version>
+                <version>4.2.20.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.jadira.usertype</groupId>
                 <artifactId>usertype.core</artifactId>
-                <version>3.2.0.GA</version>
+                <version>4.0.0.GA</version>
             </dependency>
 
-            <!--! Spring goodies. -->
+            <!-- Spring. -->
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-core</artifactId>
+                <version>${org.springframework.ws.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
@@ -262,7 +245,7 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <version>${org.springframework.version}</version>
             </dependency>
 
-            <!--! Spring Security. -->
+            <!-- Spring Security. -->
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
@@ -284,16 +267,16 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <version>${org.springframework.security.version}</version>
             </dependency>
 
-            <!--! Joda time. -->
+            <!-- Joda time. -->
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
-                <version>2.3</version>
+                <version>2.8.1</version>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time-hibernate</artifactId>
-                <version>1.3</version>
+                <version>1.4</version>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>
@@ -301,14 +284,19 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <version>1.1.1</version>
             </dependency>
 
-            <!--! Sitemesh. -->
+            <!-- Scope = test. -->
             <dependency>
-                <groupId>opensymphony</groupId>
-                <artifactId>sitemesh</artifactId>
-                <version>2.4.2</version>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-test</artifactId>
+                <version>${org.springframework.ws.version}</version>
+                <scope>test</scope>
             </dependency>
-
-            <!--! Test scope. -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${org.springframework.test.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.spockframework</groupId>
                 <artifactId>spock-core</artifactId>
@@ -322,21 +310,27 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava-testlib</artifactId>
+                <version>18.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${org.springframework.test.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path-assert</artifactId>
-                <version>0.9.1</version>
+                <version>2.0.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -351,128 +345,118 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                 <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.11</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.dbunit</groupId>
-                <artifactId>dbunit</artifactId>
-                <version>2.5.0</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>net.sourceforge.jtds</groupId>
-                <artifactId>jtds</artifactId>
-                <version>1.2.4</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>1.9.5</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.powermock</groupId>
-                <artifactId>powermock-module-junit4</artifactId>
-                <version>${powermock.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.powermock</groupId>
-                <artifactId>powermock-api-mockito</artifactId>
-                <version>${powermock.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!--! Resolving indirect dependencies. -->
-            <dependency>
-                <groupId>org.jboss.logging</groupId>
-                <artifactId>jboss-logging</artifactId>
-                <version>3.1.4.GA</version>
-            </dependency>
-            <dependency>
-                <groupId>org.javassist</groupId>
-                <artifactId>javassist</artifactId>
-                <version>3.18.2-GA</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.objenesis</groupId>
-                <artifactId>objenesis</artifactId>
-                <version>2.1</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <!--!
-    ## Build Configuration
-    -->
     <build>
-        <!--!
-        The final file name for the build.
-        -->
-        <finalName>${project.parent.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <compilerId>groovy-eclipse-compiler</compilerId>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.codehaus.groovy</groupId>
+                            <artifactId>groovy-eclipse-compiler</artifactId>
+                            <version>${groovy-eclipse-compiler.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.codehaus.groovy</groupId>
+                            <artifactId>groovy-eclipse-batch</artifactId>
+                            <version>${groovy-eclipse-batch.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
 
-        <!--!
-        ### Global Plugins
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
-        These plugins are made available to all modules within this project.
-        -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.6</version>
+                    <executions>
+                        <execution>
+                            <id>default-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>2.10.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <version>1.0-alpha-2</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>8.1.16.v20140903</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.kelveden</groupId>
+                    <artifactId>maven-karma-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.5.201505241946</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
-            <!--!
-            The Maven Compiler Plugin is used to compile the sources of your project.
-            Both source and target will be compiled with the JDK version defined in `${jdk.version}`.
-            -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <compilerId>groovy-eclipse-compiler</compilerId>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-compiler</artifactId>
-                        <version>2.9.0-01</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-batch</artifactId>
-                        <version>2.3.4-01</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
-            <!--The Maven Source Plugin allows `mvn deploy` to push source code to Nexus.-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.3</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
 
     <profiles>
+        <!-- Profile to disable JaCoCo code coverage tool -->
         <profile>
             <id>disable-jacoco</id>
             <build>
@@ -480,7 +464,6 @@ As an aggregator pom, any `mvn` command executed at the root project level will 
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>0.7.2.201409121644</version>
                         <executions>
                             <execution>
                                 <id>pre-unit-test</id>

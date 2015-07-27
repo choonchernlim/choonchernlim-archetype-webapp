@@ -1,4 +1,3 @@
-<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="ROOT" value="${pageContext.request.contextPath}"/>
@@ -31,8 +30,6 @@
 
     <%--suppress JspAbsolutePathInspection, HtmlUnknownTarget --%>
     <script type="text/javascript" src="/goodies/lib/modernizr/2.8.3/modernizr.min.js"></script>
-
-    <decorator:head/>
 </head>
 <body>
 
@@ -63,7 +60,6 @@
 
 
 <div class="container">
-    <decorator:body/>
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
@@ -95,7 +91,6 @@
 <%--
 -- Application Code
 --%>
-<decorator:getProperty property="page.page-scripts"/>
 
 
 </body>
