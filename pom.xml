@@ -147,6 +147,12 @@
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>findbugs</artifactId>
                 <version>2.0.3</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Commons. -->
@@ -416,6 +422,12 @@
                 </plugin>
 
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+
+                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>properties-maven-plugin</artifactId>
                     <version>1.0-alpha-2</version>
@@ -451,6 +463,41 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+
+            <!--
+            If these banned dependencies exist, fail the build right away.
+
+            Xalan, Xerces and Xml-APIs cause the following exception in WAS:
+
+                java.lang.ClassCastException: org.apache.xerces.jaxp.datatype.DatatypeFactoryImpl incompatible with
+                javax.xml.datatype.DatatypeFactory
+
+            http://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <fail>true</fail>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>xalan</exclude>
+                                        <exclude>xerces</exclude>
+                                        <exclude>xml-apis</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
