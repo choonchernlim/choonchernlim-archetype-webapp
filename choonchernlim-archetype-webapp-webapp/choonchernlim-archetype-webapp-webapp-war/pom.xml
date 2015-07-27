@@ -29,6 +29,10 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>net.karneim</groupId>
+            <artifactId>pojobuilder</artifactId>
+        </dependency>
 
         <!-- Scope = runtime. -->
         <dependency>

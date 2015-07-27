@@ -2,6 +2,7 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- TODO Hibernate: Uncomment to configure Hibernate -->
     <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 
     <!--<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
@@ -15,12 +16,12 @@
     <!--<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>-->
     <!--<prop key="hibernate.show_sql">false</prop>-->
 
-    <!--&lt;!&ndash;!-->
+    <!--&lt;!&ndash;-->
     <!--Instead of defining @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime") on-->
     <!--all Joda Time object, auto register the user type-->
     <!--&ndash;&gt;-->
     <!--<prop key="jadira.usertype.autoRegisterUserTypes">true</prop>-->
-    <!--&lt;!&ndash;!-->
+    <!--&lt;!&ndash;-->
     <!--This is important for H2 to work with Hibernate. If this is not specified, then the `dbo` has to be-->
     <!--specified at domain classes, like this: `@Table(name = "dbo.domain")`.-->
     <!--&ndash;&gt;-->
@@ -34,6 +35,7 @@
     <!--</property>-->
     <!--</bean>-->
 
+    <!--&lt;!&ndash; Redirects Hibernate's JBoss Logging to SFL4J &ndash;&gt;-->
     <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
     <!--<property name="targetObject">-->
     <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->

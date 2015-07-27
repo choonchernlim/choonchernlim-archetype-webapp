@@ -8,13 +8,5 @@
 
     <mvc:annotation-driven/>
 
-    <import resource="classpath*:spring-applicationContext.xml"/>
-
-    <bean id="wscname" class="java.lang.String">
-        <constructor-arg value="javadev.mayo.edu"/>
-    </bean>
-
-    <bean id="wasenv" class="java.lang.String">
-        <constructor-arg value="DEV"/>
-    </bean>
+    <import resource="classpath*:spring-component-scan.xml"/>
 </beans>

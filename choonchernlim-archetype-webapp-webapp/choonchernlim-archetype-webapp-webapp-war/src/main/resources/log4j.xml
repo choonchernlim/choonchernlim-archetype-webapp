@@ -27,6 +27,11 @@
         <level value="warn"/>
     </logger>
 
+    <!--Hibernate: Display JDBC parameters-->
+    <!--<logger name="org.hibernate.type.descriptor.sql">-->
+    <!--<level value="trace"/>-->
+    <!--</logger>-->
+
     <logger name="org.eclipse.jetty">
         <level value="info"/>
     </logger>
