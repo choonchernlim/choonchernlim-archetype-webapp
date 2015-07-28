@@ -3,23 +3,21 @@
  */
 
 var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment'];
-var dest = './src/main/webapp/resources/dist/';
+var dest = '../../../src/main/webapp/resources/js/';
 
 module.exports = {
     browserify : {
         // Enable source maps
         debug         : true,
-        // Additional file extensions to make optional
-        extensions    : ['.hbs'],
         bundleConfigs : [
             {
                 dest       : dest,
-                outputName : 'vendor.js',
+                outputName : 'vendor.min.js',
                 require    : externalLibs
             }, {
-                entries    : './src/main/webapp/resources/app/app.js',
+                entries    : './app/app.js',
                 dest       : dest,
-                outputName : 'app.js',
+                outputName : 'app.min.js',
                 external   : externalLibs
             }
         ]
