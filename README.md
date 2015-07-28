@@ -6,7 +6,9 @@ TBD
 
 * In order to get Jetty Maven Plugin working, create an environment variable `JETTY_ENV_XML` pointing to `jetty-env.xml` file. This file contains the data source information.
 
-* Frontend Maven Plugin requires at least Maven 3.1.0.
+* Maven version must be between 3.1.0 and 3.2.5.
+    * Frontend Maven Plugin requires at least 3.1.0.
+    * Maven 3.3.x requires Java 7.
 
 # Dependency and Plugin Limitations
 
@@ -24,14 +26,9 @@ The added dependencies and plugins must be compatible with Websphere 7's specs: 
     * Using 2.1 to match WAS.
 * commons-dbcp:commons-dbcp
     * Using 1.4 because 2.x requires Java 7.
-    
-    
 * org.hibernate:hibernate-core
     * Using 4.2.x because 4.3.x requires JPA 2.1.
-    
-    
 * org.springframework:spring-test
     Using 3.x because 4.x requires Servlet 3.0.
-    
 * com.google.code.findbugs:findbugs
     * Using 2.x because 3.x requires Java 7
