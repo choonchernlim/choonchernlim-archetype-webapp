@@ -122,14 +122,14 @@ find_string_occurence() {
     find "${path}" -type f -exec grep -e "${searchString}" {} \; -print
 }
 
-# Create archetype from existing project. JaCoCo has to be disabled to prevent this exception:-
+# Create archetype from existing project. Enforcer Plugin and JaCoCo plugin have to be disabled to prevent this exception:-
 #
 #    [ERROR] Failed to execute goal on project choonchernlim-archetype-webapp-webapp-ear: Could not resolve
 #    dependencies for project com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-ear:ear:0.0.0:
 #    Could not find artifact com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-war:war:0.0.0
 #    in central (https://repo.maven.apache.org/maven2) -> [Help 1]
 echo "Creating Maven archetype from existing project..."
-mvn clean archetype:create-from-project -Pdisable-jacoco -Darchetype.properties=archetype/archetype.properties
+mvn clean archetype:create-from-project -Darchetype.properties=archetype/archetype.properties -Denforcer.skip=true -Pdisable-jacoco
 display_line
 
 # Pluck out `<parent>...</parent>` from `pom.xml` and replace all line breaks with blank string to prevent `sed`
@@ -143,6 +143,15 @@ xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/p
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
 replace_string_in_file "${currentPath}" '<groupId>com.github.choonchernlim</groupId>' '<groupId>${package}</groupId>'
 replace_string_in_file "${currentPath}" '<artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>' '<artifactId>${rootArtifactId}-webapp-war</artifactId>'
+
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/package.json"
+replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
+
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/web.xml"
+replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
+
+currentPath="${ARCHETYPE_RESOURCES_PATH}/README.md"
+replace_string_in_file "${currentPath}" '# choonchernlim-archetype-webapp' '# ${rootArtifactId}'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/pom.xml"
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
@@ -158,13 +167,15 @@ insert_velocity_escape_variables_in_file "${currentPath}"
 
 display_line
 echo "${ARCHETYPE_RESOURCES_PATH}"
-echo "- Delete dirs: .idea/, archetype/"
+echo "- Delete dirs: .idea/, archetype/, node/, node_modules/"
 echo "- Delete files: .gitignore, LICENSE, *.iml"
 
 rm -rf "${ARCHETYPE_RESOURCES_PATH}/.idea"
 rm -rf "${ARCHETYPE_RESOURCES_PATH}/archetype"
 rm -rf "${ARCHETYPE_RESOURCES_PATH}/.gitignore"
 rm -rf "${ARCHETYPE_RESOURCES_PATH}/LICENSE"
+rm -rf "${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/node"
+rm -rf "${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/node_modules"
 find "${ARCHETYPE_RESOURCES_PATH}" -name "*.iml" -delete
 
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 4 '\${version}'

@@ -364,31 +364,9 @@
                 </dependencies>
             </plugin>
 
-            <!-- TODO might replace with Frontend Maven Plugin to force `npm install` on compile
-
-            https://github.com/eirslett/frontend-maven-plugin/blob/master/frontend-maven-plugin
-            -->
-            <plugin>
-                <groupId>com.kelveden</groupId>
-                <artifactId>maven-karma-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <karmaExecutable>${project.parent.basedir}/node_modules/karma/bin/karma</karmaExecutable>
-                    <configFile>src/test/resources/karma.jenkins.conf.js</configFile>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>0.0.24</version>
                 <configuration>
                     <workingDirectory>src/main/frontend</workingDirectory>
                     <installDirectory>src/main/frontend</installDirectory>

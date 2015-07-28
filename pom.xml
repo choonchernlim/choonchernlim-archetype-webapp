@@ -462,9 +462,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>com.kelveden</groupId>
-                    <artifactId>maven-karma-plugin</artifactId>
-                    <version>1.8</version>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>0.0.24</version>
                 </plugin>
 
                 <plugin>
@@ -533,12 +533,7 @@
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>pre-unit-test</id>
-                                <phase>none</phase>
-                            </execution>
-                        </executions>
+                        <inherited>false</inherited>
                     </plugin>
                 </plugins>
             </build>
