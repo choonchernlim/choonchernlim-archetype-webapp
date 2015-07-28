@@ -3,6 +3,7 @@
  *
  * @type {Gulp|exports|module.exports}
  */
+
 var gulp = require( 'gulp' );
 
 gulp.task( 'default', function () {
