@@ -3,12 +3,8 @@
         if ( !n[o] ) {
             if ( !t[o] ) {
                 var a = typeof require == "function" && require;
-                if ( !u && a ) {
-                    return a( o, !0 );
-                }
-                if ( i ) {
-                    return i( o, !0 );
-                }
+                if ( !u && a )return a( o, !0 );
+                if ( i )return i( o, !0 );
                 var f = new Error( "Cannot find module '" + o + "'" );
                 throw f.code = "MODULE_NOT_FOUND", f
             }
@@ -22,9 +18,7 @@
     }
 
     var i = typeof require == "function" && require;
-    for ( var o = 0; o < r.length; o++ ) {
-        s( r[o] );
-    }
+    for ( var o = 0; o < r.length; o++ )s( r[o] );
     return s
 })( {
     1 : [

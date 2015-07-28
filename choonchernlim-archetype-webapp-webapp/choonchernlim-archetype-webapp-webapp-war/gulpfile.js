@@ -1,14 +1,10 @@
-var browserify = require( 'browserify' );
-var gulp = require( 'gulp' );
-var source = require( 'vinyl-source-stream' );
+/**
+ * Breaks Gulp tasks into different files.
+ *
+ * @type {*|exports|module.exports}
+ */
 
-var appDir = './src/main/webapp/resources/app/';
-var distDir = './src/main/webapp/resources/build/';
+var requireDir = require( 'require-dir' );
 
-gulp.task( 'default', function () {
-    return browserify( appDir + 'main.js' )
-        .bundle()
-        .pipe( source( 'main.js' ) )
-        .pipe( gulp.dest( distDir ) );
-} );
+requireDir( './gulp-tasks', {recurse : true} );
 
