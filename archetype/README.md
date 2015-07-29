@@ -23,6 +23,6 @@ Execute shell script.
 ## Installing Archetype
 
 Push to Nexus
-
-    (cd target/generated-sources/archetype; mvn clean deploy -Pexternal-release -Possrh)
+    
+    (cd /tmp/choonchernlim-archetype-webapp/target/generated-sources/archetype; mvn clean deploy -Pexternal-release -Possrh)
 

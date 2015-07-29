@@ -1,5 +1,5 @@
 // TODO Delete this!
 
 # Jasmine + Gulp
-# Test against CD
+# Test against CI
 # Skin home.jsp

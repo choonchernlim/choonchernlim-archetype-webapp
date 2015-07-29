@@ -10,10 +10,14 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
 # Get archetype version from `archetype/archetype.properties`
 ARCHETYPE_VERSION=`awk -F= '/^archetype.version/ { print $2 }' archetype/archetype.properties`
 
-ARCHETYPE_BASE_PATH="`pwd`/target/generated-sources/archetype"
+# Sanitized archetype copy
+TMP_PATH="/tmp/choonchernlim-archetype-webapp"
+
+ARCHETYPE_BASE_PATH="${TMP_PATH}/target/generated-sources/archetype"
 ARCHETYPE_RESOURCES_PATH="$ARCHETYPE_BASE_PATH/src/main/resources/archetype-resources"
 
-LOCAL_ARCHETYPE_PATH="$HOME/.m2/repository/com/github/choonchernlim/choonchernlim-archetype-webapp/$ARCHETYPE_VERSION/"
+# ~/.m2 path for previously installed archetype
+ARCHETYPE_LOCAL_REPO_PATH="$HOME/.m2/repository/com/github/choonchernlim/choonchernlim-archetype-webapp/$ARCHETYPE_VERSION/"
 
 # Asserts that the file path exists
 # $1 = file path
@@ -125,6 +129,27 @@ find_string_occurence() {
     find "${path}" -type f -exec grep -e "${searchString}" {} \; -print
 }
 
+# Remove all `target` dirs first, if any
+mvn clean
+
+# Recreate temp space
+rm -rf ${TMP_PATH}
+mkdir ${TMP_PATH}
+
+# Remove all unneeded files for the archetype. `archetype/` dir cannot be removed at this point because
+# `mvn archetype:create-from-project` needs a property file that resides in it.
+rsync . ${TMP_PATH} -av \
+--exclude="*.iml" \
+--exclude="LICENSE" \
+--exclude=".git/" \
+--exclude=".idea/" \
+--exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/etc/" \
+--exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/node/" \
+--exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/node_modules/"
+
+# Change dir to the temp space
+cd ${TMP_PATH}
+
 # Create archetype from existing project. Enforcer Plugin and JaCoCo plugin have to be disabled to prevent this exception:-
 #
 #    [ERROR] Failed to execute goal on project choonchernlim-archetype-webapp-webapp-ear: Could not resolve
@@ -132,8 +157,12 @@ find_string_occurence() {
 #    Could not find artifact com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-war:war:0.0.0
 #    in central (https://repo.maven.apache.org/maven2) -> [Help 1]
 echo "Creating Maven archetype from existing project..."
-mvn clean archetype:create-from-project -Darchetype.properties=archetype/archetype.properties -Denforcer.skip=true -Pdisable-jacoco
+mvn clean archetype:create-from-project -Darchetype.properties=archetype/archetype.properties -Denforcer.skip=true -Pno-jacoco
 display_line
+
+# Now, it is safe to get rid of `archetype` dirs
+rm -rf ${TMP_PATH}/archetype
+rm -rf ${ARCHETYPE_RESOURCES_PATH}/archetype
 
 # Pluck out `<parent>...</parent>` from `pom.xml` and replace all line breaks with blank string to prevent `sed`
 # from throwing "unescaped newline inside substitute pattern" error. Then, use xmllint to reformat the file back.
@@ -160,6 +189,10 @@ currentPath="${ARCHETYPE_RESOURCES_PATH}/pom.xml"
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
 
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/pom.xml"
+replace_string_in_file "${currentPath}" '#' '$symbol_pound'
+insert_velocity_escape_variables_in_file "${currentPath}"
+
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
@@ -168,19 +201,6 @@ currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifac
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
 
-display_line
-echo "${ARCHETYPE_RESOURCES_PATH}"
-echo "- Delete dirs: .idea/, archetype/, node/, node_modules/"
-echo "- Delete files: .gitignore, LICENSE, *.iml"
-
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/.idea"
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/archetype"
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/.gitignore"
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/LICENSE"
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/node"
-rm -rf "${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/node_modules"
-find "${ARCHETYPE_RESOURCES_PATH}" -name "*.iml" -delete
-
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 4 '\${version}'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 1 'choonchernlim-archetype-webapp'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
@@ -188,7 +208,7 @@ find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.
 display_line
 
 echo "Remove existing archetype from local repository..."
-rm -rf "$LOCAL_ARCHETYPE_PATH"
+rm -rf "$ARCHETYPE_LOCAL_REPO_PATH"
 display_line
 
 echo "Installing new archetype in local repository..."

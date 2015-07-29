@@ -518,7 +518,7 @@
     <profiles>
         <!-- Profile to disable JaCoCo code coverage tool -->
         <profile>
-            <id>disable-jacoco</id>
+            <id>no-jacoco</id>
             <build>
                 <plugins>
                     <plugin>
