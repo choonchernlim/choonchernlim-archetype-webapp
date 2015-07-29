@@ -387,19 +387,10 @@
                     </dependencies>
                 </plugin>
 
-                <!-- Execute `mvn clean` every time the project is built. -->
                 <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>2.6.1</version>
-                    <executions>
-                        <execution>
-                            <id>auto-clean</id>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>clean</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
                 </plugin>
 
                 <plugin>
