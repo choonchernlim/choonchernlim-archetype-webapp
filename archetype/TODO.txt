@@ -3,3 +3,6 @@
 # Jasmine + Gulp
 # Test against CI
 # Skin home.jsp
+# Clean up app.js and app-spec.js
+# Update README.md
+# Determine right version number, might go with v0.1.0
