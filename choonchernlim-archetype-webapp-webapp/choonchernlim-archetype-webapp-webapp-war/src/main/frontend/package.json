@@ -1,10 +1,22 @@
 {
   "name": "choonchernlim-archetype-webapp",
   "private": true,
+  "browser": {
+    "materialize": "./node_modules/materialize-css/bin/materialize.js"
+  },
+  "browserify-shim": {
+    "materialize": "materialize"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
   "devDependencies": {
     "bluebird": "2.9.x",
     "browserify": "9.0.x",
     "browserify-istanbul": "^0.2.1",
+    "browserify-shim": "^3.8.10",
     "gulp": "3.8.x",
     "gulp-if": "^1.2.5",
     "gulp-notify": "^2.2.0",
@@ -24,6 +36,7 @@
     "karma-junit-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^0.1.4",
     "lodash": "^3.10.0",
+    "materialize-css": "^0.96.1",
     "merge-stream": "^0.1.8",
     "moment": "^2.9.0",
     "pretty-hrtime": "^1.0.0",
