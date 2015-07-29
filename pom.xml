@@ -488,30 +488,30 @@
 
             http://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven
             -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforce-banned-dependencies</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <fail>true</fail>
-                            <rules>
-                                <bannedDependencies>
-                                    <excludes>
-                                        <exclude>xalan</exclude>
-                                        <exclude>xerces</exclude>
-                                        <exclude>xml-apis</exclude>
-                                    </excludes>
-                                </bannedDependencies>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-enforcer-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>enforce-banned-dependencies</id>-->
+                        <!--<goals>-->
+                            <!--<goal>enforce</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<fail>true</fail>-->
+                            <!--<rules>-->
+                                <!--<bannedDependencies>-->
+                                    <!--<excludes>-->
+                                        <!--<exclude>xalan</exclude>-->
+                                        <!--<exclude>xerces</exclude>-->
+                                        <!--<exclude>xml-apis</exclude>-->
+                                    <!--</excludes>-->
+                                <!--</bannedDependencies>-->
+                            <!--</rules>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
@@ -524,7 +524,14 @@
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
-                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>pre-unit-test</id>
+                                <phase>none</phase>
+                            </execution>
+
+                        </executions>
+
                     </plugin>
                 </plugins>
             </build>
