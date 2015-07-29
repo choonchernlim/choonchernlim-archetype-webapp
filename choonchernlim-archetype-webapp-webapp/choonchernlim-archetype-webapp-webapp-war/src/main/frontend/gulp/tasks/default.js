@@ -1,8 +1,8 @@
 /**
  * Gulp's default task that runs a list of tasks.
- *
- * @type {Gulp|exports|module.exports}
  */
+
+'use strict';
 
 var gulp = require( 'gulp' );
 

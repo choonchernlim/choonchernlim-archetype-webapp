@@ -1,8 +1,8 @@
 /**
  * Breaks Gulp tasks into different files.
- *
- * @type {*|exports|module.exports}
  */
+
+'use strict';
 
 var requireDir = require( 'require-dir' );
 

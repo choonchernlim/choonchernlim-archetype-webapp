@@ -4,6 +4,8 @@
  * When running Watchify, the source maps are attached to the minified files.
  */
 
+'use strict';
+
 var browserify = require( 'browserify' );
 var watchify = require( 'watchify' );
 var mergeStream = require( 'merge-stream' );

@@ -2,6 +2,8 @@
  * Configuration for Gulp tasks.
  */
 
+'use strict';
+
 var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment'];
 var dest = '../../../src/main/webapp/resources/js/';
 
