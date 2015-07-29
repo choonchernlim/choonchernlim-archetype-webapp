@@ -248,12 +248,12 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <delete>
                                     <fileset dir="${project.build.directory}/generated-sources/annotations"
                                              includes="**/*Builder.java"/>
                                 </delete>
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
