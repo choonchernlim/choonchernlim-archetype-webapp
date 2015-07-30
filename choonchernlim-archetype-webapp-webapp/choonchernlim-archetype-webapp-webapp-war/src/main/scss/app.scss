@@ -1,11 +1,8 @@
-// TODO fix app.scss
-.test {
-  color: yellow;
+@import "../frontend/node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "../frontend/node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// to compensate fixed top navbar
+body {
+  padding-top: 70px;
 }
 
-.example {
-  display: flex;
-  transition: all .5s;
-  user-select: none;
-  background: linear-gradient(to bottom, white, black);
-}

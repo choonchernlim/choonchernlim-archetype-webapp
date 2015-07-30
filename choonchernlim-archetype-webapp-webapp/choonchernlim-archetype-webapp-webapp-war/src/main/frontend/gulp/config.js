@@ -4,15 +4,18 @@
 
 'use strict';
 
-var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment'];
+// war root dir
 var base = '../../..';
 var dest = base + '/src/main/webapp/resources/dist';
 var src = base + '/src/main';
 
+var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment', 'bootstrap'];
+
 module.exports = {
     sass       : {
-        src  : src + '/scss/**/*.scss',
-        dest : dest
+        src      : src + '/scss/**/*.scss',
+        dest     : dest,
+        settings : {}
     },
     browserify : {
         // Enable source maps
@@ -26,8 +29,7 @@ module.exports = {
                 entries    : src + '/js/app.js',
                 dest       : dest,
                 outputName : 'app.js',
-                external   : externalLibs,
-                paths      : ['./node_modules', src + '/js']
+                external   : externalLibs
             }
         ]
     },
