@@ -20,39 +20,36 @@ var browserifyTask = function ( devMode ) {
 
     var browserifyThis = function ( bundleConfig ) {
 
-        if ( devMode ) {
-            // Add watchify args and debug (sourcemaps) option
-            _.extend( bundleConfig, watchify.args, {debug : true} );
-            // A watchify require/external bug that prevents proper recompiling, so (for now) we'll ignore these
-            // options during development. Running `gulp browserify` directly will properly require and externalize.
-            bundleConfig = _.omit( bundleConfig, ['external', 'require'] );
-        }
+        // Only enable watch on project files (non-vendor files)
+        var enableWatch = devMode && bundleConfig.external;
 
-        var b = browserify( bundleConfig );
+        // if watch is enabled, add in watchify arguments
+        var b = browserify( enableWatch ?
+            _.extend( bundleConfig, watchify.args, {debug : true} ) :
+            bundleConfig );
 
         var bundle = function () {
-            // Log when bundling starts
-            bundleLogger.start( bundleConfig.outputName );
-
             return b.bundle()
                 .on( 'error', handleErrors )
                 .pipe( source( bundleConfig.outputName ) )
                 .pipe( gulp.dest( bundleConfig.dest ) );
         };
 
-        if ( devMode ) {
+        if ( enableWatch ) {
+            bundleLogger.start( bundleConfig.outputName );
+
             b = watchify( b );
             b.on( 'update', bundle );
+
             bundleLogger.watch( bundleConfig.outputName );
         }
-        else {
-            if ( bundleConfig.require ) {
-                b.require( bundleConfig.require );
-            }
 
-            if ( bundleConfig.external ) {
-                b.external( bundleConfig.external );
-            }
+        if ( bundleConfig.require ) {
+            b.require( bundleConfig.require );
+        }
+
+        if ( bundleConfig.external ) {
+            b.external( bundleConfig.external );
         }
 
         return bundle();

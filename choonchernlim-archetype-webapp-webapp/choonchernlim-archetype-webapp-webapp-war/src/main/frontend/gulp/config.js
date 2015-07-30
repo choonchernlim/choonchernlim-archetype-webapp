@@ -29,7 +29,8 @@ module.exports = {
                 entries    : src + '/js/app.js',
                 dest       : dest,
                 outputName : 'app.js',
-                external   : externalLibs
+                external   : externalLibs,
+                paths      : ['./node_modules']
             }
         ]
     },
