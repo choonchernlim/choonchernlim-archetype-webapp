@@ -5,12 +5,13 @@
 'use strict';
 
 var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment'];
-var dest = '../../../src/main/webapp/resources/dist';
-var src = '../../../src/main';
+var base = '../../..';
+var dest = base + '/src/main/webapp/resources/dist';
+var src = base + '/src/main';
 
 module.exports = {
     sass       : {
-        src  : src + "/scss/**/*.scss",
+        src  : src + '/scss/**/*.scss',
         dest : dest
     },
     browserify : {
@@ -19,14 +20,20 @@ module.exports = {
         bundleConfigs : [
             {
                 dest       : dest,
-                outputName : 'vendor.min.js',
+                outputName : 'vendor.js',
                 require    : externalLibs
             }, {
                 entries    : src + '/js/app.js',
                 dest       : dest,
-                outputName : 'app.min.js',
-                external   : externalLibs
+                outputName : 'app.js',
+                external   : externalLibs,
+                paths      : ['./node_modules', src + '/js']
             }
         ]
+    },
+    production : {
+        cssSrc : dest + '/*.css',
+        jsSrc  : dest + '/*.js',
+        dest   : dest
     }
 };

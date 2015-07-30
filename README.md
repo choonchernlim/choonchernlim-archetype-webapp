@@ -10,6 +10,12 @@ TBD
     * Frontend Maven Plugin requires at least 3.1.0.
     * Maven 3.3.x requires Java 7.
 
+# Troubleshooting
+
+## `libsass` bindings not found. Try reinstalling `node-sass`?
+
+Run `npm rebuild node-sass` to fix the problem. [See here for more info](http://stackoverflow.com/questions/28409100/try-reinstalling-node-sass-on-node-0-12).
+
 # Dependency and Plugin Limitations
 
 The added dependencies and plugins must be compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
@@ -32,5 +38,3 @@ The added dependencies and plugins must be compatible with Websphere 7's specs: 
     Using 3.x because 4.x requires Servlet 3.0.
 * com.google.code.findbugs:findbugs
     * Using 2.x because 3.x requires Java 7
-* Node
-    Using 0.10.x because 0.12.x causes ["libsass bindings not found" on `node-sass` used by `gulp-sass`](https://github.com/sass/node-sass/issues/918). 

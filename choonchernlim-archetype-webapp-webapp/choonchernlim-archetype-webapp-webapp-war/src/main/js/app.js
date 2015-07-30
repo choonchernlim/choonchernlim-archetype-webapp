@@ -6,6 +6,7 @@ var moment = require( 'moment' );
 var Promise = require( 'bluebird' );
 
 $( function () {
+    var a = '';
     //var $body = $( 'body' );
     //
     //$body.append( '<h1>Testing jQuery, LoDash, Moment</h1>' );

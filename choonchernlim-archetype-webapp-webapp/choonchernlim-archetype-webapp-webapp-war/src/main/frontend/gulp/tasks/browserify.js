@@ -16,11 +16,6 @@ var source = require( 'vinyl-source-stream' );
 var config = require( '../config' ).browserify;
 var _ = require( 'lodash' );
 
-var uglify = require( 'gulp-uglify' );
-var sourcemaps = require( 'gulp-sourcemaps' );
-var buffer = require( 'vinyl-buffer' );
-var gulpif = require( 'gulp-if' );
-
 var browserifyTask = function ( devMode ) {
 
     var browserifyThis = function ( bundleConfig ) {
@@ -42,10 +37,6 @@ var browserifyTask = function ( devMode ) {
             return b.bundle()
                 .on( 'error', handleErrors )
                 .pipe( source( bundleConfig.outputName ) )
-                .pipe( buffer() )
-                .pipe( gulpif( devMode, sourcemaps.init() ) )
-                .pipe( uglify() )
-                .pipe( gulpif( devMode, sourcemaps.write() ) )
                 .pipe( gulp.dest( bundleConfig.dest ) );
         };
 

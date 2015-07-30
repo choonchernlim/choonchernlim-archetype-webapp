@@ -415,7 +415,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v0.10.40</nodeVersion>
+                            <nodeVersion>v0.12.7</nodeVersion>
                             <npmVersion>2.13.3</npmVersion>
                         </configuration>
                     </execution>
@@ -431,7 +431,7 @@
                             <goal>gulp</goal>
                         </goals>
                         <configuration>
-                            <arguments>prod</arguments>
+                            <arguments>production</arguments>
                         </configuration>
                     </execution>
                     <execution>
