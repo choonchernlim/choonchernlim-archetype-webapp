@@ -415,7 +415,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v0.12.7</nodeVersion>
+                            <nodeVersion>v0.10.40</nodeVersion>
                             <npmVersion>2.13.3</npmVersion>
                         </configuration>
                     </execution>
@@ -440,7 +440,7 @@
                             <goal>karma</goal>
                         </goals>
                         <configuration>
-                            <karmaConfPath>karma/karma.conf.ci.js</karmaConfPath>
+                            <karmaConfPath>${project.basedir}/src/test/resources/karma.conf.ci.js</karmaConfPath>
                         </configuration>
                     </execution>
                 </executions>

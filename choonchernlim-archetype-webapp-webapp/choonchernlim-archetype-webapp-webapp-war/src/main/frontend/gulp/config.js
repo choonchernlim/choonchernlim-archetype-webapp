@@ -6,7 +6,7 @@
 
 var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment'];
 var dest = '../../../src/main/webapp/resources/dist';
-var src = './app';
+var src = '../../../src/main';
 
 module.exports = {
     sass       : {

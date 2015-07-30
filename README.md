@@ -32,3 +32,5 @@ The added dependencies and plugins must be compatible with Websphere 7's specs: 
     Using 3.x because 4.x requires Servlet 3.0.
 * com.google.code.findbugs:findbugs
     * Using 2.x because 3.x requires Java 7
+* Node
+    Using 0.10.x because 0.12.x causes ["libsass bindings not found" on `node-sass` used by `gulp-sass`](https://github.com/sass/node-sass/issues/918). 

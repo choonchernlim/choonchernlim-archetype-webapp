@@ -2,19 +2,19 @@
 
 module.exports = function ( config ) {
     config.set( {
-        basePath         : '',
+        basePath         : '../../../',
         frameworks       : ['browserify', 'jasmine-jquery', 'jasmine-ajax', 'jasmine'],
         files            : [
-            '../../../../src/test/js/**/*.js'
+            'src/test/js/**/*.js'
         ],
         preprocessors    : {
-            '../../../../src/main/webapp/resources/js/**/*.js' : ['browserify', 'coverage'],
-            '../../../../src/test/**/*.js'                     : ['browserify']
+            'src/main/webapp/resources/dist/**/*.js' : ['browserify', 'coverage'],
+            'src/test/**/*.js'                       : ['browserify']
         },
         browserify       : {
             debug     : true,
-            transform : ['browserify-istanbul'],
-            plugin    : ['proxyquireify/plugin']
+            transform : ['./src/main/frontend/node_modules/browserify-istanbul'],
+            plugin    : ['./src/main/frontend/node_modules/proxyquireify/plugin']
         },
         reporters        : ['progress', 'junit', 'coverage'],
         browsers         : ['PhantomJS'],
@@ -31,10 +31,10 @@ module.exports = function ( config ) {
         ],
         coverageReporter : {
             type : 'cobertura',
-            dir  : '../../../../target/coverage-reports/'
+            dir : 'target/coverage-reports/'
         },
         junitReporter    : {
-            outputFile : '../../../../target/surefire-reports/TEST-karma-results.xml'
+            outputFile : 'target/surefire-reports/TEST-karma-results.xml'
         }
     } );
 };
