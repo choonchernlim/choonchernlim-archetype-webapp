@@ -12,3 +12,5 @@
     [INFO] --- maven-antrun-plugin:1.8:run (default) @ choonchernlim-archetype-webapp-webapp-war ---
     [WARNING] Parameter tasks is deprecated, use target instead
     [INFO] Executing tasks
+
+# clean up app.scss

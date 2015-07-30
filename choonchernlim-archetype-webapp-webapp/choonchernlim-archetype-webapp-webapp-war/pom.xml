@@ -430,6 +430,9 @@
                         <goals>
                             <goal>gulp</goal>
                         </goals>
+                        <configuration>
+                            <arguments>prod</arguments>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>javascript tests</id>
