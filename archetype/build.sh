@@ -1,6 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# Generates archetype from project, sanitize it, remove existing version from local repo, install it in local repo
+#---------------------------------------------------------------------------
+# build.sh
+#
+# Generates archetype from project, sanitize it, remove existing version
+# from local repo, install it in local repo.
+#---------------------------------------------------------------------------
 
 set -e
 
