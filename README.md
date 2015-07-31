@@ -2,21 +2,19 @@
 
 TBD
 
-# Prerequisites
-
-* In order to get Jetty Maven Plugin working, create an environment variable `JETTY_ENV_XML` pointing to `jetty-env.xml` file. This file contains the data source information.
+## Prerequisites
 
 * Maven version must be between 3.1.0 and 3.2.5.
     * Frontend Maven Plugin requires at least 3.1.0.
     * Maven 3.3.x requires Java 7.
 
-# Troubleshooting
+## Troubleshooting
 
-## `libsass` bindings not found. Try reinstalling `node-sass`?
+### `libsass` bindings not found. Try reinstalling `node-sass`?
 
 Run `npm rebuild node-sass` to fix the problem. [See here for more info](http://stackoverflow.com/questions/28409100/try-reinstalling-node-sass-on-node-0-12).
 
-# Version Restrictions
+## Version Restrictions
 
 Some dependencies and plugins cannot be upgraded to the latest version to ensure they are compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
 
