@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #---------------------------------------------------------------------------
-# dev-gulp.sh
+# gulp-watch.sh
 #
 # Runs Gulp with default task that watches for JS and SCSS file changes.
 #---------------------------------------------------------------------------

@@ -393,14 +393,6 @@
                 </dependencies>
             </plugin>
 
-            <!--
-            This plugin does the following things:-
-
-            - install local node and npm
-            - invoke `npm install` to prevent `mvn test` from failing
-            - run Gulp tasks
-            - run Karma tests
-            -->
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
@@ -409,6 +401,10 @@
                     <installDirectory>src/main/frontend</installDirectory>
                 </configuration>
                 <executions>
+                    <!--
+                    Install local node and npm within the project so that we can ensure all team members
+                    use the same version.
+                    -->
                     <execution>
                         <id>install-node-and-npm</id>
                         <goals>
@@ -419,14 +415,16 @@
                             <npmVersion>2.13.3</npmVersion>
                         </configuration>
                     </execution>
+                    <!-- Perform `npm-install` to install any dependencies listed in `package.json`. -->
                     <execution>
                         <id>npm-install</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                     </execution>
+                    <!-- Execute Gulp with `production` task -->
                     <execution>
-                        <id>gulp-build</id>
+                        <id>gulp-production</id>
                         <goals>
                             <goal>gulp</goal>
                         </goals>
@@ -434,8 +432,9 @@
                             <arguments>production</arguments>
                         </configuration>
                     </execution>
+                    <!-- Run Karma tests -->
                     <execution>
-                        <id>javascript tests</id>
+                        <id>karma</id>
                         <goals>
                             <goal>karma</goal>
                         </goals>

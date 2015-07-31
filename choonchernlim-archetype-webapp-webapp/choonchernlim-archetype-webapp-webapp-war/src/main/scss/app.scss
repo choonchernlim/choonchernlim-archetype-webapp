@@ -3,13 +3,13 @@
 
 body {
   // to compensate fixed top navbar
-  padding-top: 70px;
+  padding-top: 40px;
 
   // for scroll-spy to work
   position: relative;
 }
 
-// to get affix working
 #home-left-navbar {
   position: fixed;
+  top: 100px;
 }

@@ -9,8 +9,12 @@
     <title>choonchern-archetype-webapp</title>
 
     <link rel="stylesheet" href="dist/app.css"/>
+
+    <style>
+
+    </style>
 </head>
-<body data-spy="scroll" data-target="#home-left-navbar">
+<body data-spy="scroll" data-target="#home-left-navbar" data-offset="100">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -28,16 +32,8 @@
         <div id="header-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">User Actions <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action 1</a></li>
-                        <li><a href="#">Action 2</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Action 3</a></li>
-                    </ul>
-                </li>
+                <li><a href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">GitHub</a></li>
+                <li><a href="http://myshittycode.com">Blog</a></li>
             </ul>
         </div>
     </div>
@@ -48,22 +44,37 @@
         <div class="col-md-2">
             <div id="home-left-navbar" data-spy="affix" class="hidden-xs hidden-sm">
                 <ul class="nav nav-pills nav-stacked" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#section1" aria-controls="section1" role="tab" data-toggle="tab">Section 1</a>
+                    <li role="presentation">
+                        <a href="#section1" aria-controls="section1" role="tab">Section 1</a>
                     </li>
                     <li role="presentation">
-                        <a href="#section2" aria-controls="section2" role="tab" data-toggle="tab">Section 2</a>
+                        <a href="#section2" aria-controls="section2" role="tab">Section 2</a>
                     </li>
                     <li role="presentation">
-                        <a href="#section3" aria-controls="section3" role="tab" data-toggle="tab">Section 3</a>
+                        <a href="#section3" aria-controls="section3" role="tab">Section 3</a>
                     </li>
                     <li role="presentation">
-                        <a href="#section4" aria-controls="section4" role="tab" data-toggle="tab">Section 4</a>
+                        <a href="#section4" aria-controls="section4" role="tab">Section 4</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="col-md-10">
+            <div class="page-header">
+                <h2>Welcome to Hello World App</h2>
+            </div>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor orci. Mauris tempus mattis
+                urna
+                nec
+                molestie. Suspendisse orci arcu, rutrum ac feugiat at, interdum eu diam. Sed semper sagittis
+                tristique.
+                Donec suscipit ex ac leo egestas ultrices. Phasellus efficitur dui ac purus fringilla, sit amet
+                faucibus
+                ex
+            </p>
+
+
             <div class="tab-content">
                 <div id="section1" role="tabpanel" class="tab-pane active">
                     <h2>Section 1</h2>
@@ -472,5 +483,19 @@
 
 <script src="dist/vendor.js"></script>
 <script src="dist/app.js"></script>
+<script>
+    var $ = require( 'jquery' );
+    var offset = 80;
+    //$( function () {
+    $( '#home-left-navbar li a' ).click( function ( event ) {
+        event.preventDefault();
+        console.log( 'here' );
+
+        $( $( this ).attr( 'href' ) )[0].scrollIntoView();
+        scrollBy( 0, -offset );
+    } );
+    //} );
+
+</script>
 </body>
 </html>
