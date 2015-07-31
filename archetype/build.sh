@@ -194,9 +194,6 @@ currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifac
 replace_string_in_file "${currentPath}" '<title>choonchernlim-archetype-webapp</title>' '<title>${rootArtifactId}</title>'
 replace_string_in_file "${currentPath}" '<a class="navbar-brand" href="${symbol_pound}">choonchernlim-archetype-webapp</a>' '<a class="navbar-brand" href="${symbol_pound}">${rootArtifactId}</a>'
 
-
-
-
 currentPath="${ARCHETYPE_RESOURCES_PATH}/README.md"
 replace_string_in_file "${currentPath}" '# choonchernlim-archetype-webapp' '# ${rootArtifactId}'
 
