@@ -16,9 +16,9 @@ TBD
 
 Run `npm rebuild node-sass` to fix the problem. [See here for more info](http://stackoverflow.com/questions/28409100/try-reinstalling-node-sass-on-node-0-12).
 
-# Dependency and Plugin Limitations
+# Version Restrictions
 
-Any added dependencies and plugins must be compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
+Some dependencies and plugins cannot be upgraded to the latest version to ensure they are compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
 
 | Dependency                            | Version Used  | Why                                 |
 | --------------------------------------|---------------|-------------------------------------|
