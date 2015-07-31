@@ -42,9 +42,9 @@ require = (function e( t, n, r ) {
                     var i = -1;
                     while ( ++i < len ) {
                         currentQueue[i]();
-                    }
+        }
                     len = queue.length;
-                }
+    }
                 draining = false;
             }
 
@@ -30337,7 +30337,7 @@ require = (function e( t, n, r ) {
                             val = from[prop];
                             if ( typeof val !== 'undefined' ) {
                                 to[prop] = val;
-                            }
+                }
                         }
                     }
 
@@ -30422,7 +30422,7 @@ require = (function e( t, n, r ) {
                             locale = loadLocale( split.slice( 0, j ).join( '-' ) );
                             if ( locale ) {
                                 return locale;
-                            }
+                }
                             if ( next && next.length >= j && compareArrays( split, next, true ) >= j - 1 ) {
                                 //the next array item is better than a shallower substring of this one
                                 break;
@@ -30537,7 +30537,7 @@ require = (function e( t, n, r ) {
                             normalizedProp = normalizeUnits( prop );
                             if ( normalizedProp ) {
                                 normalizedInput[normalizedProp] = inputObject[prop];
-                            }
+                }
                         }
                     }
 
@@ -31015,7 +31015,7 @@ require = (function e( t, n, r ) {
                             if ( isoDates[i][1].exec( string ) ) {
                                 config._f = isoDates[i][0];
                                 break;
-                            }
+                }
                         }
                         for ( i = 0, l = isoTimes.length; i < l; i++ ) {
                             if ( isoTimes[i][1].exec( string ) ) {
@@ -31368,7 +31368,7 @@ require = (function e( t, n, r ) {
                             weekday = w.d;
                             if ( weekday < dow ) {
                                 ++week;
-                            }
+                }
                         }
                         else if ( w.e != null ) {
                             // local weekday -- counting starts from begining of week
@@ -31830,7 +31830,7 @@ require = (function e( t, n, r ) {
                                 this._changeInProgress = true;
                                 utils_hooks__hooks.updateOffset( this, true );
                                 this._changeInProgress = null;
-                            }
+                }
                         }
                         return this;
                     }

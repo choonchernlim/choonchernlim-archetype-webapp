@@ -45,16 +45,10 @@
             <div id="home-left-navbar" data-spy="affix" class="hidden-xs hidden-sm">
                 <ul class="nav nav-pills nav-stacked" role="tablist">
                     <li role="presentation">
-                        <a href="#section1" aria-controls="section1" role="tab">Section 1</a>
+                        <a href="#hibernate" aria-controls="hibernate" role="tab">Hibernate</a>
                     </li>
                     <li role="presentation">
-                        <a href="#section2" aria-controls="section2" role="tab">Section 2</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#section3" aria-controls="section3" role="tab">Section 3</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#section4" aria-controls="section4" role="tab">Section 4</a>
+                        <a href="#spring-security" aria-controls="spring-security" role="tab">Spring Security</a>
                     </li>
                 </ul>
             </div>
@@ -74,427 +68,198 @@
                 ex
             </p>
 
-
             <div class="tab-content">
-                <div id="section1" role="tabpanel" class="tab-pane active">
-                    <h2>Section 1</h2>
+                <!--
+                #################################
+                Hibernate
+                #################################
+                -->
+                <div id="hibernate" role="tabpanel" class="tab-pane active">
+                    <h3>Hibernate</h3>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor orci. Mauris tempus mattis
-                        urna
-                        nec
-                        molestie. Suspendisse orci arcu, rutrum ac feugiat at, interdum eu diam. Sed semper sagittis
-                        tristique.
-                        Donec suscipit ex ac leo egestas ultrices. Phasellus efficitur dui ac purus fringilla, sit amet
-                        faucibus
-                        ex
-                        egestas. Nulla lacinia sem nisi, eget dignissim erat egestas et. Fusce vitae metus lacus.
-                        Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed luctus est
-                        eget
-                        nulla
-                        feugiat venenatis. Sed in tortor ut nibh dignissim maximus id sed tellus. Vivamus sed aliquam
-                        sem, eu
-                        ullamcorper urna. In nisl lacus, malesuada eu finibus quis, sodales eget ante.
-                    </p>
+                    <p><code>src/main/webapp/WEB-INF/web.xml</code></p>
 
-                    <p>Morbi nec arcu in libero elementum laoreet eget vel eros. Vestibulum ante ipsum primis in
-                        faucibus orci
-                        luctus et ultrices posuere cubilia Curae; Aliquam consequat sapien vel arcu vestibulum cursus.
-                        Morbi
-                        ultricies imperdiet nisl, at dictum lacus iaculis quis. Vestibulum at lectus dictum, euismod
-                        augue ut,
-                        blandit lectus. Proin tincidunt, risus vel laoreet posuere, orci massa luctus dui, elementum
-                        volutpat
-                        massa
-                        nulla eu ligula. Nunc aliquet dignissim purus, nec dignissim sapien dignissim in. Donec in
-                        pretium
-                        ipsum.
-                        Sed dictum luctus enim, ac tempor quam vehicula vel. Suspendisse et metus eu velit blandit
-                        auctor et ut
-                        velit. Vivamus interdum gravida velit eu hendrerit. Vestibulum sem lectus, dictum eu convallis
-                        ac,
-                        ornare
-                        sit amet massa. Donec sed ultrices nibh. Nulla scelerisque nunc vel nunc vehicula scelerisque.
-                        Pellentesque
-                        ac est sed lacus gravida interdum.
-                    </p>
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Uncomment the following lines:-</p>
 
-                    <p>Aenean ut nisl metus. Donec placerat justo quis sagittis hendrerit. Proin aliquam lobortis sem
-                        rhoncus
-                        luctus. Phasellus porttitor egestas justo maximus condimentum. Maecenas porttitor nulla libero,
-                        sit amet
-                        dignissim dolor ornare sed. Mauris vestibulum convallis justo, ac pellentesque ex sodales in.
-                        Cras
-                        malesuada, dolor vel aliquam ultrices, mauris eros ultricies turpis, a venenatis diam leo quis
-                        est.
-                        Quisque
-                        pharetra, sem eu convallis dictum, metus sem mollis justo, eu euismod elit urna vel massa. Nam
-                        et semper
-                        lectus. Aenean dolor ex, finibus a maximus sit amet, aliquam in purus. Nullam consectetur
-                        eleifend
-                        dolor,
-                        eget iaculis lorem malesuada ac.
-                    </p>
+<pre>
+&lt;filter&gt;
+    &lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.orm.hibernate4.support.OpenSessionInViewFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
 
-                    <p>Praesent nec elit eget magna lacinia suscipit. Pellentesque porta molestie feugiat. Suspendisse
-                        non
-                        luctus
-                        tortor. Nunc commodo arcu non feugiat convallis. Vestibulum in odio eu lacus volutpat rhoncus
-                        non non
-                        leo.
-                        Sed ultricies, arcu sit amet ultricies porta, velit turpis mollis eros, id porttitor lorem enim
-                        at ex.
-                        Nunc
-                        tincidunt suscipit metus in porttitor. Quisque placerat tincidunt consectetur. Quisque convallis
-                        augue
-                        quis
-                        gravida facilisis. Suspendisse non nulla quis enim fermentum scelerisque. Vestibulum mattis in
-                        lacus ac
-                        fringilla. Etiam posuere enim augue, sed euismod nisi tempus vitae. Nullam eget magna sed tortor
-                        laoreet
-                        feugiat a vehicula purus. Donec congue convallis erat sit amet ultricies. Integer semper nulla
-                        urna, et
-                        dignissim urna mattis ut. Vestibulum eu quam nunc.
-                    </p>
+...
 
-                    <p>Curabitur nec vehicula ligula. Mauris vestibulum ante a tincidunt volutpat. Vivamus suscipit
-                        pharetra
-                        massa,
-                        id condimentum ex viverra sit amet. Nulla eleifend sem a orci aliquet viverra. Praesent in
-                        sagittis
-                        turpis.
-                        Vestibulum maximus odio mauris, ut laoreet metus tincidunt sed. Proin et lacus massa. Aliquam
-                        erat
-                        volutpat.
-                        Nunc id dui ac elit sollicitudin ullamcorper. Vestibulum sed ante nec odio tincidunt dignissim.
-                        Nam
-                        sodales
-                        semper feugiat. Etiam vehicula mi vitae feugiat sodales. Vestibulum congue et mi et venenatis.
-                        Aenean ac
-                        efficitur erat, eu commodo ex.
-                    </p>
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</pre>
+
+                            <p>Add JNDI resource reference.</p>
+
+<pre>
+&lt;resource-ref&gt;
+    &lt;res-ref-name&gt;jdbc/db&lt;/res-ref-name&gt;
+    &lt;res-type&gt;javax.sql.DataSource&lt;/res-type&gt;
+    &lt;res-auth&gt;Container&lt;/res-auth&gt;
+    &lt;res-sharing-scope&gt;Shareable&lt;/res-sharing-scope&gt;
+&lt;/resource-ref&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <p><code>src/main/webapp/WEB-INF/ibm-web-bnd.xml</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Add a new resource reference to bind the local JNDI to global JNDI. By doing this, the
+                                Middleware WAS
+                                admins do not need to manually configure the JNDI(s) when deploying a brand new EAR file
+                                through
+                                Middleware WAS Dashboard.</p>
+
+<pre>
+&lt;resource-ref name="jdbc/db" binding-name="jdbc/db"/&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <p><code>src/main/resources/spring-datasource-jndi.xml</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Add a JNDI data source pointing to your project database.</p>
+
+<pre>
+&lt;jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/db"/&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <p><code>src/main/resources/spring-data.xml</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Change Hibernate dialect to match your database type.</p>
+
+                            <p>List your Hibernate annotated classes.</p>
+
+<pre>
+&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"&gt;
+    &lt;property name="dataSource" ref="dataSource"/&gt;
+
+    &lt;property name="hibernateProperties"&gt;
+        &lt;props&gt;
+            <strong>&lt;prop key="hibernate.dialect"&gt;org.hibernate.dialect.SQLServerDialect&lt;/prop&gt;</strong>
+            &lt;prop key="hibernate.show_sql"&gt;false&lt;/prop&gt;
+            &lt;prop key="jadira.usertype.autoRegisterUserTypes"&gt;true&lt;/prop&gt;
+            &lt;prop key="hibernate.default_schema"&gt;dbo&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+    &lt;property name="packagesToScan"&gt;
+        &lt;list&gt;
+            &lt;value&gt;com.github.choonchernlim.choonchernlimArchetypeWebapp.domain&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/domain</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>All Hibernate domains are placed in this package.</p>
+                        </div>
+                    </div>
                 </div>
-                <div id="section2" role="tabpanel" class="tab-pane active">
-                    <h2>Section 2</h2>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor orci. Mauris tempus mattis
-                        urna
-                        nec
-                        molestie. Suspendisse orci arcu, rutrum ac feugiat at, interdum eu diam. Sed semper sagittis
-                        tristique.
-                        Donec suscipit ex ac leo egestas ultrices. Phasellus efficitur dui ac purus fringilla, sit amet
-                        faucibus
-                        ex
-                        egestas. Nulla lacinia sem nisi, eget dignissim erat egestas et. Fusce vitae metus lacus.
-                        Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed luctus est
-                        eget
-                        nulla
-                        feugiat venenatis. Sed in tortor ut nibh dignissim maximus id sed tellus. Vivamus sed aliquam
-                        sem, eu
-                        ullamcorper urna. In nisl lacus, malesuada eu finibus quis, sodales eget ante.
-                    </p>
+                <!--
+                #################################
+                section
+                #################################
+                -->
+                <div id="spring-security" role="tabpanel" class="tab-pane active">
+                    <h3>Spring Security</h3>
 
-                    <p>Morbi nec arcu in libero elementum laoreet eget vel eros. Vestibulum ante ipsum primis in
-                        faucibus orci
-                        luctus et ultrices posuere cubilia Curae; Aliquam consequat sapien vel arcu vestibulum cursus.
-                        Morbi
-                        ultricies imperdiet nisl, at dictum lacus iaculis quis. Vestibulum at lectus dictum, euismod
-                        augue ut,
-                        blandit lectus. Proin tincidunt, risus vel laoreet posuere, orci massa luctus dui, elementum
-                        volutpat
-                        massa
-                        nulla eu ligula. Nunc aliquet dignissim purus, nec dignissim sapien dignissim in. Donec in
-                        pretium
-                        ipsum.
-                        Sed dictum luctus enim, ac tempor quam vehicula vel. Suspendisse et metus eu velit blandit
-                        auctor et ut
-                        velit. Vivamus interdum gravida velit eu hendrerit. Vestibulum sem lectus, dictum eu convallis
-                        ac,
-                        ornare
-                        sit amet massa. Donec sed ultrices nibh. Nulla scelerisque nunc vel nunc vehicula scelerisque.
-                        Pellentesque
-                        ac est sed lacus gravida interdum.
-                    </p>
+                    <p><code>src/main/webapp/WEB-INF/web.xml</code></p>
 
-                    <p>Aenean ut nisl metus. Donec placerat justo quis sagittis hendrerit. Proin aliquam lobortis sem
-                        rhoncus
-                        luctus. Phasellus porttitor egestas justo maximus condimentum. Maecenas porttitor nulla libero,
-                        sit amet
-                        dignissim dolor ornare sed. Mauris vestibulum convallis justo, ac pellentesque ex sodales in.
-                        Cras
-                        malesuada, dolor vel aliquam ultrices, mauris eros ultricies turpis, a venenatis diam leo quis
-                        est.
-                        Quisque
-                        pharetra, sem eu convallis dictum, metus sem mollis justo, eu euismod elit urna vel massa. Nam
-                        et semper
-                        lectus. Aenean dolor ex, finibus a maximus sit amet, aliquam in purus. Nullam consectetur
-                        eleifend
-                        dolor,
-                        eget iaculis lorem malesuada ac.
-                    </p>
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Uncomment the following lines:-</p>
 
-                    <p>Praesent nec elit eget magna lacinia suscipit. Pellentesque porta molestie feugiat. Suspendisse
-                        non
-                        luctus
-                        tortor. Nunc commodo arcu non feugiat convallis. Vestibulum in odio eu lacus volutpat rhoncus
-                        non non
-                        leo.
-                        Sed ultricies, arcu sit amet ultricies porta, velit turpis mollis eros, id porttitor lorem enim
-                        at ex.
-                        Nunc
-                        tincidunt suscipit metus in porttitor. Quisque placerat tincidunt consectetur. Quisque convallis
-                        augue
-                        quis
-                        gravida facilisis. Suspendisse non nulla quis enim fermentum scelerisque. Vestibulum mattis in
-                        lacus ac
-                        fringilla. Etiam posuere enim augue, sed euismod nisi tempus vitae. Nullam eget magna sed tortor
-                        laoreet
-                        feugiat a vehicula purus. Donec congue convallis erat sit amet ultricies. Integer semper nulla
-                        urna, et
-                        dignissim urna mattis ut. Vestibulum eu quam nunc.
-                    </p>
+<pre>
+&lt;filter&gt;
+    &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;
+&lt;/filter&gt;
 
-                    <p>Curabitur nec vehicula ligula. Mauris vestibulum ante a tincidunt volutpat. Vivamus suscipit
-                        pharetra
-                        massa,
-                        id condimentum ex viverra sit amet. Nulla eleifend sem a orci aliquet viverra. Praesent in
-                        sagittis
-                        turpis.
-                        Vestibulum maximus odio mauris, ut laoreet metus tincidunt sed. Proin et lacus massa. Aliquam
-                        erat
-                        volutpat.
-                        Nunc id dui ac elit sollicitudin ullamcorper. Vestibulum sed ante nec odio tincidunt dignissim.
-                        Nam
-                        sodales
-                        semper feugiat. Etiam vehicula mi vitae feugiat sodales. Vestibulum congue et mi et venenatis.
-                        Aenean ac
-                        efficitur erat, eu commodo ex.
-                    </p>
+...
+
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <p><code>src/main/resources/spring-security.xml</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Uncomment the entire file. Tweak the configuration based on your project needs.</p>
+
+<pre>
+&lt;security:http pattern="/resources/**" security="none"/&gt;
+&lt;security:http pattern="/errors/**" security="none"/&gt;
+&lt;security:http pattern="/login" security="none"/&gt;
+
+&lt;security:http auto-config="true"&gt;
+    &lt;security:form-login login-page="/login"
+                         authentication-failure-url="/login?login_error=1"
+                         default-target-url="/"
+                         always-use-default-target="true"/&gt;
+    &lt;security:logout logout-success-url="/"/&gt;
+    &lt;security:intercept-url pattern="/**" access="ROLE_USER"/&gt;
+&lt;/security:http&gt;
+
+&lt;bean id="customAuthenticationProvider" class="..."/&gt;
+
+&lt;security:authentication-manager&gt;
+    &lt;security:authentication-provider ref="customAuthenticationProvider"/&gt;
+&lt;/security:authentication-manager&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <!--
+                    #################################
+                    section
+                    #################################
+                    -->
+                    <!--<div id="section" role="tabpanel" class="tab-pane active">-->
+                    <!--<h3>section</h3>-->
+                    <!--</div>-->
                 </div>
-                <div id="section3" role="tabpanel" class="tab-pane active">
-                    <h2>Section 3</h2>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor orci. Mauris tempus mattis
-                        urna
-                        nec
-                        molestie. Suspendisse orci arcu, rutrum ac feugiat at, interdum eu diam. Sed semper sagittis
-                        tristique.
-                        Donec suscipit ex ac leo egestas ultrices. Phasellus efficitur dui ac purus fringilla, sit amet
-                        faucibus
-                        ex
-                        egestas. Nulla lacinia sem nisi, eget dignissim erat egestas et. Fusce vitae metus lacus.
-                        Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed luctus est
-                        eget
-                        nulla
-                        feugiat venenatis. Sed in tortor ut nibh dignissim maximus id sed tellus. Vivamus sed aliquam
-                        sem, eu
-                        ullamcorper urna. In nisl lacus, malesuada eu finibus quis, sodales eget ante.
-                    </p>
-
-                    <p>Morbi nec arcu in libero elementum laoreet eget vel eros. Vestibulum ante ipsum primis in
-                        faucibus orci
-                        luctus et ultrices posuere cubilia Curae; Aliquam consequat sapien vel arcu vestibulum cursus.
-                        Morbi
-                        ultricies imperdiet nisl, at dictum lacus iaculis quis. Vestibulum at lectus dictum, euismod
-                        augue ut,
-                        blandit lectus. Proin tincidunt, risus vel laoreet posuere, orci massa luctus dui, elementum
-                        volutpat
-                        massa
-                        nulla eu ligula. Nunc aliquet dignissim purus, nec dignissim sapien dignissim in. Donec in
-                        pretium
-                        ipsum.
-                        Sed dictum luctus enim, ac tempor quam vehicula vel. Suspendisse et metus eu velit blandit
-                        auctor et ut
-                        velit. Vivamus interdum gravida velit eu hendrerit. Vestibulum sem lectus, dictum eu convallis
-                        ac,
-                        ornare
-                        sit amet massa. Donec sed ultrices nibh. Nulla scelerisque nunc vel nunc vehicula scelerisque.
-                        Pellentesque
-                        ac est sed lacus gravida interdum.
-                    </p>
-
-                    <p>Aenean ut nisl metus. Donec placerat justo quis sagittis hendrerit. Proin aliquam lobortis sem
-                        rhoncus
-                        luctus. Phasellus porttitor egestas justo maximus condimentum. Maecenas porttitor nulla libero,
-                        sit amet
-                        dignissim dolor ornare sed. Mauris vestibulum convallis justo, ac pellentesque ex sodales in.
-                        Cras
-                        malesuada, dolor vel aliquam ultrices, mauris eros ultricies turpis, a venenatis diam leo quis
-                        est.
-                        Quisque
-                        pharetra, sem eu convallis dictum, metus sem mollis justo, eu euismod elit urna vel massa. Nam
-                        et semper
-                        lectus. Aenean dolor ex, finibus a maximus sit amet, aliquam in purus. Nullam consectetur
-                        eleifend
-                        dolor,
-                        eget iaculis lorem malesuada ac.
-                    </p>
-
-                    <p>Praesent nec elit eget magna lacinia suscipit. Pellentesque porta molestie feugiat. Suspendisse
-                        non
-                        luctus
-                        tortor. Nunc commodo arcu non feugiat convallis. Vestibulum in odio eu lacus volutpat rhoncus
-                        non non
-                        leo.
-                        Sed ultricies, arcu sit amet ultricies porta, velit turpis mollis eros, id porttitor lorem enim
-                        at ex.
-                        Nunc
-                        tincidunt suscipit metus in porttitor. Quisque placerat tincidunt consectetur. Quisque convallis
-                        augue
-                        quis
-                        gravida facilisis. Suspendisse non nulla quis enim fermentum scelerisque. Vestibulum mattis in
-                        lacus ac
-                        fringilla. Etiam posuere enim augue, sed euismod nisi tempus vitae. Nullam eget magna sed tortor
-                        laoreet
-                        feugiat a vehicula purus. Donec congue convallis erat sit amet ultricies. Integer semper nulla
-                        urna, et
-                        dignissim urna mattis ut. Vestibulum eu quam nunc.
-                    </p>
-
-                    <p>Curabitur nec vehicula ligula. Mauris vestibulum ante a tincidunt volutpat. Vivamus suscipit
-                        pharetra
-                        massa,
-                        id condimentum ex viverra sit amet. Nulla eleifend sem a orci aliquet viverra. Praesent in
-                        sagittis
-                        turpis.
-                        Vestibulum maximus odio mauris, ut laoreet metus tincidunt sed. Proin et lacus massa. Aliquam
-                        erat
-                        volutpat.
-                        Nunc id dui ac elit sollicitudin ullamcorper. Vestibulum sed ante nec odio tincidunt dignissim.
-                        Nam
-                        sodales
-                        semper feugiat. Etiam vehicula mi vitae feugiat sodales. Vestibulum congue et mi et venenatis.
-                        Aenean ac
-                        efficitur erat, eu commodo ex.
-                    </p>
-                </div>
-                <div id="section4" role="tabpanel" class="tab-pane active">
-                    <h2>Section 4</h2>
-                    p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. In quis dolor orci. Mauris tempus mattis urna
-                    nec
-                    molestie. Suspendisse orci arcu, rutrum ac feugiat at, interdum eu diam. Sed semper sagittis
-                    tristique.
-                    Donec suscipit ex ac leo egestas ultrices. Phasellus efficitur dui ac purus fringilla, sit amet
-                    faucibus
-                    ex
-                    egestas. Nulla lacinia sem nisi, eget dignissim erat egestas et. Fusce vitae metus lacus.
-                    Pellentesque
-                    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed luctus est
-                    eget
-                    nulla
-                    feugiat venenatis. Sed in tortor ut nibh dignissim maximus id sed tellus. Vivamus sed aliquam
-                    sem, eu
-                    ullamcorper urna. In nisl lacus, malesuada eu finibus quis, sodales eget ante.
-                    </p>
-
-                    <p>Morbi nec arcu in libero elementum laoreet eget vel eros. Vestibulum ante ipsum primis in
-                        faucibus
-                        orci
-                        luctus et ultrices posuere cubilia Curae; Aliquam consequat sapien vel arcu vestibulum cursus.
-                        Morbi
-                        ultricies imperdiet nisl, at dictum lacus iaculis quis. Vestibulum at lectus dictum, euismod
-                        augue
-                        ut,
-                        blandit lectus. Proin tincidunt, risus vel laoreet posuere, orci massa luctus dui, elementum
-                        volutpat
-                        massa
-                        nulla eu ligula. Nunc aliquet dignissim purus, nec dignissim sapien dignissim in. Donec in
-                        pretium
-                        ipsum.
-                        Sed dictum luctus enim, ac tempor quam vehicula vel. Suspendisse et metus eu velit blandit
-                        auctor et
-                        ut
-                        velit. Vivamus interdum gravida velit eu hendrerit. Vestibulum sem lectus, dictum eu convallis
-                        ac,
-                        ornare
-                        sit amet massa. Donec sed ultrices nibh. Nulla scelerisque nunc vel nunc vehicula scelerisque.
-                        Pellentesque
-                        ac est sed lacus gravida interdum.
-                    </p>
-
-                    <p>Aenean ut nisl metus. Donec placerat justo quis sagittis hendrerit. Proin aliquam lobortis sem
-                        rhoncus
-                        luctus. Phasellus porttitor egestas justo maximus condimentum. Maecenas porttitor nulla libero,
-                        sit
-                        amet
-                        dignissim dolor ornare sed. Mauris vestibulum convallis justo, ac pellentesque ex sodales in.
-                        Cras
-                        malesuada, dolor vel aliquam ultrices, mauris eros ultricies turpis, a venenatis diam leo quis
-                        est.
-                        Quisque
-                        pharetra, sem eu convallis dictum, metus sem mollis justo, eu euismod elit urna vel massa. Nam
-                        et
-                        semper
-                        lectus. Aenean dolor ex, finibus a maximus sit amet, aliquam in purus. Nullam consectetur
-                        eleifend
-                        dolor,
-                        eget iaculis lorem malesuada ac.
-                    </p>
-
-                    <p>Praesent nec elit eget magna lacinia suscipit. Pellentesque porta molestie feugiat. Suspendisse
-                        non
-                        luctus
-                        tortor. Nunc commodo arcu non feugiat convallis. Vestibulum in odio eu lacus volutpat rhoncus
-                        non
-                        non
-                        leo.
-                        Sed ultricies, arcu sit amet ultricies porta, velit turpis mollis eros, id porttitor lorem enim
-                        at
-                        ex.
-                        Nunc
-                        tincidunt suscipit metus in porttitor. Quisque placerat tincidunt consectetur. Quisque convallis
-                        augue
-                        quis
-                        gravida facilisis. Suspendisse non nulla quis enim fermentum scelerisque. Vestibulum mattis in
-                        lacus
-                        ac
-                        fringilla. Etiam posuere enim augue, sed euismod nisi tempus vitae. Nullam eget magna sed tortor
-                        laoreet
-                        feugiat a vehicula purus. Donec congue convallis erat sit amet ultricies. Integer semper nulla
-                        urna,
-                        et
-                        dignissim urna mattis ut. Vestibulum eu quam nunc.
-                    </p>
-
-                    <p>Curabitur nec vehicula ligula. Mauris vestibulum ante a tincidunt volutpat. Vivamus suscipit
-                        pharetra
-                        massa,
-                        id condimentum ex viverra sit amet. Nulla eleifend sem a orci aliquet viverra. Praesent in
-                        sagittis
-                        turpis.
-                        Vestibulum maximus odio mauris, ut laoreet metus tincidunt sed. Proin et lacus massa. Aliquam
-                        erat
-                        volutpat.
-                        Nunc id dui ac elit sollicitudin ullamcorper. Vestibulum sed ante nec odio tincidunt dignissim.
-                        Nam
-                        sodales
-                        semper feugiat. Etiam vehicula mi vitae feugiat sodales. Vestibulum congue et mi et venenatis.
-                        Aenean ac
-                        efficitur erat, eu commodo ex.
-                    </p>
-                </div>
+                <!-- .tab-content -->
             </div>
         </div>
     </div>
 </div>
 
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        ...
+    </div>
+</nav>
+
 <script src="dist/vendor.js"></script>
 <script src="dist/app.js"></script>
 <script>
-    var $ = require( 'jquery' );
-    var offset = 80;
-    //$( function () {
-    $( '#home-left-navbar li a' ).click( function ( event ) {
-        event.preventDefault();
-        console.log( 'here' );
-
-        $( $( this ).attr( 'href' ) )[0].scrollIntoView();
-        scrollBy( 0, -offset );
-    } );
-    //} );
 
 </script>
 </body>
