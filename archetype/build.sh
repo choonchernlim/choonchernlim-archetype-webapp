@@ -184,8 +184,18 @@ replace_string_in_file "${currentPath}" '<artifactId>choonchernlim-archetype-web
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/package.json"
 replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
 
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/gulp/config.js"
+replace_string_in_file "${currentPath}" 'localhost:7777/choonchernlim-archetype-webapp-webapp' 'localhost:7777/${rootArtifactId}'
+
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/web.xml"
 replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
+
+currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/jsp/index.jsp"
+replace_string_in_file "${currentPath}" '<title>choonchernlim-archetype-webapp</title>' '<title>${rootArtifactId}</title>'
+replace_string_in_file "${currentPath}" '<a class="navbar-brand" href="${symbol_pound}">choonchernlim-archetype-webapp</a>' '<a class="navbar-brand" href="${symbol_pound}">${rootArtifactId}</a>'
+
+
+
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/README.md"
 replace_string_in_file "${currentPath}" '# choonchernlim-archetype-webapp' '# ${rootArtifactId}'
@@ -206,18 +216,19 @@ currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifac
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
 
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 4 '\${version}'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 1 'choonchernlim-archetype-webapp'
+find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
+find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 2 'choonchernlim-archetype-webapp'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
+find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'choonchernlimArchetypeWebapp'
 display_line
 
-echo "Remove existing archetype from local repository..."
-rm -rf "$ARCHETYPE_LOCAL_REPO_PATH"
-display_line
-
-echo "Installing new archetype in local repository..."
-(cd target/generated-sources/archetype; mvn clean install)
-
-display_line
-echo 'Done'
+#echo "Remove existing archetype from local repository..."
+#rm -rf "$ARCHETYPE_LOCAL_REPO_PATH"
+#display_line
+#
+#echo "Installing new archetype in local repository..."
+#(cd target/generated-sources/archetype; mvn clean install)
+#
+#display_line
+#echo 'Done'

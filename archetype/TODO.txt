@@ -9,4 +9,5 @@
 
 # better-precondition dependency
 
+# build.sh - "should have" check should fail if count doesn't match
 # Ebay CORS

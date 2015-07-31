@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>choonchern-archetype-webapp</title>
+    <title>choonchernlim-archetype-webapp</title>
 
     <link rel="stylesheet" href="${ROOT}/resources/dist/app.css"/>
 </head>
@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">choonchern-archetype-webapp</a>
+            <a class="navbar-brand" href="#">choonchernlim-archetype-webapp</a>
         </div>
 
         <div id="header-navbar-collapse" class="collapse navbar-collapse">
