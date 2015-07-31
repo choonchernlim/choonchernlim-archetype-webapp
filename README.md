@@ -18,23 +18,16 @@ Run `npm rebuild node-sass` to fix the problem. [See here for more info](http://
 
 # Dependency and Plugin Limitations
 
-The added dependencies and plugins must be compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
+Any added dependencies and plugins must be compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
 
-* org.mortbay.jetty:jetty-maven-plugin
-    * Using 8.x because 9.x requires Java 7 and Servlet 3.0.
-* javax.servlet:servlet-api
-    * Using 2.5 to match WAS.
-* javax.servlet.jsp:jsp-api
-    * Using 2.1 to match WAS.
-* javax.mail:mail
-    * Using 1.4.x to match WAS.
-* javax.servlet:jstl
-    * Using 2.1 to match WAS.
-* commons-dbcp:commons-dbcp
-    * Using 1.4 because 2.x requires Java 7.
-* org.hibernate:hibernate-core
-    * Using 4.2.x because 4.3.x requires JPA 2.1.
-* org.springframework:spring-test
-    Using 3.x because 4.x requires Servlet 3.0.
-* com.google.code.findbugs:findbugs
-    * Using 2.x because 3.x requires Java 7
+| Dependency                            | Version Used  | Why                                 |
+| --------------------------------------|---------------|-------------------------------------|
+| org.mortbay.jetty:jetty-maven-plugin  | 8.x           | 9.x requires Java 7 and Servlet 3.0 |
+| javax.servlet:servlet-api             | 2.5           | Match WAS 7 specs                   |
+| javax.servlet.jsp:jsp-api             | 2.1           | Match WAS 7 specs                   |
+| javax.mail:mail                       | 1.4.x         | Match WAS 7 specs                   |
+| javax.servlet:jstl                    | 2.1           | Match WAS 7 specs                   |
+| commons-dbcp:commons-dbcp             | 1.4           | 2.x requires Java 7                 |
+| org.hibernate:hibernate-core          | 4.2.x         | 4.3.x requires JPA 2.1              |
+| org.springframework:spring-test       | 3.x           | 4.x requires Servlet 3.0            |
+| com.google.code.findbugs:findbugs     | 2.x           | 3.x requires Java 7                 |
