@@ -1,4 +1,6 @@
-<!--TODO delete this!! Testing bundle files-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ROOT" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +10,7 @@
 
     <title>choonchern-archetype-webapp</title>
 
-    <link rel="stylesheet" href="dist/app.css"/>
-
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="${ROOT}/resources/dist/app.css"/>
 </head>
 <body data-spy="scroll" data-target="#home-left-navbar" data-offset="100">
 
@@ -257,10 +255,7 @@
     </div>
 </nav>
 
-<script src="dist/vendor.js"></script>
-<script src="dist/app.js"></script>
-<script>
-
-</script>
+<script src="${ROOT}/resources/dist/vendor.js"></script>
+<script src="${ROOT}/resources/dist/app.js"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class MockControllerSpec extends Specification {
 
     def mockService = Mock(MockService.class)
-    def mockController = new MockController(mockService)
+    def mockController = new IndexController(mockService)
 
     def mockMvc = MockMvcBuilders.standaloneSetup(mockController).
             setViewResolvers(new InternalResourceViewResolver(prefix: '/WEB-INF/jsp/', suffix: '.jsp')).

@@ -12,14 +12,16 @@ var src = base + '/src/main';
 var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment', 'bootstrap'];
 
 module.exports = {
-    sass       : {
+    browserSync : {
+        files : dest,
+        proxy : "localhost:7777/choonchernlim-archetype-webapp-webapp"
+    },
+    sass        : {
         src      : src + '/scss/**/*.scss',
         dest     : dest,
         settings : {}
     },
-    browserify : {
-        // Enable source maps
-        debug         : true,
+    browserify  : {
         bundleConfigs : [
             {
                 dest       : dest,
@@ -34,7 +36,7 @@ module.exports = {
             }
         ]
     },
-    production : {
+    production  : {
         cssSrc : dest + '/*.css',
         jsSrc  : dest + '/*.js',
         dest   : dest

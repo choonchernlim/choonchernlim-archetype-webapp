@@ -12,6 +12,7 @@
   "devDependencies": {
     "bluebird": "2.9.x",
     "bootstrap-sass": "^3.3.5",
+    "browser-sync": "^2.8.2",
     "browserify": "9.0.x",
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.10",

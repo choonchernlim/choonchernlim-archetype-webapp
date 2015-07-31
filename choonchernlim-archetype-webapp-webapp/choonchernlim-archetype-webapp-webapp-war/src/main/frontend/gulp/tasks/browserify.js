@@ -7,6 +7,7 @@
 'use strict';
 
 var browserify = require( 'browserify' );
+var browserSync = require( 'browser-sync' );
 var watchify = require( 'watchify' );
 var mergeStream = require( 'merge-stream' );
 var bundleLogger = require( '../util/bundleLogger' );
@@ -32,7 +33,8 @@ var browserifyTask = function ( devMode ) {
             return b.bundle()
                 .on( 'error', handleErrors )
                 .pipe( source( bundleConfig.outputName ) )
-                .pipe( gulp.dest( bundleConfig.dest ) );
+                .pipe( gulp.dest( bundleConfig.dest ) )
+                .pipe( browserSync.reload( {stream : true} ) );
         };
 
         if ( enableWatch ) {
