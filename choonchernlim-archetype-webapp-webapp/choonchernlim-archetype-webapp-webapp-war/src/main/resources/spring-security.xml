@@ -4,26 +4,26 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- TODO Spring Security: Uncomment to configure security -->
-<security:http pattern="/resources/**" security="none"/>
+    <!--<security:http pattern="/resources/**" security="none"/>-->
 
-<security:http entry-point-ref="authenticationEntryPoint">
-<security:form-login login-page="/login"
-authentication-failure-url="/login?login_error=1"
-default-target-url="/"
-always-use-default-target="true"/>
-<security:logout success-handler-ref="logoutSuccessHandler"/>
+    <!--<security:http entry-point-ref="authenticationEntryPoint">-->
+    <!--<security:form-login login-page="/login"-->
+    <!--authentication-failure-url="/login?login_error=1"-->
+    <!--default-target-url="/"-->
+    <!--always-use-default-target="true"/>-->
+    <!--<security:logout success-handler-ref="logoutSuccessHandler"/>-->
 
-<security:intercept-url pattern="/" access="permitAll"/>
-<security:intercept-url pattern="/**" access="ROLE_USER"/>
-</security:http>
+    <!--<security:intercept-url pattern="/" access="permitAll"/>-->
+    <!--<security:intercept-url pattern="/**" access="ROLE_USER"/>-->
+    <!--</security:http>-->
 
-<bean id="authenticationEntryPoint"
-class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
+    <!--<bean id="authenticationEntryPoint"-->
+    <!--class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>-->
 
-<bean id="customAuthenticationProvider" class="..."/>
+    <!--<bean id="customAuthenticationProvider" class="..."/>-->
 
-<security:authentication-manager>
-<security:authentication-provider ref="customAuthenticationProvider"/>
-</security:authentication-manager>
+    <!--<security:authentication-manager>-->
+    <!--<security:authentication-provider ref="customAuthenticationProvider"/>-->
+    <!--</security:authentication-manager>-->
 
 </beans>
