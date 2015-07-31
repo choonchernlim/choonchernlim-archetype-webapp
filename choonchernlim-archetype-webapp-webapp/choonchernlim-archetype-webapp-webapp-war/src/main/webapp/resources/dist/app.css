@@ -1445,4 +1445,12 @@ td.visible-print,th.visible-print{display:table-cell!important}
 @media print{.visible-print-inline-block{display:inline-block!important}
 .hidden-print{display:none!important}
 }
-body{padding-top:70px}
+
+body {
+    padding-top: 70px;
+    position: relative
+}
+
+#home-left-navbar {
+    position: fixed
+}
