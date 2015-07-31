@@ -315,7 +315,8 @@
                         The `JETTY_ENV_XML` environment variable points to the `jetty-env.xml` file that contains
                         all JNDI information.
                         -->
-                        <jettyEnvXml>${env.JETTY_ENV_XML}</jettyEnvXml>
+                        <!-- TODO Hibernate: Uncomment to enable Jetty Env XML containing JNDIs -->
+                        <!--<jettyEnvXml>${env.JETTY_ENV_XML}</jettyEnvXml>-->
                         <!--
                         Forces Jetty to scan just jars that match the provided pattern to significantly speed up the
                         server startup.
@@ -368,7 +369,8 @@
                         <artifactId>h2</artifactId>
                         <version>${h2.version}</version>
                     </dependency>
-                    <!-- TODO Jetty: Sybase and DB2 drivers
+                    <!-- TODO Jetty: Uncomment to enable Sybase and DB2 drivers if they are already in local repo -->
+                    <!--
                     Sybase and DB2 drivers are disabled by default because they don't exist in any public
                     repositories. If your project requires these dependencies, manually install them in your local
                     repo or your local Nexus before uncommenting the below.
@@ -443,6 +445,16 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Executes default Gulp task to watch for JS and CSS changes and refresh them using BrowserSync. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <executable>./node_modules/gulp/bin/gulp.js</executable>
+                    <workingDirectory>${project.basedir}/src/main/frontend</workingDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -53,18 +53,19 @@
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h2>Welcome to Hello World App</h2>
+                <h2>Congratulations!</h2>
             </div>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dolor orci. Mauris tempus mattis
-                urna
-                nec
-                molestie. Suspendisse orci arcu, rutrum ac feugiat at, interdum eu diam. Sed semper sagittis
-                tristique.
-                Donec suscipit ex ac leo egestas ultrices. Phasellus efficitur dui ac purus fringilla, sit amet
-                faucibus
-                ex
+            <p class="lead">You have successfully created your first web application using <a
+                    href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">choonchernlim-archetype-webapp</a>
+                Maven Archetype!
             </p>
+
+            <p class="lead">Some features as listed below are disabled by default to ensure you see this landing page. To enable
+                them, please follow the instruction below.
+            </p>
+
+            <hr/>
 
             <div class="tab-content">
                 <!--
@@ -74,6 +75,57 @@
                 -->
                 <div id="hibernate" role="tabpanel" class="tab-pane active">
                     <h3>Hibernate</h3>
+
+                    <p><code>&lt;external-path&gt;/jetty-env.xml</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Create an external file outside the project called <code>jetty-env.xml</code> with the
+                                following lines:-</p>
+
+<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd"&gt;
+&lt;Configure class="org.eclipse.jetty.webapp.WebAppContext"&gt;
+	&lt;Call name="setAttribute"&gt;
+		&lt;Arg&gt;org.eclipse.jetty.server.webapp.WebInfIncludeJarPattern&lt;/Arg&gt;
+		&lt;Arg/&gt;
+	&lt;/Call&gt;
+	&lt;New id="spacegoggle" class="org.eclipse.jetty.plus.jndi.Resource"&gt;
+		&lt;Arg&gt;jdbc/db&lt;/Arg&gt;
+		&lt;Arg&gt;
+			&lt;New class="..."&gt;
+				&lt;Set name="Url"&gt;...&lt;/Set&gt;
+				&lt;Set name="User"&gt;...&lt;/Set&gt;
+				&lt;Set name="Password"&gt;...&lt;/Set&gt;
+			&lt;/New&gt;
+		&lt;/Arg&gt;
+	&lt;/New&gt;
+&lt;/Configure&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <p><code>JETTY_ENV_XML environment variable</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Create an environment variable called <code>JETTY_ENV_XML</code> pointing to
+                                <code>&lt;external-path&gt;/jetty-env.xml</code>.</p>
+                        </div>
+                    </div>
+
+                    <p><code>pom.xml</code></p>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <p>Uncomment the following lines under Jetty Maven Plugin:-</p>
+
+<pre>
+&lt;jettyEnvXml&gt;\${env.JETTY_ENV_XML}&lt;/jettyEnvXml&gt;
+</pre>
+                        </div>
+                    </div>
 
                     <p><code>src/main/webapp/WEB-INF/web.xml</code></p>
 
@@ -86,9 +138,7 @@
     &lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
     &lt;filter-class&gt;org.springframework.orm.hibernate4.support.OpenSessionInViewFilter&lt;/filter-class&gt;
 &lt;/filter&gt;
-
 ...
-
 &lt;filter-mapping&gt;
     &lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
     &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
@@ -112,9 +162,11 @@
 
                     <div class="row">
                         <div class="col-md-offset-1">
-                            <p>Add a new resource reference to bind the local JNDI to global JNDI. By doing this, the
+                            <p>Add a new resource reference to bind the local JNDI to global JNDI. By doing
+                                this, the
                                 Middleware WAS
-                                admins do not need to manually configure the JNDI(s) when deploying a brand new EAR file
+                                admins do not need to manually configure the JNDI(s) when deploying a brand new
+                                EAR file
                                 through
                                 Middleware WAS Dashboard.</p>
 
@@ -166,7 +218,8 @@
                         </div>
                     </div>
 
-                    <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/domain</code></p>
+                    <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/domain</code>
+                    </p>
 
                     <div class="row">
                         <div class="col-md-offset-1">
@@ -194,9 +247,7 @@
     &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
     &lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;
 &lt;/filter&gt;
-
 ...
-
 &lt;filter-mapping&gt;
     &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
     &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
@@ -209,26 +260,29 @@
 
                     <div class="row">
                         <div class="col-md-offset-1">
-                            <p>Uncomment the entire file. Tweak the configuration based on your project needs.</p>
+                            <p>Uncomment the entire file. Tweak the configuration based on your project
+                                needs.</p>
 
 <pre>
 &lt;security:http pattern="/resources/**" security="none"/&gt;
-&lt;security:http pattern="/errors/**" security="none"/&gt;
-&lt;security:http pattern="/login" security="none"/&gt;
 
-&lt;security:http auto-config="true"&gt;
-    &lt;security:form-login login-page="/login"
-                         authentication-failure-url="/login?login_error=1"
-                         default-target-url="/"
-                         always-use-default-target="true"/&gt;
-    &lt;security:logout logout-success-url="/"/&gt;
-    &lt;security:intercept-url pattern="/**" access="ROLE_USER"/&gt;
+&lt;security:http entry-point-ref="authenticationEntryPoint"&gt;
+&lt;security:form-login login-page="/login"
+                    authentication-failure-url="/login?login_error=1"
+                    default-target-url="/"
+                    always-use-default-target="true"/&gt;
+	&lt;security:logout success-handler-ref="logoutSuccessHandler"/&gt;
+
+	&lt;security:intercept-url pattern="/" access="permitAll"/&gt;
+	&lt;security:intercept-url pattern="/**" access="ROLE_USER"/&gt;
 &lt;/security:http&gt;
+
+&lt;bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/&gt;
 
 &lt;bean id="customAuthenticationProvider" class="..."/&gt;
 
 &lt;security:authentication-manager&gt;
-    &lt;security:authentication-provider ref="customAuthenticationProvider"/&gt;
+&lt;security:authentication-provider ref="customAuthenticationProvider"/&gt;
 &lt;/security:authentication-manager&gt;
 </pre>
                         </div>

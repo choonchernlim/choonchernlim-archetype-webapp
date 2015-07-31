@@ -469,6 +469,12 @@
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.5.201505241946</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.4.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 

@@ -8,3 +8,5 @@
 # clean up app.scss
 
 # better-precondition dependency
+
+# Ebay CORS
