@@ -1,1 +1,0 @@
-Use this 'lib' directory to store all images.

@@ -10,6 +10,7 @@
 
     <title>choonchernlim-archetype-webapp</title>
 
+    <link rel="icon" type="image/png" href="${ROOT}/resources/img/favicon.png" />
     <link rel="stylesheet" href="${ROOT}/resources/css/app.css"/>
 </head>
 <body data-spy="scroll" data-target="#home-left-navbar" data-offset="100">
@@ -24,7 +25,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">choonchernlim-archetype-webapp</a>
+            <a class="navbar-brand" href="#">
+                <img src="${ROOT}/resources/img/logo.png" style="float:left;margin: -4px 10px 0 0;"/>
+                choonchernlim-archetype-webapp
+            </a>
         </div>
 
         <div id="header-navbar-collapse" class="collapse navbar-collapse">
