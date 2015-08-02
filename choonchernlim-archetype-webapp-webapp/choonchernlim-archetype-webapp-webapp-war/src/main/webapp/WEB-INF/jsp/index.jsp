@@ -10,7 +10,7 @@
 
     <title>choonchernlim-archetype-webapp</title>
 
-    <link rel="stylesheet" href="${ROOT}/resources/dist/app.css"/>
+    <link rel="stylesheet" href="${ROOT}/resources/css/app.css"/>
 </head>
 <body data-spy="scroll" data-target="#home-left-navbar" data-offset="100">
 
@@ -61,7 +61,8 @@
                 Maven Archetype!
             </p>
 
-            <p class="lead">Some features as listed below are disabled by default to ensure you see this landing page. To enable
+            <p class="lead">Some features as listed below are disabled by default to ensure you see this landing page.
+                To enable
                 them, please follow the instruction below.
             </p>
 
@@ -309,7 +310,7 @@
     </div>
 </nav>
 
-<script src="${ROOT}/resources/dist/vendor.js"></script>
-<script src="${ROOT}/resources/dist/app.js"></script>
+<script src="${ROOT}/resources/js/vendor.js"></script>
+<script src="${ROOT}/resources/js/app.js"></script>
 </body>
 </html>

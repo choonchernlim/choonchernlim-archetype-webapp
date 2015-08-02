@@ -6,8 +6,8 @@
 
 // war root dir
 var base = '../../..';
-var dest = base + '/src/main/webapp/resources/dist';
-var src = base + '/src/main';
+var dest = base + '/src/main/webapp/resources';
+var src = base + '/src/main/frontend/src';
 
 var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment', 'bootstrap'];
 
@@ -18,18 +18,22 @@ module.exports = {
     },
     sass        : {
         src      : src + '/scss/**/*.scss',
-        dest     : dest,
+        dest     : dest + '/css',
         settings : {}
+    },
+    images      : {
+        src  : src + "/img/**",
+        dest : dest + "/img"
     },
     browserify  : {
         bundleConfigs : [
             {
-                dest       : dest,
+                dest       : dest + '/js',
                 outputName : 'vendor.js',
                 require    : externalLibs
             }, {
                 entries    : src + '/js/app.js',
-                dest       : dest,
+                dest       : dest + '/js',
                 outputName : 'app.js',
                 external   : externalLibs,
                 paths      : ['./node_modules']
@@ -37,8 +41,8 @@ module.exports = {
         ]
     },
     production  : {
-        cssSrc : dest + '/*.css',
-        jsSrc  : dest + '/*.js',
+        cssSrc : dest + 'css//*.css',
+        jsSrc  : dest + 'js/*.js',
         dest   : dest
     }
 };

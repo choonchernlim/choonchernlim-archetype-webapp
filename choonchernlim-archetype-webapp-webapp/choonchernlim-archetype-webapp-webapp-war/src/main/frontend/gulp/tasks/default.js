@@ -7,5 +7,5 @@
 var gulp = require( 'gulp' );
 
 gulp.task( 'default', function () {
-    gulp.start( 'sass', 'watch' );
+    gulp.start( 'sass', 'minifyImages', 'watch' );
 } );
