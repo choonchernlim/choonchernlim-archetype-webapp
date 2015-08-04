@@ -74,6 +74,10 @@
 
         <!-- Utilities. -->
         <dependency>
+            <groupId>com.github.choonchernlim</groupId>
+            <artifactId>better-preconditions</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>

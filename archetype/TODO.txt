@@ -2,12 +2,4 @@
 
 # Test against CI
 # Skin home.jsp
-# Clean up app.js and app-spec.js
 # Update README.md
-
-# clean up app.scss
-
-# better-precondition dependency
-
-# build.sh - "should have" check should fail if count doesn't match
-# Ebay CORS
