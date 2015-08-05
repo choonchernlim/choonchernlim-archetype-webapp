@@ -314,7 +314,7 @@
                         The `${project.parent.artifactId}` should be defined as the context path, so the project
                         root link will be `/<context-path>` to be consistent with WAS environment.
                         -->
-                        <contextPath>/${project.parent.artifactId}</contextPath>
+                        <contextPath>/${project.parent.parent.artifactId}</contextPath>
                         <!--
                         The `JETTY_ENV_XML` environment variable points to the `jetty-env.xml` file that contains
                         all JNDI information.

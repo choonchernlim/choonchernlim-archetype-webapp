@@ -15,6 +15,7 @@
     <name>${project.artifactId}</name>
 
     <build>
+        <finalName>${project.parent.parent.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
