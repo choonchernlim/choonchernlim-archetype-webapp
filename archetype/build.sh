@@ -10,7 +10,7 @@
 set -e
 
 # Must run script with Java 6 to prevent weird errors
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
+export JAVA_HOME="`/usr/libexec/java_home -v '1.6*'`"
 
 # Get archetype version from `archetype/archetype.properties`
 ARCHETYPE_VERSION=`awk -F= '/^archetype.version/ { print $2 }' archetype/archetype.properties`
