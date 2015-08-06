@@ -31,10 +31,11 @@ module.exports = function ( config ) {
         ],
         coverageReporter : {
             type : 'cobertura',
-            dir : 'target/coverage-reports/'
+            dir  : 'target/coverage-reports/'
         },
         junitReporter    : {
-            outputFile : 'target/surefire-reports/TEST-karma-results.xml'
+            outputDir  : 'target/surefire-reports/',
+            outputFile : 'TEST-karma-results.xml'
         }
     } );
 };
