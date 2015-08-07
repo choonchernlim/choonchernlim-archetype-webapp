@@ -5,7 +5,8 @@ var size = require( 'gulp-filesize' );
 
 gulp.task( 'minifyCss', ['sass'], function () {
     return gulp.src( config.cssSrc )
-        .pipe( minifyCSS( {keepBreaks : true} ) )
-        .pipe( gulp.dest( config.dest ) )
+        // remove comments
+        .pipe( minifyCSS( {keepSpecialComments : 0} ) )
+        .pipe( gulp.dest( config.cssDest ) )
         .pipe( size() );
 } );

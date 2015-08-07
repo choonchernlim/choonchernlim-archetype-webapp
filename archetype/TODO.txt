@@ -1,7 +1,4 @@
 // TODO Delete this!
 
-# Test against CI
 # Skin home.jsp
 # Update README.md
-
-# gulp production not minifying?

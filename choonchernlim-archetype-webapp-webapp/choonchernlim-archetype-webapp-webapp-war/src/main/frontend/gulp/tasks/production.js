@@ -2,6 +2,4 @@
 
 var gulp = require( 'gulp' );
 
-gulp.task( 'production', function () {
-    gulp.start( 'minifyCss', 'minifyImages', 'minifyJs' );
-} );
+gulp.task( 'production', ['minifyCss', 'minifyImages', 'minifyJs'] );
