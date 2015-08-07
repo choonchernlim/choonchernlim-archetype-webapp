@@ -157,7 +157,7 @@ rsync . ${PROJECT_PATH} -av \
 --exclude="*.iml" \
 --exclude="LICENSE" \
 --exclude="README.md" \
---exclude="RELEASES.md" \
+--exclude="CHANGELOG.md" \
 --exclude=".git/" \
 --exclude=".idea/" \
 --exclude="archetype/" \
@@ -166,8 +166,8 @@ rsync . ${PROJECT_PATH} -av \
 --exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/node/" \
 --exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/node_modules/"
 
-echo '# README' > ${PROJECT_PATH}/README.md
-echo '# RELEASES' > ${PROJECT_PATH}/RELEASES.md
+echo '# Read Me' > ${PROJECT_PATH}/README.md
+echo '# Change Log' > ${PROJECT_PATH}/CHANGELOG.md
 
 # Change dir to the temp space
 cd ${PROJECT_PATH}
