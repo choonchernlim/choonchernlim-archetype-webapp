@@ -6,4 +6,4 @@
 
 # Replace gulp-imagemin with gulp-image-optimization first until jenkins config is fixed
 
-
+# putting private registry in package.json?
