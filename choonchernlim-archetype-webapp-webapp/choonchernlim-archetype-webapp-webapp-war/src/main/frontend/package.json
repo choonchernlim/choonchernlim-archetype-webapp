@@ -10,7 +10,6 @@
     "browser-sync": "2.8.x",
     "browserify": "11.0.x",
     "browserify-istanbul": "0.2.x",
-    "fsevents": "0.3.7",
     "gulp": "3.9.x",
     "gulp-autoprefixer": "2.3.x",
     "gulp-changed": "1.2.x",
