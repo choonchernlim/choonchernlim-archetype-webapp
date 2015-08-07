@@ -8,12 +8,20 @@ TBD
     * Frontend Maven Plugin requires at least 3.1.0.
     * Maven 3.3.x requires Java 7.
 
-## Troubleshooting
+## Usage
 
-### `libsass` bindings not found. Try reinstalling `node-sass`?
+### Jenkins Integration
 
-Run `npm rebuild node-sass` to fix the problem. [See here for more info](http://stackoverflow.com/questions/28409100/try-reinstalling-node-sass-on-node-0-12).
+* Create a "Freestyle project" job. [Don't create a "Maven project" job if you are using Java 6](https://issues.jenkins-ci.org/browse/JENKINS-29004).
 
+* Under "Add build steps, select "Invoke top-level Maven targets".
+    * Goals: `clean test site -Pjenkins`
+    * POM: `[project]/[project]-war/pom.xml`
+
+* Configure post-build actions accordingly.
+
+The `jenkins` profile will not run `gulp production` that will regenerate the client-side source files in Jenkins. This ensures Karma is running the tests against the existing source files under `resources/js` directory.
+    
 ## Version Restrictions
 
 Some dependencies and plugins cannot be upgraded to the latest version to ensure they are compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
