@@ -3,3 +3,9 @@
 # Test against CI
 # Skin home.jsp
 # Update README.md
+
+# Replace gulp-imagemin with gulp-image-optimization first until jenkins config is fixed
+
+# fsevent 0.3.8 is buggy : https://github.com/strongloop/fsevents/issues/80
+	# Explicitly defined 0.3.7 in package.json to get by
+	
