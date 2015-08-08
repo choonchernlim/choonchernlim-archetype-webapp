@@ -8,8 +8,8 @@ module.exports = function ( config ) {
             'src/test/js/**/*.js'
         ],
         preprocessors    : {
-            'src/main/webapp/resources/**/*.js' : ['browserify', 'coverage'],
-            'src/test/**/*.js'                  : ['browserify']
+            'src/main/webapp/resources/js/**/*.js' : ['browserify', 'coverage'],
+            'src/test/**/*.js'                     : ['browserify']
         },
         browserify       : {
             debug     : true,
