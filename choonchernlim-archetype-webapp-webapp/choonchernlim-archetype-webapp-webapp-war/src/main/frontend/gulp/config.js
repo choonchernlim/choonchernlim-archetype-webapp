@@ -26,6 +26,7 @@ module.exports = {
         dest : dest + "/img"
     },
     browserify  : {
+        externalLibs  : externalLibs,
         bundleConfigs : [
             {
                 dest       : dest + '/js',

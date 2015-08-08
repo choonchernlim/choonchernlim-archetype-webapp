@@ -1,5 +1,7 @@
 'use strict';
 
+var baseConfig = require( '../../../src/main/frontend/gulp/config' );
+
 module.exports = function ( config ) {
     config.set( {
         basePath         : '../../../',
@@ -8,13 +10,20 @@ module.exports = function ( config ) {
             'src/test/js/**/*.js'
         ],
         preprocessors    : {
+            // TODO is src/main/webapp/** really needed here??
             'src/main/webapp/resources/js/**/*.js' : ['browserify', 'coverage'],
             'src/test/js/**/*.js'                  : ['browserify']
         },
         browserify       : {
             debug     : true,
             transform : ['./src/main/frontend/node_modules/browserify-istanbul'],
-            plugin    : ['./src/main/frontend/node_modules/proxyquireify/plugin']
+            plugin    : ['./src/main/frontend/node_modules/proxyquireify/plugin'],
+            paths     : ['src/main/frontend/node_modules', 'src/main/webapp/resources/js'],
+            configure : function ( bundle ) {
+                bundle.on( 'prebundle', function () {
+                    bundle.require( baseConfig.browserify.externalLibs );
+                } );
+            }
         },
         reporters        : ['progress', 'junit', 'coverage'],
         browsers         : ['PhantomJS'],
