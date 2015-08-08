@@ -9,7 +9,7 @@ module.exports = function ( config ) {
         ],
         preprocessors    : {
             'src/main/webapp/resources/js/**/*.js' : ['browserify', 'coverage'],
-            'src/test/**/*.js'                     : ['browserify']
+            'src/test/js/**/*.js'                  : ['browserify']
         },
         browserify       : {
             debug     : true,
