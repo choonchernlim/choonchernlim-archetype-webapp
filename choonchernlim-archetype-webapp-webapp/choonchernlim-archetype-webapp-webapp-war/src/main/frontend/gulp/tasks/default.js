@@ -6,4 +6,4 @@
 
 var gulp = require( 'gulp' );
 
-gulp.task( 'default', ['sass', 'minifyImages', 'watch'] );
+gulp.task( 'default', ['sass', 'optimizeImages', 'browserify'] );

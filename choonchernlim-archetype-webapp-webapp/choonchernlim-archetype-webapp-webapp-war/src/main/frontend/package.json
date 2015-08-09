@@ -13,7 +13,6 @@
     "gulp": "3.9.x",
     "gulp-autoprefixer": "2.3.x",
     "gulp-changed": "1.2.x",
-    "gulp-filesize": "0.0.x",
     "gulp-if": "1.2.x",
     "gulp-image-optimization": "0.1.x",
     "gulp-minify-css": "1.2.x",

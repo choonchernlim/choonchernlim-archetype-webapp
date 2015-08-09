@@ -434,9 +434,6 @@
                         <goals>
                             <goal>gulp</goal>
                         </goals>
-                        <configuration>
-                            <arguments>production</arguments>
-                        </configuration>
                     </execution>
                     <!-- Run Karma tests -->
                     <execution>
@@ -456,7 +453,11 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
-                    <executable>./node_modules/gulp/bin/gulp.js</executable>
+                    <executable>./node/node</executable>
+                    <arguments>
+                        <argument>./node_modules/gulp/bin/gulp.js</argument>
+                        <argument>watch</argument>
+                    </arguments>
                     <workingDirectory>${project.basedir}/src/main/frontend</workingDirectory>
                 </configuration>
             </plugin>
