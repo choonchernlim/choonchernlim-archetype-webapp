@@ -16,6 +16,9 @@ var handleErrors = require( '../util/handleErrors' );
 var source = require( 'vinyl-source-stream' );
 var config = require( '../config' ).browserify;
 var _ = require( 'lodash' );
+var uglify = require( 'gulp-uglify' );
+var buffer = require( 'vinyl-buffer' );
+var rename = require( 'gulp-rename' );
 
 var browserifyTask = function ( devMode ) {
 
@@ -26,13 +29,17 @@ var browserifyTask = function ( devMode ) {
 
         // if watch is enabled, add in watchify arguments
         var b = browserify( enableWatch ?
-            _.extend( bundleConfig, watchify.args, {debug : true} ) :
+            _.extend( bundleConfig, watchify.args ) :
             bundleConfig );
 
         var bundle = function () {
             return b.bundle()
                 .on( 'error', handleErrors )
                 .pipe( source( bundleConfig.outputName ) )
+                .pipe( gulp.dest( bundleConfig.dest ) )
+                .pipe( buffer() )
+                .pipe( uglify() )
+                .pipe( rename( {suffix : '.min'} ) )
                 .pipe( gulp.dest( bundleConfig.dest ) )
                 .pipe( browserSync.reload( {stream : true} ) );
         };

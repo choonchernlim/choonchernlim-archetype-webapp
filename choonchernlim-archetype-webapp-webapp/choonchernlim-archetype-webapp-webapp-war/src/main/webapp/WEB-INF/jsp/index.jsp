@@ -11,7 +11,7 @@
     <title>choonchernlim-archetype-webapp</title>
 
     <link rel="icon" type="image/png" href="${ROOT}/resources/img/favicon.png"/>
-    <link rel="stylesheet" href="${ROOT}/resources/css/app.css"/>
+    <link rel="stylesheet" href="${ROOT}/resources/css/app.min.css"/>
 </head>
 <body data-spy="scroll" data-target="#home-left-navbar" data-offset="100">
 
@@ -314,7 +314,7 @@
     </div>
 </nav>
 
-<script src="${ROOT}/resources/js/vendor.js"></script>
-<script src="${ROOT}/resources/js/app.js"></script>
+<script src="${ROOT}/resources/js/vendor.min.js"></script>
+<script src="${ROOT}/resources/js/app.min.js"></script>
 </body>
 </html>

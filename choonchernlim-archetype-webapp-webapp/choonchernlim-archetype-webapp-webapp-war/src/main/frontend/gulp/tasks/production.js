@@ -2,4 +2,4 @@
 
 var gulp = require( 'gulp' );
 
-gulp.task( 'production', ['minifyCss', 'minifyImages', 'minifyJs'] );
+gulp.task( 'production', ['sass', 'minifyImages', 'browserify'] );
