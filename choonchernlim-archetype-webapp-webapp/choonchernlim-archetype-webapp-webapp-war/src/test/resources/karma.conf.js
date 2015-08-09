@@ -10,9 +10,7 @@ module.exports = function ( config ) {
             'src/test/js/**/*.js'
         ],
         preprocessors    : {
-            // TODO is src/main/webapp/** really needed here??
-            'src/main/webapp/resources/js/**/*.js' : ['browserify', 'coverage'],
-            'src/test/js/**/*.js'                  : ['browserify']
+            'src/test/js/**/*.js' : ['browserify']
         },
         browserify       : {
             debug     : true,
@@ -39,8 +37,16 @@ module.exports = function ( config ) {
             'karma-coverage'
         ],
         coverageReporter : {
-            type : 'cobertura',
-            dir  : 'target/coverage-reports/'
+            reporters : [
+                {
+                    type : "cobertura",
+                    dir  : 'target/coverage-reports/'
+                },
+                {
+                    type : "html",
+                    dir  : 'target/coverage-reports/'
+                }
+            ]
         },
         junitReporter    : {
             outputDir  : 'target/surefire-reports/',
