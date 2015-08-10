@@ -16,7 +16,7 @@ module.exports = function ( config ) {
             debug     : true,
             transform : ['./src/main/frontend/node_modules/browserify-istanbul'],
             plugin    : ['./src/main/frontend/node_modules/proxyquireify/plugin'],
-            paths     : ['src/main/frontend/node_modules', 'src/main/webapp/resources/js'],
+            paths     : ['src/main/frontend/node_modules', 'src/main/frontend/src/js'],
             configure : function ( bundle ) {
                 bundle.on( 'prebundle', function () {
                     bundle.require( baseConfig.browserify.externalLibs );
