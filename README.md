@@ -33,123 +33,143 @@ By default, `mvn compile` performs the following tasks:-
 * Compile Java files
 * Clean up Builder files created by Pojo Builder
  
+## Latest Release
+
+```xml
+<dependency>
+  <groupId>com.github.choonchernlim</groupId>
+  <artifactId>choonchernlim-archetype-webapp</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+For example:
+
+```bash
+mvn archetype:generate -DinteractiveMode=false 
+-DarchetypeGroupId=com.github.choonchernlim -DarchetypeArtifactId=choonchernlim-archetype-webapp -DarchetypeVersion=0.1.0 
+-DgroupId=com.github.choonchern.testProject -DartifactId=testProject -Dversion=1.0.0-SNAPSHOT
+```
+
 ## Sample Project Structure
 
 If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is `testProject`, the generated project structure looks like this:-
 
-    testProject
-    ├── README.md
-    ├── RELEASES.md
+```text
+testProject
+├── README.md
+├── RELEASES.md
+├── pom.xml
+└── testProject-webapp
     ├── pom.xml
-    └── testProject-webapp
+    ├── testProject-webapp-ear
+    │   ├── pom.xml
+    │   └── src
+    │       └── main
+    │           └── application
+    │               └── deployment.xml
+    └── testProject-webapp-war
         ├── pom.xml
-        ├── testProject-webapp-ear
-        │   ├── pom.xml
-        │   └── src
-        │       └── main
-        │           └── application
-        │               └── deployment.xml
-        └── testProject-webapp-war
-            ├── pom.xml
-            └── src
-                ├── main
-                │   ├── frontend
-                │   │   ├── gulp
-                │   │   │   ├── config.js
-                │   │   │   ├── tasks
-                │   │   │   │   ├── browserSync.js
-                │   │   │   │   ├── browserify.js
-                │   │   │   │   ├── default.js
-                │   │   │   │   ├── minifyCss.js
-                │   │   │   │   ├── minifyImages.js
-                │   │   │   │   ├── minifyJs.js
-                │   │   │   │   ├── production.js
-                │   │   │   │   ├── sass.js
-                │   │   │   │   ├── watch.js
-                │   │   │   │   └── watchify.js
-                │   │   │   └── util
-                │   │   │       ├── bundleLogger.js
-                │   │   │       └── handleErrors.js
-                │   │   ├── gulpfile.js
-                │   │   ├── package.json
-                │   │   └── src
-                │   │       ├── img
-                │   │       │   ├── favicon.png
-                │   │       │   └── logo.png
-                │   │       ├── js
-                │   │       │   └── app.js
-                │   │       └── scss
-                │   │           └── app.scss
-                │   ├── java
-                │   │   └── com
-                │   │       └── github
-                │   │           └── choonchern
-                │   │               └── testProject
-                │   │                   ├── bean
-                │   │                   │   └── MockBean.java
-                │   │                   ├── constant
-                │   │                   │   └── MockConstant.java
-                │   │                   ├── controller
-                │   │                   │   └── IndexController.java
-                │   │                   ├── domain
-                │   │                   │   └── MockDomain.java
-                │   │                   ├── form
-                │   │                   │   └── MockForm.java
-                │   │                   ├── service
-                │   │                   │   ├── MockService.java
-                │   │                   │   └── impl
-                │   │                   │       └── MockServiceImpl.java
-                │   │                   └── util
-                │   │                       └── MockUtil.java
-                │   ├── resources
-                │   │   ├── log4j.xml
-                │   │   ├── messages.properties
-                │   │   ├── spring-applicationContext.xml
-                │   │   ├── spring-component-scan.xml
-                │   │   ├── spring-data.xml
-                │   │   ├── spring-datasource-jndi.xml
-                │   │   └── spring-security.xml
-                │   └── webapp
-                │       ├── WEB-INF
-                │       │   ├── ibm-web-bnd.xml
-                │       │   ├── jsp
-                │       │   │   └── index.jsp
-                │       │   ├── spring-servlet.xml
-                │       │   └── web.xml
-                │       └── resources
-                │           ├── css
-                │           │   └── app.css
-                │           ├── img
-                │           │   ├── favicon.png
-                │           │   └── logo.png
-                │           └── js
-                │               ├── app.js
-                │               └── vendor.js
-                └── test
-                    ├── groovy
-                    │   └── com
-                    │       └── github
-                    │           └── choonchern
-                    │               └── testProject
-                    │                   ├── bean
-                    │                   │   └── MockBeanSpec.groovy
-                    │                   ├── controller
-                    │                   │   └── MockControllerSpec.groovy
-                    │                   └── service
-                    │                       └── impl
-                    │                           └── MockServiceImplSpec.groovy
-                    ├── java
-                    │   └── com
-                    │       └── github
-                    │           └── choonchern
-                    │               └── testProject
-                    │                   └── DummyTest.java
-                    ├── js
-                    │   └── app-spec.js
-                    └── resources
-                        ├── karma.conf.ci.js
-                        ├── karma.conf.js
-                        └── spring-test.xml
+        └── src
+            ├── main
+            │   ├── frontend
+            │   │   ├── gulp
+            │   │   │   ├── config.js
+            │   │   │   ├── tasks
+            │   │   │   │   ├── browserSync.js
+            │   │   │   │   ├── browserify.js
+            │   │   │   │   ├── default.js
+            │   │   │   │   ├── minifyCss.js
+            │   │   │   │   ├── minifyImages.js
+            │   │   │   │   ├── minifyJs.js
+            │   │   │   │   ├── production.js
+            │   │   │   │   ├── sass.js
+            │   │   │   │   ├── watch.js
+            │   │   │   │   └── watchify.js
+            │   │   │   └── util
+            │   │   │       ├── bundleLogger.js
+            │   │   │       └── handleErrors.js
+            │   │   ├── gulpfile.js
+            │   │   ├── package.json
+            │   │   └── src
+            │   │       ├── img
+            │   │       │   ├── favicon.png
+            │   │       │   └── logo.png
+            │   │       ├── js
+            │   │       │   └── app.js
+            │   │       └── scss
+            │   │           └── app.scss
+            │   ├── java
+            │   │   └── com
+            │   │       └── github
+            │   │           └── choonchern
+            │   │               └── testProject
+            │   │                   ├── bean
+            │   │                   │   └── MockBean.java
+            │   │                   ├── constant
+            │   │                   │   └── MockConstant.java
+            │   │                   ├── controller
+            │   │                   │   └── IndexController.java
+            │   │                   ├── domain
+            │   │                   │   └── MockDomain.java
+            │   │                   ├── form
+            │   │                   │   └── MockForm.java
+            │   │                   ├── service
+            │   │                   │   ├── MockService.java
+            │   │                   │   └── impl
+            │   │                   │       └── MockServiceImpl.java
+            │   │                   └── util
+            │   │                       └── MockUtil.java
+            │   ├── resources
+            │   │   ├── log4j.xml
+            │   │   ├── messages.properties
+            │   │   ├── spring-applicationContext.xml
+            │   │   ├── spring-component-scan.xml
+            │   │   ├── spring-data.xml
+            │   │   ├── spring-datasource-jndi.xml
+            │   │   └── spring-security.xml
+            │   └── webapp
+            │       ├── WEB-INF
+            │       │   ├── ibm-web-bnd.xml
+            │       │   ├── jsp
+            │       │   │   └── index.jsp
+            │       │   ├── spring-servlet.xml
+            │       │   └── web.xml
+            │       └── resources
+            │           ├── css
+            │           │   └── app.css
+            │           ├── img
+            │           │   ├── favicon.png
+            │           │   └── logo.png
+            │           └── js
+            │               ├── app.js
+            │               └── vendor.js
+            └── test
+                ├── groovy
+                │   └── com
+                │       └── github
+                │           └── choonchern
+                │               └── testProject
+                │                   ├── bean
+                │                   │   └── MockBeanSpec.groovy
+                │                   ├── controller
+                │                   │   └── MockControllerSpec.groovy
+                │                   └── service
+                │                       └── impl
+                │                           └── MockServiceImplSpec.groovy
+                ├── java
+                │   └── com
+                │       └── github
+                │           └── choonchern
+                │               └── testProject
+                │                   └── DummyTest.java
+                ├── js
+                │   └── app-spec.js
+                └── resources
+                    ├── karma.conf.ci.js
+                    ├── karma.conf.js
+                    └── spring-test.xml
+```                    
 
 ## Prerequisites
 
