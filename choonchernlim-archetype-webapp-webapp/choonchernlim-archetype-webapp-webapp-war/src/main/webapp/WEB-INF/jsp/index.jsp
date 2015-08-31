@@ -47,6 +47,9 @@
             <div id="home-left-navbar" data-spy="affix" class="hidden-xs hidden-sm">
                 <ul class="nav nav-pills nav-stacked" role="tablist">
                     <li role="presentation">
+                        <a href="#mock-files" aria-controls="mock-files" role="tab">Mock Files</a>
+                    </li>
+                    <li role="presentation">
                         <a href="#hibernate" aria-controls="hibernate" role="tab">Hibernate</a>
                     </li>
                     <li role="presentation">
@@ -78,15 +81,35 @@
                 Hibernate
                 #################################
                 -->
-                <div id="hibernate" role="tabpanel" class="tab-pane active">
-                    <h3>Hibernate</h3>
-
-                    <p><code>&lt;external-path&gt;/jetty-env.xml</code></p>
+                <div id="mock-files" role="tabpanel" class="tab-pane active">
+                    <h3>Mock Files</h3>
 
                     <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Create an external file outside the project called <code>jetty-env.xml</code> with the
-                                following lines:-</p>
+                        <div class="col-md-offset-1 col-md-10">
+                            <p>There are several files created with <code>Mock</code> prefix (ex:
+                                <code>MockBean.java</code>, <code>MockConstant.java</code>, etc).
+                                These mock files are created to retain the project structure.
+                                They can be deleted if you don't need them.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            #################################
+            Hibernate
+            #################################
+            -->
+            <div id="hibernate" role="tabpanel" class="tab-pane active">
+                <h3>Hibernate</h3>
+
+                <p><code>&lt;external-path&gt;/jetty-env.xml</code></p>
+
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Create an external file outside the project called <code>jetty-env.xml</code> with the
+                            following lines:-</p>
 
 <pre>
 &lt;?xml version="1.0"?&gt;
@@ -108,35 +131,35 @@
 	&lt;/New&gt;
 &lt;/Configure&gt;
 </pre>
-                        </div>
                     </div>
+                </div>
 
-                    <p><code>JETTY_ENV_XML environment variable</code></p>
+                <p><code>JETTY_ENV_XML environment variable</code></p>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Create an environment variable called <code>JETTY_ENV_XML</code> pointing to
-                                <code>&lt;external-path&gt;/jetty-env.xml</code>.</p>
-                        </div>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Create an environment variable called <code>JETTY_ENV_XML</code> pointing to
+                            <code>&lt;external-path&gt;/jetty-env.xml</code>.</p>
                     </div>
+                </div>
 
-                    <p><code>pom.xml</code></p>
+                <p><code>pom.xml</code></p>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Uncomment the following lines under Jetty Maven Plugin:-</p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Uncomment the following lines under Jetty Maven Plugin:-</p>
 
 <pre>
 &lt;jettyEnvXml&gt;\${env.JETTY_ENV_XML}&lt;/jettyEnvXml&gt;
 </pre>
-                        </div>
                     </div>
+                </div>
 
-                    <p><code>src/main/webapp/WEB-INF/web.xml</code></p>
+                <p><code>src/main/webapp/WEB-INF/web.xml</code></p>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Uncomment the following lines:-</p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Uncomment the following lines:-</p>
 
 <pre>
 &lt;filter&gt;
@@ -150,7 +173,7 @@
 &lt;/filter-mapping&gt;
 </pre>
 
-                            <p>Add JNDI resource reference.</p>
+                        <p>Add JNDI resource reference.</p>
 
 <pre>
 &lt;resource-ref&gt;
@@ -160,46 +183,46 @@
     &lt;res-sharing-scope&gt;Shareable&lt;/res-sharing-scope&gt;
 &lt;/resource-ref&gt;
 </pre>
-                        </div>
                     </div>
+                </div>
 
-                    <p><code>src/main/webapp/WEB-INF/ibm-web-bnd.xml</code></p>
+                <p><code>src/main/webapp/WEB-INF/ibm-web-bnd.xml</code></p>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Add a new resource reference to bind the local JNDI to global JNDI. By doing
-                                this, the
-                                Middleware WAS
-                                admins do not need to manually configure the JNDI(s) when deploying a brand new
-                                EAR file
-                                through
-                                Middleware WAS Dashboard.</p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Add a new resource reference to bind the local JNDI to global JNDI. By doing
+                            this, the
+                            Middleware WAS
+                            admins do not need to manually configure the JNDI(s) when deploying a brand new
+                            EAR file
+                            through
+                            Middleware WAS Dashboard.</p>
 
 <pre>
 &lt;resource-ref name="jdbc/db" binding-name="jdbc/db"/&gt;
 </pre>
-                        </div>
                     </div>
+                </div>
 
-                    <p><code>src/main/resources/spring-datasource-jndi.xml</code></p>
+                <p><code>src/main/resources/spring-datasource-jndi.xml</code></p>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Add a JNDI data source pointing to your project database.</p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Add a JNDI data source pointing to your project database.</p>
 
 <pre>
 &lt;jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/db"/&gt;
 </pre>
-                        </div>
                     </div>
+                </div>
 
-                    <p><code>src/main/resources/spring-data.xml</code></p>
+                <p><code>src/main/resources/spring-data.xml</code></p>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Change Hibernate dialect to match your database type.</p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Change Hibernate dialect to match your database type.</p>
 
-                            <p>List your Hibernate annotated classes.</p>
+                        <p>List your Hibernate annotated classes.</p>
 
 <pre>
 &lt;bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"&gt;
@@ -220,32 +243,32 @@
     &lt;/property&gt;
 &lt;/bean&gt;
 </pre>
-                        </div>
-                    </div>
-
-                    <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/domain</code>
-                    </p>
-
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>All Hibernate domains are placed in this package.</p>
-                        </div>
                     </div>
                 </div>
 
-                <!--
-                #################################
-                section
-                #################################
-                -->
-                <div id="spring-security" role="tabpanel" class="tab-pane active">
-                    <h3>Spring Security</h3>
+                <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/domain</code>
+                </p>
 
-                    <p><code>src/main/webapp/WEB-INF/web.xml</code></p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>All Hibernate domains are placed in this package.</p>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Uncomment the following lines:-</p>
+            <!--
+            #################################
+            section
+            #################################
+            -->
+            <div id="spring-security" role="tabpanel" class="tab-pane active">
+                <h3>Spring Security</h3>
+
+                <p><code>src/main/webapp/WEB-INF/web.xml</code></p>
+
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Uncomment the following lines:-</p>
 
 <pre>
 &lt;filter&gt;
@@ -258,15 +281,15 @@
     &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
 &lt;/filter-mapping&gt;
 </pre>
-                        </div>
                     </div>
+                </div>
 
-                    <p><code>src/main/resources/spring-security.xml</code></p>
+                <p><code>src/main/resources/spring-security.xml</code></p>
 
-                    <div class="row">
-                        <div class="col-md-offset-1">
-                            <p>Uncomment the entire file. Tweak the configuration based on your project
-                                needs.</p>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p>Uncomment the entire file. Tweak the configuration based on your project
+                            needs.</p>
 
 <pre>
 &lt;security:http pattern="/resources/**" security="none"/&gt;
@@ -290,22 +313,22 @@
 &lt;security:authentication-provider ref="customAuthenticationProvider"/&gt;
 &lt;/security:authentication-manager&gt;
 </pre>
-                        </div>
                     </div>
-
-                    <!--
-                    #################################
-                    section
-                    #################################
-                    -->
-                    <!--<div id="section" role="tabpanel" class="tab-pane active">-->
-                    <!--<h3>section</h3>-->
-                    <!--</div>-->
                 </div>
-                <!-- .tab-content -->
+
+                <!--
+                #################################
+                section
+                #################################
+                -->
+                <!--<div id="section" role="tabpanel" class="tab-pane active">-->
+                <!--<h3>section</h3>-->
+                <!--</div>-->
             </div>
+            <!-- .tab-content -->
         </div>
     </div>
+</div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
