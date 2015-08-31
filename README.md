@@ -1,6 +1,154 @@
 # choonchernlim-archetype-webapp
 
-TBD
+This Maven archetype creates a dynamic web project that plays nicely with Jenkins and Sonar. 
+
+Although it primarily targets WebSphere 7.x, the bundled EAR/WAR file will also work with other application servers, such as Tomcat, Jetty, etc.
+
+The following development stack is pre-configured:-
+
+* [Jetty](http://www.eclipse.org/jetty/) - application server for development purpose
+* [H2](http://www.h2database.com/html/main.html) - embedded database for development purpose
+* [Spring](http://projects.spring.io/spring-framework/) - for dependency injection
+* [Spring Security](http://projects.spring.io/spring-security/) - for web security
+* [Hibernate](http://hibernate.org/orm/) - for ORM
+* [Guava](https://github.com/google/guava) - utility API and for creating immutable collections 
+* [Spock](https://github.com/spockframework/spock) - for writing Groovy test cases
+* [Better Preconditions](https://github.com/choonchernlim/better-preconditions) - More fluent precondition API
+* [Build Reports](https://github.com/choonchernlim/build-reports) - for configuring static code analysis reports for Jenkins and Sonar
+* [Pojo Builder](https://github.com/mkarneim/pojobuilder) - for creating immutable objects
+* [Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin) - for installing Node.js and Node modules
+* [Bootstrap](http://getbootstrap.com/) - for front-end UI
+* [Browserify](https://github.com/substack/node-browserify) - for handling JavaScript dependencies
+* [Jasmine](https://github.com/jasmine/jasmine) - for writing JavaScript test cases
+* [Gulp](http://gulpjs.com/) - for front-end automation, including minifying JS, CSS and images
+* Gulp configurations are heavily inspired by [@greypants' gulp-starter](https://github.com/greypants/gulp-starter).
+
+By default, `mvn compile` performs the following tasks:-
+
+* Ensure no banned dependencies are included
+* Install Node.js
+* Install Node modules
+* Run default Gulp task
+* Compile Java files
+* Clean up Builder files created by Pojo Builder
+ 
+## Project Structure
+
+If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is `testProject`, the generated project structure looks like this:-
+
+    testProject
+    ├── README.md
+    ├── RELEASES.md
+    ├── pom.xml
+    └── testProject-webapp
+        ├── pom.xml
+        ├── testProject-webapp-ear
+        │   ├── pom.xml
+        │   └── src
+        │       └── main
+        │           └── application
+        │               └── deployment.xml
+        └── testProject-webapp-war
+            ├── pom.xml
+            └── src
+                ├── main
+                │   ├── frontend
+                │   │   ├── gulp
+                │   │   │   ├── config.js
+                │   │   │   ├── tasks
+                │   │   │   │   ├── browserSync.js
+                │   │   │   │   ├── browserify.js
+                │   │   │   │   ├── default.js
+                │   │   │   │   ├── minifyCss.js
+                │   │   │   │   ├── minifyImages.js
+                │   │   │   │   ├── minifyJs.js
+                │   │   │   │   ├── production.js
+                │   │   │   │   ├── sass.js
+                │   │   │   │   ├── watch.js
+                │   │   │   │   └── watchify.js
+                │   │   │   └── util
+                │   │   │       ├── bundleLogger.js
+                │   │   │       └── handleErrors.js
+                │   │   ├── gulpfile.js
+                │   │   ├── package.json
+                │   │   └── src
+                │   │       ├── img
+                │   │       │   ├── favicon.png
+                │   │       │   └── logo.png
+                │   │       ├── js
+                │   │       │   └── app.js
+                │   │       └── scss
+                │   │           └── app.scss
+                │   ├── java
+                │   │   └── com
+                │   │       └── github
+                │   │           └── choonchern
+                │   │               └── testProject
+                │   │                   ├── bean
+                │   │                   │   └── MockBean.java
+                │   │                   ├── constant
+                │   │                   │   └── MockConstant.java
+                │   │                   ├── controller
+                │   │                   │   └── IndexController.java
+                │   │                   ├── domain
+                │   │                   │   └── MockDomain.java
+                │   │                   ├── form
+                │   │                   │   └── MockForm.java
+                │   │                   ├── service
+                │   │                   │   ├── MockService.java
+                │   │                   │   └── impl
+                │   │                   │       └── MockServiceImpl.java
+                │   │                   └── util
+                │   │                       └── MockUtil.java
+                │   ├── resources
+                │   │   ├── log4j.xml
+                │   │   ├── messages.properties
+                │   │   ├── spring-applicationContext.xml
+                │   │   ├── spring-component-scan.xml
+                │   │   ├── spring-data.xml
+                │   │   ├── spring-datasource-jndi.xml
+                │   │   └── spring-security.xml
+                │   └── webapp
+                │       ├── WEB-INF
+                │       │   ├── ibm-web-bnd.xml
+                │       │   ├── jsp
+                │       │   │   └── index.jsp
+                │       │   ├── spring-servlet.xml
+                │       │   └── web.xml
+                │       └── resources
+                │           ├── css
+                │           │   └── app.css
+                │           ├── img
+                │           │   ├── favicon.png
+                │           │   └── logo.png
+                │           └── js
+                │               ├── app.js
+                │               └── vendor.js
+                └── test
+                    ├── groovy
+                    │   └── com
+                    │       └── github
+                    │           └── choonchern
+                    │               └── testProject
+                    │                   ├── bean
+                    │                   │   └── MockBeanSpec.groovy
+                    │                   ├── controller
+                    │                   │   └── MockControllerSpec.groovy
+                    │                   └── service
+                    │                       └── impl
+                    │                           └── MockServiceImplSpec.groovy
+                    ├── java
+                    │   └── com
+                    │       └── github
+                    │           └── choonchern
+                    │               └── testProject
+                    │                   └── DummyTest.java
+                    ├── js
+                    │   └── app-spec.js
+                    └── resources
+                        ├── karma.conf.ci.js
+                        ├── karma.conf.js
+                        └── spring-test.xml
 
 ## Prerequisites
 
@@ -10,26 +158,33 @@ TBD
 
 ## Usage
 
+### Configuring VCS Ignore List
+
+* The following directories should not be committed into VCS:-
+    * `target/`
+    * `**/src/main/frontend/etc/`
+    * `**/src/main/frontend/node/`   
+    * `**/src/main/frontend/node_modules/`
+
 ### Starting Jetty Server for Development
 
-From `war` module, run `mvn clean jetty:run` to start Jetty server.
+* From `war` module, run `mvn clean jetty:run` to start Jetty server.
 
-Go to http://localhost:7777 and select the link to see the project main page.
+* Go to http://localhost:7777 and select the link to see the project main page.
 
-### Watching JS/CSS Changes and Refresh Page using BrowserSync
+### Auto Watching JS/CSS Changes
 
-From `war` module, run `mvn exec:exec`.
+* From `war` module, run `mvn exec:exec`.
 
-You will be directed to http://localhost:3000/[project]. 
+* You will be directed to http://localhost:3000/[project]. 
 
-IMPORTANT: Don't run `mvn jetty:run exec:exec` in one command line because both goals are blocking processes. Instead,
-run `mvn jetty:run` in one terminal, and `mvn exec:exec` in another terminal.
+* IMPORTANT: Don't run `mvn jetty:run exec:exec` in one command line because both goals are blocking processes. Instead, run `mvn jetty:run` in one terminal, and `mvn exec:exec` in another terminal.
  
 ### Creating EAR File
 
-From `root` module or `webapp` module, run `mvn clean package`.
+* From `root` module or `webapp` module, run `mvn clean package`.
 
-This will create the WAR file and bundle it into the EAR file.
+* This will create the WAR file and bundle it into the EAR file.
 
 ### Creating WAR File
 

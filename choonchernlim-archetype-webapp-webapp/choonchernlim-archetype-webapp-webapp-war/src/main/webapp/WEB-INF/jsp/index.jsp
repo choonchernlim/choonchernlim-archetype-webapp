@@ -333,7 +333,9 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        ...
+        <p class="navbar-text">Powered by
+            <a href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">choonchernlim-archetype-webapp</a>
+            Maven Archetype.</p>
     </div>
 </nav>
 
