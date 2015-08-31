@@ -19,9 +19,10 @@ The following development stack is pre-configured:-
 * [Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin) - for installing Node.js and Node modules
 * [Bootstrap](http://getbootstrap.com/) - for front-end UI
 * [Browserify](https://github.com/substack/node-browserify) - for handling JavaScript dependencies
-* [Jasmine](https://github.com/jasmine/jasmine) - for writing JavaScript test cases
 * [Gulp](http://gulpjs.com/) - for front-end automation, including minifying JS, CSS and images
-* Gulp configurations are heavily inspired by [@greypants' gulp-starter](https://github.com/greypants/gulp-starter).
+* [Jasmine](https://github.com/jasmine/jasmine) - for writing JavaScript test cases
+* [Karma](https://github.com/karma-runner/karma) - for running JavaScript test cases
+* Gulp configurations are heavily inspired by [@greypants' gulp-starter](https://github.com/greypants/gulp-starter)
 
 By default, `mvn compile` performs the following tasks:-
 
@@ -32,7 +33,7 @@ By default, `mvn compile` performs the following tasks:-
 * Compile Java files
 * Clean up Builder files created by Pojo Builder
  
-## Project Structure
+## Sample Project Structure
 
 If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is `testProject`, the generated project structure looks like this:-
 
