@@ -171,13 +171,13 @@ If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is 
 
 * From `war` module, run `mvn clean jetty:run` to start Jetty server.
 
-* Go to http://localhost:7777 and select the link to see the project main page.
+* Go to `http://localhost:7777` and select the link to see the project main page.
 
 ### Auto Watching JS/CSS Changes
 
 * From `war` module, run `mvn exec:exec`.
 
-* You will be directed to http://localhost:3000/[project]. 
+* You will be directed to `http://localhost:3000/[project]`. 
 
 * IMPORTANT: Don't run `mvn jetty:run exec:exec` in one command line because both goals are blocking processes. Instead, run `mvn jetty:run` in one terminal, and `mvn exec:exec` in another terminal.
  
