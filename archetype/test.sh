@@ -7,5 +7,5 @@ rm -rf /tmp/archetype/test
 cd /tmp/archetype
 
 mvn archetype:generate -DinteractiveMode=false \
--DarchetypeGroupId=com.github.choonchernlim -DarchetypeArtifactId=choonchernlim-archetype-webapp -DarchetypeVersion=0.1.0-SNAPSHOT \
+-DarchetypeGroupId=com.github.choonchernlim -DarchetypeArtifactId=choonchernlim-archetype-webapp -DarchetypeVersion=0.1.0 \
 -DgroupId=org.project.test -DartifactId=test -Dversion=1.0.0-SNAPSHOT

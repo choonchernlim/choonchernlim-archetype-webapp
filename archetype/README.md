@@ -24,5 +24,5 @@ Execute shell script.
 
 Push to Nexus
     
-    (cd /tmp/choonchernlim-archetype-webapp/target/generated-sources/archetype; mvn clean deploy -Pexternal-release -Possrh)
+    (cd /tmp/archetype/choonchernlim-archetype-webapp/target/generated-sources/archetype; mvn clean deploy -Pexternal-release -Possrh)
 

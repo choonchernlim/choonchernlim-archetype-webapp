@@ -229,7 +229,7 @@ replace_string_in_file "${currentPath}" '#' '$symbol_pound'
 insert_velocity_escape_variables_in_file "${currentPath}"
 
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 2 'choonchernlim-archetype-webapp'
+find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 3 'choonchernlim-archetype-webapp'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'choonchernlimArchetypeWebapp'
