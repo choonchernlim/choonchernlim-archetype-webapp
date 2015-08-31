@@ -46,9 +46,14 @@ By default, `mvn compile` performs the following tasks:-
 For example:
 
 ```bash
-mvn archetype:generate -DinteractiveMode=false 
--DarchetypeGroupId=com.github.choonchernlim -DarchetypeArtifactId=choonchernlim-archetype-webapp -DarchetypeVersion=0.1.0 
--DgroupId=com.github.choonchern.testProject -DartifactId=testProject -Dversion=1.0.0-SNAPSHOT
+mvn archetype:generate 
+-DinteractiveMode=false 
+-DarchetypeGroupId=com.github.choonchernlim 
+-DarchetypeArtifactId=choonchernlim-archetype-webapp 
+-DarchetypeVersion=0.1.0 
+-DgroupId=com.github.choonchern.testProject 
+-DartifactId=testProject 
+-Dversion=1.0.0-SNAPSHOT
 ```
 
 ## Sample Project Structure
