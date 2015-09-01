@@ -20,6 +20,14 @@ Execute shell script.
 
     ./archetype/build.sh 
 
+## Update CHANGELOG.md
+
+* Create an entry before release.
+
+## Update README.md
+
+* Update version in `Latest.
+
 ## Installing Archetype
 
 Push to Nexus
