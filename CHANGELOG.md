@@ -1,5 +1,10 @@
 # Change Log
 
+## TODO
+
+* Removed `joda-time:joda-time-hibernate` - Only target Hibernate 3.x.
+* Removed `joda-time:joda-time-jsptags` - No more JSP rendering pages.
+            
 ## 0.1.1 - 2015-09-01
 
 * `WAR/pom.xml` - Configured ANT script to delete all Pojo builder source files in `initialize` phase instead of `compile` phase.
