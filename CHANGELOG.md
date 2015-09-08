@@ -2,8 +2,13 @@
 
 ## TODO
 
-* Removed `joda-time:joda-time-hibernate` - Only target Hibernate 3.x.
-* Removed `joda-time:joda-time-jsptags` - No more JSP rendering pages.
+* `WAR/pom.xml` Remove `joda-time:joda-time-hibernate` - Only target Hibernate 3.x.
+* `WAR/pom.xml` Remove `joda-time:joda-time-jsptags` - No more JSP rendering pages.
+* `web.xml` - Replace `OpenSessionInViewFilter` with `OpenEntityManagerInViewFilter.
+* `spring-data.xml` - Replace Hibernate's transaction manager and session factory with JPA.
+* Rename `domain` package to `entity` package.
+* Create `dao` package
+* Convert Dao to Spring Data JPA.
             
 ## 0.1.1 - 2015-09-01
 
