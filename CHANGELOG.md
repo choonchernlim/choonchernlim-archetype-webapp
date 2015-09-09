@@ -4,6 +4,7 @@
 
 * `WAR/pom.xml` Remove `joda-time:joda-time-hibernate` - Only target Hibernate 3.x.
 * `WAR/pom.xml` Remove `joda-time:joda-time-jsptags` - No more JSP rendering pages.
+* Add `org.hibernate:hibernate-entitymanager` with same version as `hibernate-core` so that it won't use 4.3.x instead
 * `web.xml` - Replace `OpenSessionInViewFilter` with `OpenEntityManagerInViewFilter.
 * `spring-data.xml` - Replace Hibernate's transaction manager and session factory with JPA.
 * Rename `domain` package to `entity` package.
