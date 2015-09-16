@@ -3,7 +3,7 @@
 ## 0.2.0 - 2015-XX-XX
 
 ### DONE
-* `root/pom.xml` - Add commented out `<scm>` tag with a TODO to remind user to update the project SCM info so that it won't inherit the SCM info from `build-reports`.
+* `root/pom.xml` - Add `<scm>` stub tag with a TODO to remind user to update the project SCM info so that it won't inherit the SCM info from `build-reports`.
 
 ### TODO
 * `WAR/pom.xml` Remove `joda-time:joda-time-hibernate` - Only target Hibernate 3.x.

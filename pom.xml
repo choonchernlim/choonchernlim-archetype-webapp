@@ -20,17 +20,17 @@
         <module>choonchernlim-archetype-webapp-webapp</module>
     </modules>
 
-    <!-- TODO Add SCM info -->
+    <!-- TODO Update SCM info! -->
     <!--
-    This SCM info needs to be added to prevent `maven-project-info-reports-plugin` from throwing
-    "wrong effective scm url" warnings when generating site because the SCM info is inherited
-    from `build-reports`.
+    This stub SCM block is needed to prevent `maven-project-info-reports-plugin` from throwing
+    "wrong effective scm url" warnings when generating site (ex: mvn site) because the SCM info
+    is inherited from `build-reports` by default.
     -->
-    <!--<scm>-->
-    <!--<connection>scm:svn:https://server/project/trunk</connection>-->
-    <!--<developerConnection>scm:svn:https://server/project/trunk</developerConnection>-->
-    <!--<url>https://server/project/trunk</url>-->
-    <!--</scm>-->
+    <scm>
+        <connection>scm:svn:https://server/project/trunk</connection>
+        <developerConnection>scm:svn:https://server/project/trunk</developerConnection>
+        <url>https://server/project/trunk</url>
+    </scm>
 
     <properties>
         <jdk.version>1.6</jdk.version>
