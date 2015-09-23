@@ -15,6 +15,7 @@
 * Create `dao` package
 * Convert Dao to Spring Data JPA.
 * Use `build-report` 2.2.0 because JaCoCo reports won't show up in Jenkins.
+* `src/main/frontend/gulp/config.js` - Remove unused `production` block.
             
 ## 0.1.1 - 2015-09-01
 
