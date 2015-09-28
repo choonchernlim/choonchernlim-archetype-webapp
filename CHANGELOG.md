@@ -17,6 +17,8 @@
 * Use `build-report` 2.2.0 because JaCoCo reports won't show up in Jenkins.
 * `src/main/frontend/gulp/config.js` - Remove unused `production` block.
 * Modify `browser-sync` to use recommended config instead deprecated config.
+* Dependency upgrade - `com.github.eirslett:frontend-maven-plugin` from 0.0.24 to 0.0.26 to fix invalid `npm-cli.js` path.
+
             
 ## 0.1.1 - 2015-09-01
 
