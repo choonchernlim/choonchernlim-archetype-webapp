@@ -19,6 +19,8 @@
 * Modify `browser-sync` to use recommended config instead deprecated config.
 * Dependency upgrade - `com.github.eirslett:frontend-maven-plugin` from 0.0.24 to 0.0.26 to fix invalid `npm-cli.js` path.
 
+* Dependency downgrade - `com.jayway.jsonpath:json-path-assert` from 2.0.0 to 0.9.1 to fix `java.lang.NoSuchMethodError: com.jayway.jsonpath.JsonPath.compile(Ljava/lang/String;[Lcom/jayway/jsonpath/Filter;)Lcom/jayway/jsonpath/JsonPath;`
+* Dependency added - `com.jayway.jsonpath:json-path:0.9.1:test`
             
 ## 0.1.1 - 2015-09-01
 
