@@ -21,7 +21,8 @@
 
 * Dependency downgrade - `com.jayway.jsonpath:json-path-assert` from 2.0.0 to 0.9.1 to fix `java.lang.NoSuchMethodError: com.jayway.jsonpath.JsonPath.compile(Ljava/lang/String;[Lcom/jayway/jsonpath/Filter;)Lcom/jayway/jsonpath/JsonPath;`
 * Dependency added - `com.jayway.jsonpath:json-path:0.9.1:test`
-            
+* Dependency added - `org.objenesis:objenesis:2.2:test` to mocking concrete classes
+
 ## 0.1.1 - 2015-09-01
 
 * `WAR/pom.xml` - Configured ANT script to delete all Pojo builder source files in `initialize` phase instead of `compile` phase.
