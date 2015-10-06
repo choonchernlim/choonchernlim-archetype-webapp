@@ -40,11 +40,5 @@ module.exports = {
                 paths      : ['./node_modules']
             }
         ]
-    },
-    production  : {
-        cssSrc  : [dest + '/css/*.css', '!' + dest + '/css/*.css'],
-        jsSrc   : [dest + '/js/*.js', '!' + dest + '/js/*.js'],
-        cssDest : dest + '/css',
-        jsDest  : dest + '/js'
     }
 };

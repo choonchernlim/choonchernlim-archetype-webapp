@@ -36,8 +36,8 @@
     -->
     <!-- TODO Hibernate: Uncomment to enable filter
     <filter>
-        <filter-name>hibernateFilter</filter-name>
-        <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
     </filter>
     -->
 
@@ -57,7 +57,7 @@
     -->
     <!-- TODO Hibernate: Uncomment to enable filter mapping
     <filter-mapping>
-        <filter-name>hibernateFilter</filter-name>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     -->

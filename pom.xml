@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>build-reports</artifactId>
-        <version>0.2.1</version>
+        <version>0.2.2</version>
     </parent>
 
     <groupId>com.github.choonchernlim</groupId>
@@ -44,10 +44,14 @@
         <org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>
         <org.springframework.ws.version>2.2.1.RELEASE</org.springframework.ws.version>
 
+        <spring-data-jpa.version>1.9.0.RELEASE</spring-data-jpa.version>
+
+        <hibernate.version>4.2.20.Final</hibernate.version>
         <slf4j.version>1.7.12</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <jackson.version>2.6.0</jackson.version>
         <spock.version>1.0-groovy-2.4</spock.version>
+        <json-path.version>0.9.1</json-path.version>
         <hamcrest.version>1.3</hamcrest.version>
 
         <h2.version>1.4.187</h2.version>
@@ -176,6 +180,11 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.8.1</version>
+            </dependency>
 
             <!-- Commons. -->
             <dependency>
@@ -203,7 +212,12 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>4.2.20.Final</version>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jadira.usertype</groupId>
@@ -212,6 +226,11 @@
             </dependency>
 
             <!-- Spring. -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring-data-jpa.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.ws</groupId>
                 <artifactId>spring-ws-core</artifactId>
@@ -295,23 +314,6 @@
                 <version>${org.springframework.security.version}</version>
             </dependency>
 
-            <!-- Joda time. -->
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-                <version>2.8.1</version>
-            </dependency>
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time-hibernate</artifactId>
-                <version>1.4</version>
-            </dependency>
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time-jsptags</artifactId>
-                <version>1.1.1</version>
-            </dependency>
-
             <!-- Scope = test. -->
             <dependency>
                 <groupId>org.springframework.ws</groupId>
@@ -357,8 +359,14 @@
             </dependency>
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${json-path.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path-assert</artifactId>
-                <version>2.0.0</version>
+                <version>${json-path.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -371,6 +379,12 @@
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-library</artifactId>
                 <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.objenesis</groupId>
+                <artifactId>objenesis</artifactId>
+                <version>2.2</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -488,7 +502,7 @@
                 <plugin>
                     <groupId>com.github.eirslett</groupId>
                     <artifactId>frontend-maven-plugin</artifactId>
-                    <version>0.0.24</version>
+                    <version>0.0.26</version>
                 </plugin>
 
                 <plugin>

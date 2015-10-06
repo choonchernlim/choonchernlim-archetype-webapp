@@ -163,12 +163,12 @@
 
 <pre>
 &lt;filter&gt;
-    &lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
-    &lt;filter-class&gt;org.springframework.orm.hibernate4.support.OpenSessionInViewFilter&lt;/filter-class&gt;
+    &lt;filter-name&gt;openEntityManagerInViewFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter&lt;/filter-class&gt;
 &lt;/filter&gt;
 ...
 &lt;filter-mapping&gt;
-    &lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
+    &lt;filter-name&gt;openEntityManagerInViewFilter&lt;/filter-name&gt;
     &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
 &lt;/filter-mapping&gt;
 </pre>
@@ -220,38 +220,46 @@
 
                 <div class="row">
                     <div class="col-md-offset-1 col-md-10">
+                        <p>Uncomment the whole file.</p>
+
                         <p>Change Hibernate dialect to match your database type.</p>
 
-                        <p>List your Hibernate annotated classes.</p>
-
 <pre>
-&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"&gt;
+&lt;bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"&gt;
     &lt;property name="dataSource" ref="dataSource"/&gt;
-
-    &lt;property name="hibernateProperties"&gt;
+    &lt;property name="packagesToScan" value="com.github.choonchernlim.choonchernlimArchetypeWebapp.entity"/&gt;
+    &lt;property name="jpaVendorAdapter"&gt;
+        &lt;bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/&gt;
+    &lt;/property&gt;
+    &lt;property name="jpaProperties"&gt;
         &lt;props&gt;
             <strong>&lt;prop key="hibernate.dialect"&gt;org.hibernate.dialect.SQLServerDialect&lt;/prop&gt;</strong>
             &lt;prop key="hibernate.show_sql"&gt;false&lt;/prop&gt;
+            &lt;prop key="hibernate.format_sql"&gt;false&lt;/prop&gt;
+
+            &lt;!--
+            Instead of defining @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime") on
+            all Joda Time object, auto register the user type
+            --&gt;
             &lt;prop key="jadira.usertype.autoRegisterUserTypes"&gt;true&lt;/prop&gt;
+            &lt;!--
+            This is important for H2 to work with Hibernate. If this is not specified, then the `dbo` has to be
+            specified at domain classes, like this: `@Table(name = "dbo.domain")`.
+            --&gt;
             &lt;prop key="hibernate.default_schema"&gt;dbo&lt;/prop&gt;
         &lt;/props&gt;
-    &lt;/property&gt;
-    &lt;property name="packagesToScan"&gt;
-        &lt;list&gt;
-            &lt;value&gt;com.github.choonchernlim.choonchernlimArchetypeWebapp.domain&lt;/value&gt;
-        &lt;/list&gt;
     &lt;/property&gt;
 &lt;/bean&gt;
 </pre>
                     </div>
                 </div>
 
-                <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/domain</code>
+                <p><code>src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/entity</code>
                 </p>
 
                 <div class="row">
                     <div class="col-md-offset-1 col-md-10">
-                        <p>All Hibernate domains are placed in this package.</p>
+                        <p>All Hibernate entities are placed in this package.</p>
                     </div>
                 </div>
             </div>

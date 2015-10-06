@@ -1,4 +1,4 @@
-package com.github.choonchernlim.choonchernlimArchetypeWebapp.domain;
+package com.github.choonchernlim.choonchernlimArchetypeWebapp.entity;
 
 import com.google.common.base.Objects;
 
@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "mockDomain")
-public final class MockDomain implements Serializable {
+public final class MockEntity implements Serializable {
     @Column
     protected String name;
     @Id
@@ -28,7 +28,7 @@ public final class MockDomain implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final MockDomain person = (MockDomain) o;
+        final MockEntity person = (MockEntity) o;
         return Objects.equal(getName(), person.getName());
     }
 
