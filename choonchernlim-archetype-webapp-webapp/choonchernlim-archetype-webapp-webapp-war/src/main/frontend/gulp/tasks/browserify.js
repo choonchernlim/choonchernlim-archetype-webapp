@@ -7,12 +7,12 @@
 'use strict';
 
 var browserify = require( 'browserify' );
-var browserSync = require( 'browser-sync' );
+var browserSync = require( '../util/browser-sync-instance' );
 var watchify = require( 'watchify' );
 var mergeStream = require( 'merge-stream' );
-var bundleLogger = require( '../util/bundleLogger' );
+var bundleLogger = require( '../util/bundle-logger' );
 var gulp = require( 'gulp' );
-var handleErrors = require( '../util/handleErrors' );
+var handleErrors = require( '../util/handle-errors' );
 var source = require( 'vinyl-source-stream' );
 var config = require( '../config' ).browserify;
 var _ = require( 'lodash' );

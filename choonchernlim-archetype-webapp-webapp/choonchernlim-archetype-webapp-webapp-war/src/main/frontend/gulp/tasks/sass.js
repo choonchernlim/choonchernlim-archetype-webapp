@@ -1,7 +1,7 @@
 var gulp = require( 'gulp' );
-var browserSync = require( 'browser-sync' );
+var browserSync = require( '../util/browser-sync-instance' );
 var sass = require( 'gulp-sass' );
-var handleErrors = require( '../util/handleErrors' );
+var handleErrors = require( '../util/handle-errors' );
 var config = require( '../config' ).sass;
 var autoprefixer = require( 'gulp-autoprefixer' );
 var rename = require( 'gulp-rename' );

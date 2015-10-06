@@ -22,15 +22,16 @@
 * `ROOT/pom.xml` - Added `<scm>` stub tag with a TODO to remind user to update the project SCM info so that it won't inherit the SCM info from `build-reports`.
 * `src/main/frontend/gulp/config.js` - Removed unused `production` block.
 
-* Configuring Spring Data JPA
+* Spring Data JPA Configuration
     * WAR - `web.xml` - Replaced `OpenSessionInViewFilter` with `OpenEntityManagerInViewFilter`.
     * Renamed `domain` package to `entity` package.
     * Created `dao` package.
     * Created `MockDao`.
     * `spring-data.xml` - Replace Hibernate's transaction manager and session factory with JPA.
 
-### TODO
-* Modify `browser-sync` to use recommended config instead deprecated config.
+* Gulp Configuration
+    * Modified `browser-sync` configuration to use recommended settings for 2.x.
+    * Refactored Gulp task and file names to use snake case instead of camel case.
 
 ## 0.1.1 - 2015-09-01
 

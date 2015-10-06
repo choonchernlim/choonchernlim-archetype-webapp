@@ -1,6 +1,5 @@
-/* bundleLogger
- ------------
- Provides gulp style logs to the bundle method in browserify.js
+/*
+    Provides gulp style logs to the bundle method in browserify.js
  */
 
 'use strict';
