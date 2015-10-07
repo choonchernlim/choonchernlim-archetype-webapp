@@ -195,14 +195,13 @@ export XMLLINT_INDENT="    "
 xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/pom.xml"
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
-replace_string_in_file "${currentPath}" '<groupId>com.github.choonchernlim</groupId>' '<groupId>${package}</groupId>'
 replace_string_in_file "${currentPath}" '<artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>' '<artifactId>${rootArtifactId}-webapp-war</artifactId>'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/package.json"
 replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/gulp/config.js"
-replace_string_in_file "${currentPath}" 'localhost:7777/choonchernlim-archetype-webapp-webapp' 'localhost:7777/${rootArtifactId}'
+replace_string_in_file "${currentPath}" 'localhost:7777/choonchernlim-archetype-webapp' 'localhost:7777/${rootArtifactId}'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/web.xml"
 replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
@@ -210,7 +209,6 @@ replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-w
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/jsp/index.jsp"
 replace_string_in_file "${currentPath}" '<title>choonchernlim-archetype-webapp</title>' '<title>${rootArtifactId}</title>'
 replace_string_in_file "${currentPath}" '<span>choonchernlim-archetype-webapp</span>' '<span>${rootArtifactId}</span>'
-replace_string_in_file "${currentPath}" '<a class="navbar-brand" href="${symbol_pound}">choonchernlim-archetype-webapp</a>' '<a class="navbar-brand" href="${symbol_pound}">${rootArtifactId}</a>'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/pom.xml"
 replace_string_in_file "${currentPath}" '#' '$symbol_pound'

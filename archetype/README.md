@@ -1,10 +1,12 @@
 ## Update archetype version 
 
-Go to `archetype/archetype.properties`.
- 
-Change this line:-
+Go to `archetype/archetype.properties`, and change this line:-
 
     archetype.version=X.X.X
+
+Go to `archetype/test.sh`, and change this line:-
+
+    -DarchetypeVersion=X.X.X
 
 ## Run Build Script
 
@@ -26,7 +28,7 @@ Execute shell script.
 
 ## Update README.md
 
-* Update version in `Latest.
+* Update version in `Latest Release`.
 
 ## Installing Archetype
 

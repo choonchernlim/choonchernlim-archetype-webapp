@@ -10,6 +10,7 @@ The following development stack is pre-configured:-
 * [H2](http://www.h2database.com/html/main.html) - embedded database for development purpose
 * [Spring](http://projects.spring.io/spring-framework/) - for dependency injection
 * [Spring Security](http://projects.spring.io/spring-security/) - for web security
+* [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) - for implementing JPA based repositories
 * [Hibernate](http://hibernate.org/orm/) - for ORM
 * [Guava](https://github.com/google/guava) - utility API and for creating immutable collections 
 * [Spock](https://github.com/spockframework/spock) - for writing Groovy test cases
@@ -39,7 +40,7 @@ By default, `mvn compile` performs the following tasks:-
 <dependency>
   <groupId>com.github.choonchernlim</groupId>
   <artifactId>choonchernlim-archetype-webapp</artifactId>
-  <version>0.1.1</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
@@ -50,7 +51,7 @@ mvn archetype:generate
 -DinteractiveMode=false 
 -DarchetypeGroupId=com.github.choonchernlim 
 -DarchetypeArtifactId=choonchernlim-archetype-webapp 
--DarchetypeVersion=0.1.1 
+-DarchetypeVersion=0.2.0
 -DgroupId=com.github.choonchern.testProject 
 -DartifactId=testProject 
 -Dversion=1.0.0-SNAPSHOT
@@ -61,19 +62,22 @@ mvn archetype:generate
 If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is `testProject`, the generated project structure looks like this:-
 
 ```text
-testProject
+➜  tree . -I '*.iml' 
+myProject
+├── CHANGELOG.md
 ├── README.md
-├── RELEASES.md
 ├── pom.xml
-└── testProject-webapp
+└── myProject-webapp
     ├── pom.xml
-    ├── testProject-webapp-ear
+    ├── myProject-webapp-ear
     │   ├── pom.xml
-    │   └── src
-    │       └── main
-    │           └── application
-    │               └── deployment.xml
-    └── testProject-webapp-war
+    │   ├── src
+    │   │   └── main
+    │   │       └── application
+    │   │           └── deployment.xml
+    │   └── target
+    │       └── application.xml
+    └── myProject-webapp-war
         ├── pom.xml
         └── src
             ├── main
@@ -81,19 +85,17 @@ testProject
             │   │   ├── gulp
             │   │   │   ├── config.js
             │   │   │   ├── tasks
-            │   │   │   │   ├── browserSync.js
+            │   │   │   │   ├── browser-sync.js
             │   │   │   │   ├── browserify.js
             │   │   │   │   ├── default.js
-            │   │   │   │   ├── minifyCss.js
-            │   │   │   │   ├── minifyImages.js
-            │   │   │   │   ├── minifyJs.js
-            │   │   │   │   ├── production.js
+            │   │   │   │   ├── optimize-images.js
             │   │   │   │   ├── sass.js
             │   │   │   │   ├── watch.js
             │   │   │   │   └── watchify.js
             │   │   │   └── util
-            │   │   │       ├── bundleLogger.js
-            │   │   │       └── handleErrors.js
+            │   │   │       ├── browser-sync-instance.js
+            │   │   │       ├── bundle-logger.js
+            │   │   │       └── handle-errors.js
             │   │   ├── gulpfile.js
             │   │   ├── package.json
             │   │   └── src
@@ -105,26 +107,27 @@ testProject
             │   │       └── scss
             │   │           └── app.scss
             │   ├── java
-            │   │   └── com
-            │   │       └── github
-            │   │           └── choonchern
-            │   │               └── testProject
-            │   │                   ├── bean
-            │   │                   │   └── MockBean.java
-            │   │                   ├── constant
-            │   │                   │   └── MockConstant.java
-            │   │                   ├── controller
-            │   │                   │   └── IndexController.java
-            │   │                   ├── domain
-            │   │                   │   └── MockDomain.java
-            │   │                   ├── form
-            │   │                   │   └── MockForm.java
-            │   │                   ├── service
-            │   │                   │   ├── MockService.java
-            │   │                   │   └── impl
-            │   │                   │       └── MockServiceImpl.java
-            │   │                   └── util
-            │   │                       └── MockUtil.java
+            │   │   └── org
+            │   │       └── project
+            │   │           └── test
+            │   │               ├── bean
+            │   │               │   └── MockBean.java
+            │   │               ├── constant
+            │   │               │   └── MockConstant.java
+            │   │               ├── controller
+            │   │               │   └── IndexController.java
+            │   │               ├── dao
+            │   │               │   └── MockDao.java
+            │   │               ├── entity
+            │   │               │   └── MockEntity.java
+            │   │               ├── form
+            │   │               │   └── MockForm.java
+            │   │               ├── service
+            │   │               │   ├── MockService.java
+            │   │               │   └── impl
+            │   │               │       └── MockServiceImpl.java
+            │   │               └── util
+            │   │                   └── MockUtil.java
             │   ├── resources
             │   │   ├── log4j.xml
             │   │   ├── messages.properties
@@ -142,38 +145,43 @@ testProject
             │       │   └── web.xml
             │       └── resources
             │           ├── css
-            │           │   └── app.css
+            │           │   ├── app.css
+            │           │   ├── app.min.css
+            │           │   ├── app.min.scss
+            │           │   └── app.scss
             │           ├── img
             │           │   ├── favicon.png
             │           │   └── logo.png
             │           └── js
             │               ├── app.js
-            │               └── vendor.js
+            │               ├── app.min.js
+            │               ├── vendor.js
+            │               └── vendor.min.js
             └── test
                 ├── groovy
-                │   └── com
-                │       └── github
-                │           └── choonchern
-                │               └── testProject
-                │                   ├── bean
-                │                   │   └── MockBeanSpec.groovy
-                │                   ├── controller
-                │                   │   └── MockControllerSpec.groovy
-                │                   └── service
-                │                       └── impl
-                │                           └── MockServiceImplSpec.groovy
+                │   └── org
+                │       └── project
+                │           └── test
+                │               ├── bean
+                │               │   └── MockBeanSpec.groovy
+                │               ├── controller
+                │               │   └── MockControllerSpec.groovy
+                │               └── service
+                │                   └── impl
+                │                       └── MockServiceImplSpec.groovy
                 ├── java
-                │   └── com
-                │       └── github
-                │           └── choonchern
-                │               └── testProject
-                │                   └── DummyTest.java
+                │   └── org
+                │       └── project
+                │           └── test
+                │               └── DummyTest.java
                 ├── js
                 │   └── app-spec.js
                 └── resources
                     ├── karma.conf.ci.js
                     ├── karma.conf.js
                     └── spring-test.xml
+
+53 directories, 63 files
 ```                    
 
 ## Prerequisites

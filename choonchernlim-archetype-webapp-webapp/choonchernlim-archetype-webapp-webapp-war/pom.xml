@@ -422,8 +422,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v0.10.40</nodeVersion>
-                            <npmVersion>2.13.4</npmVersion>
+                            <nodeVersion>v4.1.2</nodeVersion>
+                            <npmVersion>2.14.7</npmVersion>
                         </configuration>
                     </execution>
                     <!-- Perform `npm-install` to install any dependencies listed in `package.json`. -->
