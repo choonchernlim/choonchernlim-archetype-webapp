@@ -1,5 +1,10 @@
 # Change Log
 
+## X.X.X - 2015-10-XX
+
+* Gulp configuration
+    * `sass` task - Don't compile if files are unchanged to speed up the task.
+
 ## 0.2.0 - 2015-10-07
 
 * Maven dependencies
