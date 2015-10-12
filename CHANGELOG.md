@@ -9,6 +9,8 @@
 
 * `EAR`
     *  `<description>` from parent POM appeared in generated `application.xml`.
+* Gulp configuration
+    *  `config.json` - Inconsistent single/double quotes.
 
 ## 0.2.0 - 2015-10-07
 
