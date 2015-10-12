@@ -5,6 +5,11 @@
 * Gulp configuration
     * `sass` task - Don't compile if files are unchanged to speed up the task.
 
+### TODO 
+
+* `EAR`
+    *  `<description>` from parent POM appeared in generated `application.xml`.
+
 ## 0.2.0 - 2015-10-07
 
 * Maven dependencies
