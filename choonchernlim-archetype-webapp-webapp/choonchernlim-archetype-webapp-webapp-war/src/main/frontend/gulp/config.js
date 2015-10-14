@@ -14,7 +14,7 @@ var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment', 'bootstrap'];
 module.exports = {
     browserSync : {
         files : dest,
-        proxy : "localhost:7777/choonchernlim-archetype-webapp"
+        proxy : 'localhost:7777/choonchernlim-archetype-webapp'
     },
     sass        : {
         src      : src + '/scss/**/*.scss',
@@ -22,8 +22,8 @@ module.exports = {
         settings : {}
     },
     images      : {
-        src  : src + "/img/**",
-        dest : dest + "/img"
+        src  : src + '/img/**',
+        dest : dest + '/img'
     },
     browserify  : {
         externalLibs  : externalLibs,

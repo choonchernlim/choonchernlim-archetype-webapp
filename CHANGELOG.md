@@ -4,13 +4,16 @@
 
 * Gulp configuration
     * `sass` task - Don't compile if files are unchanged to speed up the task.
+    *  `config.json` - Inconsistent single/double quotes usage.
+
+* `spring-servlet.xml`
+    * Removed duplicate `<mvc:annotation-driven/>`.
 
 ### TODO 
 
 * `EAR`
     *  `<description>` from parent POM appeared in generated `application.xml`.
-* Gulp configuration
-    *  `config.json` - Inconsistent single/double quotes.
+* Upgrade dependenciesFixes
 
 ## 0.2.0 - 2015-10-07
 
