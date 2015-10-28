@@ -19,6 +19,7 @@ var _ = require( 'lodash' );
 var uglify = require( 'gulp-uglify' );
 var buffer = require( 'vinyl-buffer' );
 var rename = require( 'gulp-rename' );
+var babelify = require( 'babelify' );
 
 var browserifyTask = function ( devMode ) {
 
@@ -28,9 +29,8 @@ var browserifyTask = function ( devMode ) {
         var enableWatch = devMode && bundleConfig.external;
 
         // if watch is enabled, add in watchify arguments
-        var b = browserify( enableWatch ?
-            _.extend( bundleConfig, watchify.args ) :
-            bundleConfig );
+        var b = browserify( enableWatch ? _.extend( bundleConfig, watchify.args ) : bundleConfig )
+            .transform( babelify );
 
         var bundle = function () {
             return b.bundle()
@@ -39,9 +39,9 @@ var browserifyTask = function ( devMode ) {
                 .pipe( gulp.dest( bundleConfig.dest ) )
                 .pipe( buffer() )
                 .pipe( uglify() )
-                .pipe( rename( {suffix : '.min'} ) )
+                .pipe( rename( { suffix : '.min' } ) )
                 .pipe( gulp.dest( bundleConfig.dest ) )
-                .pipe( browserSync.reload( {stream : true} ) );
+                .pipe( browserSync.reload( { stream : true } ) );
         };
 
         if ( enableWatch ) {

@@ -5,6 +5,7 @@
 * Gulp configuration
     * `sass` task - Don't compile if files are unchanged to speed up the task.
     *  `config.json` - Inconsistent single/double quotes usage.
+    * `browserify` task - Configured `babelify` to transpile ES6 and React JSX.
 
 * `spring-servlet.xml`
     * Removed duplicate `<mvc:annotation-driven/>`.

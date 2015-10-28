@@ -5,6 +5,7 @@
     "bootstrap": "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js"
   },
   "devDependencies": {
+    "babelify": "6.4.x",
     "bluebird": "2.10.x",
     "bootstrap-sass": "3.3.x",
     "browser-sync": "2.9.x",
