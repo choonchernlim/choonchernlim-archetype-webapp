@@ -9,6 +9,7 @@
 
 * `spring-servlet.xml`
     * Removed duplicate `<mvc:annotation-driven/>`.
+    * Replaced `<mvc:resources location="/resources/" mapping="/resources/**"/>` with `<mvc:default-servlet-handler/>`.
 
 ### TODO 
 

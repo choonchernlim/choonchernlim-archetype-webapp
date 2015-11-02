@@ -10,7 +10,7 @@
 
     <context:component-scan base-package="com.github.choonchernlim.choonchernlimArchetypeWebapp.controller"/>
 
-    <mvc:resources location="/resources/" mapping="/resources/**"/>
+    <mvc:default-servlet-handler/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
