@@ -14,9 +14,72 @@
 * `EAR/pom.xml`
     *  Prevented `<description>` from being inherited from parent POM, which then appears in the generated `application.xml`.
 
-### TODO 
+* NPM module updates
 
-* Upgrade dependenciesFixes
+```text
+bluebird           2.10.x  →   3.0.x 
+browserify         11.2.x  →  12.0.x 
+gulp-autoprefixer   3.0.x  →   3.1.x 
+gulp-sass           2.0.x  →   2.1.x 
+watchify            3.4.x  →   3.6.x 
+```
+
+* Maven plugin updates
+
+```text
+maven-archetype-plugin ................................... 2.3 -> 2.4
+maven-clean-plugin ..................................... 2.5 -> 3.0.0
+maven-enforcer-plugin .................................. 1.4 -> 1.4.1
+maven-deploy-plugin ........................................... 2.8.2
+maven-install-plugin .......................................... 2.5.2
+maven-site-plugin ............................................... 3.4
+maven-resources-plugin .......................................... 2.7
+maven-surefire-plugin .......................................... 2.19
+```
+
+* Maven dependency updates
+
+```text
+cglib:cglib-nodep ....................................... 3.1 -> 3.2.0
+com.fasterxml.jackson.core:jackson-annotations ........ 2.6.0 -> 2.6.3
+com.fasterxml.jackson.core:jackson-core ............... 2.6.0 -> 2.6.3
+com.fasterxml.jackson.core:jackson-databind ........... 2.6.0 -> 2.6.3
+com.fasterxml.jackson.datatype:jackson-datatype-joda ...
+                                                        2.6.0 -> 2.6.3
+com.google.guava:guava .............................. 18.0 -> 19.0-rc2
+com.google.guava:guava-testlib ...................... 18.0 -> 19.0-rc2
+com.h2database:h2 ................................. 1.4.187 -> 1.4.190
+joda-time:joda-time ..................................... 2.8.1 -> 2.9
+org.apache.httpcomponents:httpclient .................. 4.4.1 -> 4.5.1
+org.apache.httpcomponents:httpcore .................... 4.4.1 -> 4.4.4
+org.codehaus.groovy:groovy-all ........................ 2.4.4 -> 2.4.5
+org.springframework:spring-aop ........ 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-beans ...... 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-context .... 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-context-support ...
+                                        4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-core ....... 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-expression ...
+                                        4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-jdbc ....... 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-orm ........ 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-test ..... 3.2.14.RELEASE -> 3.2.15.RELEASE
+org.springframework:spring-tx ......... 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-web ........ 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework:spring-webmvc ..... 4.1.7.RELEASE -> 4.2.2.RELEASE
+org.springframework.security:spring-security-config ...
+                                        4.0.2.RELEASE -> 4.0.3.RELEASE
+org.springframework.security:spring-security-core ...
+                                        4.0.2.RELEASE -> 4.0.3.RELEASE
+org.springframework.security:spring-security-taglibs ...
+                                        4.0.2.RELEASE -> 4.0.3.RELEASE
+org.springframework.security:spring-security-web ...
+                                        4.0.2.RELEASE -> 4.0.3.RELEASE
+org.springframework.ws:spring-ws-core ...
+                                        2.2.1.RELEASE -> 2.2.2.RELEASE
+org.springframework.ws:spring-ws-test ...
+                                        2.2.1.RELEASE -> 2.2.2.RELEASE
+```
 
 ## 0.2.0 - 2015-10-07
 
@@ -46,7 +109,7 @@
     * Modified `browser-sync` configuration to use recommended settings for 2.x.
     * Refactored Gulp task and file names to use snake case instead of camel case.
 
-* NPM modules
+* NPM module updates
 
 ```text
 bluebird            2.9.x  →  2.10.x 
