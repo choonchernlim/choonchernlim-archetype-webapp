@@ -22,6 +22,7 @@
                 <artifactId>maven-ear-plugin</artifactId>
                 <configuration>
                     <displayName>${project.parent.parent.artifactId}</displayName>
+                    <description>EAR file for ${project.parent.parent.artifactId}.war</description>
                     <modules>
                         <webModule>
                             <groupId>com.github.choonchernlim</groupId>

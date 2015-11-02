@@ -11,10 +11,11 @@
     * Removed duplicate `<mvc:annotation-driven/>`.
     * Replaced `<mvc:resources location="/resources/" mapping="/resources/**"/>` with `<mvc:default-servlet-handler/>`.
 
+* `EAR/pom.xml`
+    *  Prevented `<description>` from being inherited from parent POM, which then appears in the generated `application.xml`.
+
 ### TODO 
 
-* `EAR`
-    *  `<description>` from parent POM appeared in generated `application.xml`.
 * Upgrade dependenciesFixes
 
 ## 0.2.0 - 2015-10-07
