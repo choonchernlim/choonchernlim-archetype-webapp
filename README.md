@@ -20,6 +20,7 @@ The following development stack is pre-configured:-
 * [Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin) - for installing Node.js and Node modules
 * [Bootstrap](http://getbootstrap.com/) - for front-end UI
 * [Browserify](https://github.com/substack/node-browserify) - for handling JavaScript dependencies
+* [Babelify](https://www.npmjs.com/package/babelify) - for transpiling ECMAScript 2015 (ES6) and React's JSX to ES5.
 * [Gulp](http://gulpjs.com/) - for front-end automation, including minifying JS, CSS and images
 * [Jasmine](https://github.com/jasmine/jasmine) - for writing JavaScript test cases
 * [Karma](https://github.com/karma-runner/karma) - for running JavaScript test cases
