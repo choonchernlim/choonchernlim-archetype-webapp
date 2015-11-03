@@ -41,7 +41,7 @@ By default, `mvn compile` performs the following tasks:-
 <dependency>
   <groupId>com.github.choonchernlim</groupId>
   <artifactId>choonchernlim-archetype-webapp</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
 </dependency>
 ```
 
@@ -52,7 +52,7 @@ mvn archetype:generate
 -DinteractiveMode=false 
 -DarchetypeGroupId=com.github.choonchernlim 
 -DarchetypeArtifactId=choonchernlim-archetype-webapp 
--DarchetypeVersion=0.2.0
+-DarchetypeVersion=0.3.0
 -DgroupId=com.github.choonchern.testProject 
 -DartifactId=testProject 
 -Dversion=1.0.0-SNAPSHOT
@@ -147,9 +147,7 @@ myProject
             │       └── resources
             │           ├── css
             │           │   ├── app.css
-            │           │   ├── app.min.css
-            │           │   ├── app.min.scss
-            │           │   └── app.scss
+            │           │   └── app.min.css
             │           ├── img
             │           │   ├── favicon.png
             │           │   └── logo.png

@@ -1,6 +1,6 @@
 # Change Log
 
-## X.X.X - 2015-10-XX
+## 0.3.0 - 2015-11-03
 
 * Gulp configuration
     * `sass` task - Don't compile if files are unchanged to speed up the task.
@@ -13,6 +13,9 @@
 
 * `EAR/pom.xml`
     *  Prevented `<description>` from being inherited from parent POM, which then appears in the generated `application.xml`.
+
+* `ROOT/pom.xml`
+    *  Configured `maven-enforcer-plugin` to check for minimum Maven version.
 
 * NPM module updates
 

@@ -20,8 +20,9 @@
         <module>choonchernlim-archetype-webapp-webapp</module>
     </modules>
 
+    <!-- Ensures all plugins abide by this maven version -->
     <prerequisites>
-        <maven>3.2.5</maven>
+        <maven>${maven.min.version}</maven>
     </prerequisites>
 
     <!-- TODO Update SCM info! -->
@@ -38,6 +39,7 @@
 
     <properties>
         <jdk.version>1.6</jdk.version>
+        <maven.min.version>3.2.5</maven.min.version>
 
         <groovy-all.version>2.4.5</groovy-all.version>
         <groovy-eclipse-compiler.version>2.9.2-01</groovy-eclipse-compiler.version>
@@ -572,20 +574,20 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
 
-            <!--
-            If these banned dependencies exist, fail the build right away.
-
-            Xalan, Xerces and Xml-APIs cause the following exception in WAS:
-
-                java.lang.ClassCastException: org.apache.xerces.jaxp.datatype.DatatypeFactoryImpl incompatible with
-                javax.xml.datatype.DatatypeFactory
-
-            http://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
+                    <!--
+                    If these banned dependencies exist, fail the build right away.
+
+                    Xalan, Xerces and Xml-APIs cause the following exception in WAS:
+
+                        java.lang.ClassCastException: org.apache.xerces.jaxp.datatype.DatatypeFactoryImpl incompatible with
+                        javax.xml.datatype.DatatypeFactory
+
+                    http://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven
+                    -->
                     <execution>
                         <id>enforce-banned-dependencies</id>
                         <goals>
@@ -601,6 +603,22 @@
                                         <exclude>xml-apis</exclude>
                                     </excludes>
                                 </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <!--
+                    Ensures everyone is using at least the specified Maven version or later.
+                    -->
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>${maven.min.version}</version>
+                                </requireMavenVersion>
                             </rules>
                         </configuration>
                     </execution>
