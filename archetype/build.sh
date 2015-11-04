@@ -186,13 +186,14 @@ display_line
 #rm -rf ${PROJECT_PATH}/archetype
 #rm -rf ${ARCHETYPE_RESOURCES_PATH}/archetype
 
+# TODO probably not needed anymore since it is not causing any problem right now
 # Pluck out `<parent>...</parent>` from `pom.xml` and replace all line breaks with blank string to prevent `sed`
 # from throwing "unescaped newline inside substitute pattern" error. Then, use xmllint to reformat the file back.
-echo "Adding parent pom to archetype pom..."
-PARENT_POM=`awk '/<parent>/,/<\/parent>/' pom.xml | tr '\n' ' '`
-sed -i '' "s|</modelVersion>|</modelVersion> ${PARENT_POM}|g" "$ARCHETYPE_BASE_PATH/pom.xml"
-export XMLLINT_INDENT="    "
-xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/pom.xml"
+#echo "Adding parent pom to archetype pom..."
+#PARENT_POM=`awk '/<parent>/,/<\/parent>/' pom.xml | tr '\n' ' '`
+#sed -i '' "s|</modelVersion>|</modelVersion> ${PARENT_POM}|g" "$ARCHETYPE_BASE_PATH/pom.xml"
+#export XMLLINT_INDENT="    "
+#xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/pom.xml"
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
 replace_string_in_file "${currentPath}" '<artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>' '<artifactId>${rootArtifactId}-webapp-war</artifactId>'
