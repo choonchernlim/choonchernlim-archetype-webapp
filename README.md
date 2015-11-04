@@ -64,13 +64,12 @@ If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is 
 
 ```text
 ➜  tree . -I '*.iml' 
-myProject
 ├── CHANGELOG.md
 ├── README.md
 ├── pom.xml
-└── myProject-webapp
+└── testProject-webapp
     ├── pom.xml
-    ├── myProject-webapp-ear
+    ├── testProject-webapp-ear
     │   ├── pom.xml
     │   ├── src
     │   │   └── main
@@ -78,7 +77,7 @@ myProject
     │   │           └── deployment.xml
     │   └── target
     │       └── application.xml
-    └── myProject-webapp-war
+    └── testProject-webapp-war
         ├── pom.xml
         └── src
             ├── main
@@ -108,27 +107,28 @@ myProject
             │   │       └── scss
             │   │           └── app.scss
             │   ├── java
-            │   │   └── org
-            │   │       └── project
-            │   │           └── test
-            │   │               ├── bean
-            │   │               │   └── MockBean.java
-            │   │               ├── constant
-            │   │               │   └── MockConstant.java
-            │   │               ├── controller
-            │   │               │   └── IndexController.java
-            │   │               ├── dao
-            │   │               │   └── MockDao.java
-            │   │               ├── entity
-            │   │               │   └── MockEntity.java
-            │   │               ├── form
-            │   │               │   └── MockForm.java
-            │   │               ├── service
-            │   │               │   ├── MockService.java
-            │   │               │   └── impl
-            │   │               │       └── MockServiceImpl.java
-            │   │               └── util
-            │   │                   └── MockUtil.java
+            │   │   └── com
+            │   │       └── github
+            │   │           └── choonchernlim
+            │   │               └── testProject
+            │   │                   ├── bean
+            │   │                   │   └── MockBean.java
+            │   │                   ├── constant
+            │   │                   │   └── MockConstant.java
+            │   │                   ├── controller
+            │   │                   │   └── IndexController.java
+            │   │                   ├── dao
+            │   │                   │   └── MockDao.java
+            │   │                   ├── entity
+            │   │                   │   └── MockEntity.java
+            │   │                   ├── form
+            │   │                   │   └── MockForm.java
+            │   │                   ├── service
+            │   │                   │   ├── MockService.java
+            │   │                   │   └── impl
+            │   │                   │       └── MockServiceImpl.java
+            │   │                   └── util
+            │   │                       └── MockUtil.java
             │   ├── resources
             │   │   ├── log4j.xml
             │   │   ├── messages.properties
@@ -158,21 +158,23 @@ myProject
             │               └── vendor.min.js
             └── test
                 ├── groovy
-                │   └── org
-                │       └── project
-                │           └── test
-                │               ├── bean
-                │               │   └── MockBeanSpec.groovy
-                │               ├── controller
-                │               │   └── MockControllerSpec.groovy
-                │               └── service
-                │                   └── impl
-                │                       └── MockServiceImplSpec.groovy
+                │   └── com
+                │       └── github
+                │           └── choonchernlim
+                │               └── testProject
+                │                   ├── bean
+                │                   │   └── MockBeanSpec.groovy
+                │                   ├── controller
+                │                   │   └── MockControllerSpec.groovy
+                │                   └── service
+                │                       └── impl
+                │                           └── MockServiceImplSpec.groovy
                 ├── java
-                │   └── org
-                │       └── project
-                │           └── test
-                │               └── DummyTest.java
+                │   └── com
+                │       └── github
+                │           └── choonchernlim
+                │               └── testProject
+                │                   └── DummyTest.java
                 ├── js
                 │   └── app-spec.js
                 └── resources
@@ -180,7 +182,7 @@ myProject
                     ├── karma.conf.js
                     └── spring-test.xml
 
-53 directories, 63 files
+56 directories, 61 files
 ```                    
 
 ## Prerequisites
