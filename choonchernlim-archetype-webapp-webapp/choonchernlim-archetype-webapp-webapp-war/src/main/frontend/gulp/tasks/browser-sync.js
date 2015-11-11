@@ -1,4 +1,4 @@
-var browserSync = require( '../util/browser-sync-instance' );
+var browserSync = require( 'browser-sync' ).create();
 var gulp = require( 'gulp' );
 var config = require( '../config' ).browserSync;
 

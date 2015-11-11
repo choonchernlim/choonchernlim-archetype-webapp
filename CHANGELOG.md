@@ -1,5 +1,9 @@
 # Change Log
 
+## X.X.X- XXXX-XX-XX
+
+* Configured browser-sync to listen to any file changes under `webapp/resources` dir.
+
 ## 0.3.0 - 2015-11-03
 
 * Gulp configuration

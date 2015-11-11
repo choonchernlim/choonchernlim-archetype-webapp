@@ -13,7 +13,7 @@ var externalLibs = ['bluebird', 'jquery', 'lodash', 'moment', 'bootstrap'];
 
 module.exports = {
     browserSync : {
-        files : dest,
+        files : dest + '/**/*',
         proxy : 'localhost:7777/choonchernlim-archetype-webapp'
     },
     sass        : {
