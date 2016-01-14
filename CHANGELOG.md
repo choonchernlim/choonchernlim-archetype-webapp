@@ -17,7 +17,14 @@
         * `org.mortbay.jetty:jetty-maven-plugin:8.1.16.v20140903` - Jetty 9 has different group ID
         * `org.codehaus.mojo:exec-maven-plugin:1.4.0` - Initially added to run `./node_modules/gulp/bin/gulp.js watch`, but user can run that from command line
 
-* Maven parent update
+* Maven plugin updates
+
+```text
+com.github.eirslett:frontend-maven-plugin .......... 0.0.26 -> 0.0.27
+maven-surefire-plugin ................................ 2.19 -> 2.19.1
+```
+
+* Maven parent updates
 
 ```text
 com.github.choonchernlim:build-reports ............. 0.2.2 -> 0.2.3

@@ -35,6 +35,11 @@ By default, `mvn compile` performs the following tasks:-
 * Compile Java files
 * Clean up Builder files created by Pojo Builder
  
+## Prerequisites
+
+* Java version >= 7.
+* Maven version >= 3.3.x.
+
 ## Latest Release
 
 ```xml
@@ -184,14 +189,6 @@ If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is 
 
 56 directories, 61 files
 ```                    
-
-## Prerequisites
-
-* At least Java 7.
-
-* Maven version must be between 3.1.0 and 3.2.5.
-    * Frontend Maven Plugin requires at least 3.1.0.
-    * Maven 3.3.x requires Java 7.
 
 ## Usage
 
