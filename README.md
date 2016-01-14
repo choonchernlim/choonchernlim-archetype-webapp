@@ -187,6 +187,8 @@ If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is 
 
 ## Prerequisites
 
+* At least Java 7.
+
 * Maven version must be between 3.1.0 and 3.2.5.
     * Frontend Maven Plugin requires at least 3.1.0.
     * Maven 3.3.x requires Java 7.
@@ -205,15 +207,15 @@ If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is 
 
 * From `war` module, run `mvn clean jetty:run` to start Jetty server.
 
-* Go to `http://localhost:7777` and select the link to see the project main page.
+* Go to `https://localhost:8443` and select the link to see the project main page.
 
 ### Auto Watching JS/CSS Changes
 
-* From `war` module, run `mvn exec:exec`.
+* Change directory to `frontend` dir.
 
-* You will be directed to `http://localhost:3000/[project]`. 
-
-* IMPORTANT: Don't run `mvn jetty:run exec:exec` in one command line because both goals are blocking processes. Instead, run `mvn jetty:run` in one terminal, and `mvn exec:exec` in another terminal.
+* Run `./node_modules/gulp/bin/gulp.js watch`.
+    
+* You will be directed to `https://localhost:3000/[project]`. 
  
 ### Creating EAR File
 
@@ -229,7 +231,7 @@ This will create just the WAR file.
 
 ### Jenkins Integration
 
-* Create a "Freestyle project" job. [Don't create a "Maven project" job if you are using Java 6](https://issues.jenkins-ci.org/browse/JENKINS-29004).
+* Create a "Freestyle project" job.
 
 * Under "Add build steps, select "Invoke top-level Maven targets".
     * Goals: `clean test site -Pjenkins`
@@ -243,14 +245,14 @@ The `jenkins` profile will not run `gulp production` that will regenerate the cl
 
 Some dependencies and plugins cannot be upgraded to the latest version to ensure they are compatible with Websphere 8.5.5's specs: Java SE 7, Java EE 7, Servlet 3.0, JSP 2.2, JPA: 2.0.
 
-| Dependency                            | Version Used  | Why                                                                                                                                                           |
-| --------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| org.mortbay.jetty:jetty-maven-plugin  | 8.x           | 9.x requires Java 7 and Servlet 3.0                                                                                                                           |
-| javax.servlet:servlet-api             | 3.0.1         | Match WAS 8.5.5 specs                                                                                                                                         |
-| javax.servlet.jsp:jsp-api             | 2.2           | Match WAS 8.5.5 specs                                                                                                                                         |
-| javax.mail:mail                       | 1.4.x         | Match WAS 8.5.5 specs                                                                                                                                         |
-| javax.servlet:jstl                    | 1.2           | Match WAS 8.5.5 specs                                                                                                                                         |
-| org.hibernate:hibernate-core          | 4.2.x         | 4.3.x requires JPA 2.1                                                                                                                                        |
+| Dependency                            | Version Used  | Why                                                     |
+| --------------------------------------|---------------|---------------------------------------------------------|
+| org.mortbay.jetty:jetty-maven-plugin  | 9.2.x         | 9.3.x requires Java 8                                   |
+| javax.servlet:servlet-api             | 3.0.1         | Match WAS 8.5.5 specs                                   |
+| javax.servlet.jsp:jsp-api             | 2.2           | Match WAS 8.5.5 specs                                   |
+| javax.mail:mail                       | 1.4.x         | Match WAS 8.5.5 specs                                   |
+| javax.servlet:jstl                    | 1.2           | Match WAS 8.5.5 specs                                   |
+| org.hibernate:hibernate-core          | 4.2.x         | 4.3.x requires JPA 2.1                                  |
 
 ## Troubleshooting
 

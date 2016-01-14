@@ -4,6 +4,25 @@
 
 * Configured browser-sync to listen to any file changes under `webapp/resources` dir.
 
+* Migrated from WAS 7.x to WAS 8.5.5.
+
+* Configured Jetty to use HTTPS (currently `https://localhost:8443` vs previously `http://localhost:7777`).
+* Modified `gulp watch` to listen to HTTPS link.
+
+* Maven plugins
+    * Added
+        * `org.codehaus.mojo:keytool-maven-plugin:1.5` - For generated self-signed cert for Jetty to use HTTPS
+        * `org.eclipse.jetty:jetty-maven-plugin:9.2.14.v20151106` - Upgraded from Jetty 8
+    * Removed
+        * `org.mortbay.jetty:jetty-maven-plugin:8.1.16.v20140903` - Jetty 9 has different group ID
+        * `org.codehaus.mojo:exec-maven-plugin:1.4.0` - Initially added to run `./node_modules/gulp/bin/gulp.js watch`, but user can run that from command line
+
+* Maven parent update
+
+```text
+com.github.choonchernlim:build-reports ............. 0.2.2 -> 0.2.3
+```
+            
 ## 0.3.0 - 2015-11-03
 
 * Gulp configuration

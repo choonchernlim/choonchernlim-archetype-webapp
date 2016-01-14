@@ -172,14 +172,9 @@ echo '# Change Log' > ${PROJECT_PATH}/CHANGELOG.md
 # Change dir to the temp space
 cd ${PROJECT_PATH}
 
-# Create archetype from existing project. Enforcer Plugin and JaCoCo plugin have to be disabled to prevent this exception:-
-#
-#    [ERROR] Failed to execute goal on project choonchernlim-archetype-webapp-webapp-ear: Could not resolve
-#    dependencies for project com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-ear:ear:0.0.0:
-#    Could not find artifact com.github.choonchernlim:choonchernlim-archetype-webapp-webapp-war:war:0.0.0
-#    in central (https://repo.maven.apache.org/maven2) -> [Help 1]
+# Create archetype from existing project
 echo "Creating Maven archetype from existing project..."
-mvn clean archetype:create-from-project -Darchetype.properties=../archetype/archetype.properties -Denforcer.skip=true -Pno-jacoco
+mvn clean archetype:create-from-project -Darchetype.properties=../archetype/archetype.properties
 display_line
 
 # Now, it is safe to get rid of `archetype` dirs

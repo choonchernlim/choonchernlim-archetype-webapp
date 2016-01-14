@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>build-reports</artifactId>
-        <version>0.2.2</version>
+        <version>0.2.3</version>
     </parent>
 
     <groupId>com.github.choonchernlim</groupId>
@@ -500,9 +500,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
+                    <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>8.1.16.v20140903</version>
+                    <version>9.2.14.v20151106</version>
                 </plugin>
 
                 <plugin>
@@ -563,6 +563,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.19</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>keytool-maven-plugin</artifactId>
+                    <version>1.5</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -625,21 +631,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!-- Profile to disable JaCoCo code coverage tool -->
-        <profile>
-            <id>no-jacoco</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <inherited>false</inherited>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
 </project>

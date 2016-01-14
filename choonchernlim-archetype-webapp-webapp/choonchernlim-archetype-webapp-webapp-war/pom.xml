@@ -303,11 +303,14 @@
             </plugin>
 
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <stopKey>jetty-stop-key</stopKey>
-                    <stopPort>7778</stopPort>
+                    <jettyXml>
+                        ${project.basedir}/src/test/resources/jetty/jetty-ssl.xml,${project.basedir}/src/test/resources/jetty/jetty-https.xml
+                    </jettyXml>
+                    <!--<stopKey>jetty-stop-key</stopKey>-->
+                    <!--<stopPort>7778</stopPort>-->
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <!-- Displays server log in the console. If it gets to be too chatty, this can be disabled. -->
                     <requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
@@ -333,15 +336,6 @@
                         <webInfIncludeJarPattern>.*/.*jsp-api-[^/]\.jar$|./.*jsp-[^/]\.jar$|./.*taglibs[^/]*\.jar$
                         </webInfIncludeJarPattern>
                     </webApp>
-                    <connectors>
-                        <!--
-                        `SocketConnector` is used instead of the preferred NIO's `SelectChannelConnector` because
-                        Windows appears to have static file locking problems.
-                        -->
-                        <connector implementation="org.eclipse.jetty.server.bio.SocketConnector">
-                            <port>7777</port>
-                        </connector>
-                    </connectors>
                 </configuration>
                 <!--
                 These dependencies are required in order to run Jetty. Most of the dependencies are database
@@ -453,17 +447,25 @@
                 </executions>
             </plugin>
 
-            <!-- Executes default Gulp task to watch for JS and CSS changes and refresh them using BrowserSync. -->
+            <!--
+            For generating self-signed certificate for Jetty to use HTTPS
+
+            mvn keytool:clean keytool:generateKeyPair
+            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
+                <artifactId>keytool-maven-plugin</artifactId>
                 <configuration>
-                    <executable>./node/node</executable>
-                    <arguments>
-                        <argument>./node_modules/gulp/bin/gulp.js</argument>
-                        <argument>watch</argument>
-                    </arguments>
-                    <workingDirectory>${project.basedir}/src/main/frontend</workingDirectory>
+                    <keystore>${project.basedir}/src/test/resources/jetty/jetty.keystore</keystore>
+                    <dname>cn=localhost</dname>
+                    <keypass>secret</keypass>
+                    <storepass>secret</storepass>
+                    <alias>jetty</alias>
+                    <keyalg>RSA</keyalg>
+                    <keysize>2048</keysize>
+                    <sigalg>SHA256withRSA</sigalg>
+                    <validity>99999</validity>
+                    <verbose>true</verbose>
                 </configuration>
             </plugin>
         </plugins>
