@@ -38,7 +38,7 @@
     </scm>
 
     <properties>
-        <jdk.version>1.6</jdk.version>
+        <jdk.version>1.7</jdk.version>
         <maven.min.version>3.2.5</maven.min.version>
 
         <groovy-all.version>2.4.5</groovy-all.version>
@@ -46,7 +46,6 @@
         <groovy-eclipse-batch.version>2.4.3-01</groovy-eclipse-batch.version>
 
         <org.springframework.version>4.2.2.RELEASE</org.springframework.version>
-        <org.springframework.test.version>3.2.15.RELEASE</org.springframework.test.version>
         <org.springframework.security.version>4.0.3.RELEASE</org.springframework.security.version>
         <org.springframework.ws.version>2.2.2.RELEASE</org.springframework.ws.version>
 
@@ -81,14 +80,14 @@
             <!-- Scope = provided. -->
             <dependency>
                 <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.0.1</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
                 <artifactId>jsp-api</artifactId>
-                <version>2.1</version>
+                <version>2.2</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -179,7 +178,7 @@
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>findbugs</artifactId>
-                <version>2.0.3</version>
+                <version>3.0.1</version>
                 <exclusions>
                     <exclusion>
                         <groupId>xml-apis</groupId>
@@ -200,9 +199,9 @@
                 <version>3.4</version>
             </dependency>
             <dependency>
-                <groupId>commons-dbcp</groupId>
-                <artifactId>commons-dbcp</artifactId>
-                <version>1.4</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>2.1.1</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
@@ -331,7 +330,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${org.springframework.test.version}</version>
+                <version>${org.springframework.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

@@ -2,7 +2,7 @@
 
 This Maven archetype creates a dynamic web project that plays nicely with Jenkins and Sonar. 
 
-Although it primarily targets WebSphere 7.x, the bundled EAR/WAR file will also work with other application servers, such as Tomcat, Jetty, etc.
+Although it primarily targets WebSphere 8.5.5, the bundled EAR/WAR file will also work with other application servers, such as Tomcat, Jetty, etc.
 
 The following development stack is pre-configured:-
 
@@ -241,20 +241,16 @@ The `jenkins` profile will not run `gulp production` that will regenerate the cl
     
 ## Version Restrictions
 
-Some dependencies and plugins cannot be upgraded to the latest version to ensure they are compatible with Websphere 7's specs: Java SE 6, Java EE 5, Servlet 2.5, JSP 2.1, JPA: 2.0.
+Some dependencies and plugins cannot be upgraded to the latest version to ensure they are compatible with Websphere 8.5.5's specs: Java SE 7, Java EE 7, Servlet 3.0, JSP 2.2, JPA: 2.0.
 
 | Dependency                            | Version Used  | Why                                                                                                                                                           |
 | --------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | org.mortbay.jetty:jetty-maven-plugin  | 8.x           | 9.x requires Java 7 and Servlet 3.0                                                                                                                           |
-| javax.servlet:servlet-api             | 2.5           | Match WAS 7 specs                                                                                                                                             |
-| javax.servlet.jsp:jsp-api             | 2.1           | Match WAS 7 specs                                                                                                                                             |
-| javax.mail:mail                       | 1.4.x         | Match WAS 7 specs                                                                                                                                             |
-| javax.servlet:jstl                    | 2.1           | Match WAS 7 specs                                                                                                                                             |
-| commons-dbcp:commons-dbcp             | 1.4           | 2.x requires Java 7                                                                                                                                           |
+| javax.servlet:servlet-api             | 3.0.1         | Match WAS 8.5.5 specs                                                                                                                                         |
+| javax.servlet.jsp:jsp-api             | 2.2           | Match WAS 8.5.5 specs                                                                                                                                         |
+| javax.mail:mail                       | 1.4.x         | Match WAS 8.5.5 specs                                                                                                                                         |
+| javax.servlet:jstl                    | 1.2           | Match WAS 8.5.5 specs                                                                                                                                         |
 | org.hibernate:hibernate-core          | 4.2.x         | 4.3.x requires JPA 2.1                                                                                                                                        |
-| org.springframework:spring-test       | 3.x           | 4.x requires Servlet 3.0                                                                                                                                      |
-| com.google.code.findbugs:findbugs     | 2.x           | 3.x requires Java 7                                                                                                                                           |
-| com.jayway.jsonpath:json-path-assert  | 0.9.1         | 2.x causes `java.lang.NoSuchMethodError: com.jayway.jsonpath.JsonPath.compile(Ljava/lang/String;[Lcom/jayway/jsonpath/Filter;)Lcom/jayway/jsonpath/JsonPath;` |
 
 ## Troubleshooting
 
