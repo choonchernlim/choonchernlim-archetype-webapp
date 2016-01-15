@@ -113,7 +113,7 @@
 
 <pre>
 &lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd"&gt;
+&lt;!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd"&gt;
 &lt;Configure class="org.eclipse.jetty.webapp.WebAppContext"&gt;
 	&lt;Call name="setAttribute"&gt;
 		&lt;Arg&gt;org.eclipse.jetty.server.webapp.WebInfIncludeJarPattern&lt;/Arg&gt;
