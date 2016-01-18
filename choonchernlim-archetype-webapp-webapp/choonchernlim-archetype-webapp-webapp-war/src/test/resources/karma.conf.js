@@ -14,13 +14,24 @@ module.exports = function ( config ) {
         },
         browserify       : {
             debug     : true,
-            transform : ['./src/main/frontend/node_modules/browserify-istanbul'],
+            transform : [
+                './src/main/frontend/node_modules/browserify-istanbul',
+                [
+                    './src/main/frontend/node_modules/babelify', {
+                    'presets' : ['es2015', 'react']
+                }
+                ]
+            ],
             plugin    : ['./src/main/frontend/node_modules/proxyquireify/plugin'],
             paths     : ['src/main/frontend/node_modules', 'src/main/frontend/src/js'],
             configure : function ( bundle ) {
-                bundle.on( 'prebundle', function () {
+                bundle.once( 'prebundle', function () {
                     bundle.require( baseConfig.browserify.externalLibs );
                 } );
+                //bundle.once( 'prebundle', function () {
+                //    bundle.require( baseConfig.browserify.externalLibs )
+                //        .transform( 'babelify', { presets : ['es2015', 'react'] } );
+                //} );
             }
         },
         reporters        : ['progress', 'junit', 'coverage'],

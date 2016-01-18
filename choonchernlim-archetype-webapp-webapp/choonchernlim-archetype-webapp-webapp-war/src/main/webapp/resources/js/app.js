@@ -4,19 +4,28 @@
 
 // the only way to get Bootstrap working is to make jQuery global... couldn't get
 // browserify-shim to work with Bootstrap and jQuery.
-var $ = global.jQuery = require('jquery');
 
-require('bootstrap');
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _bootstrap = require('bootstrap');
+
+var _bootstrap2 = _interopRequireDefault(_bootstrap);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+global.jQuery = _jquery2.default;
 
 // getting scroll-spy content to align properly on menu click
 var offset = 100;
-$('#home-left-navbar').find('li a').click(function (e) {
-    var $a = $(this);
-    var $li = $(this).parent();
+(0, _jquery2.default)('#home-left-navbar').find('li a').click(function (e) {
+    var $a = (0, _jquery2.default)(this);
+    var $li = (0, _jquery2.default)(this).parent();
 
     e.preventDefault();
 
-    $($a.attr('href'))[0].scrollIntoView();
+    (0, _jquery2.default)($a.attr('href'))[0].scrollIntoView();
     scrollBy(0, -offset);
 
     $a.blur();

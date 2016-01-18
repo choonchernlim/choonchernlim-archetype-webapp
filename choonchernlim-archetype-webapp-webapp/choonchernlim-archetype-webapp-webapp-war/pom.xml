@@ -407,8 +407,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v4.1.2</nodeVersion>
-                            <npmVersion>2.14.7</npmVersion>
+                            <nodeVersion>v5.4.1</nodeVersion>
+                            <npmVersion>3.5.3</npmVersion>
                         </configuration>
                     </execution>
                     <!-- Perform `npm-install` to install any dependencies listed in `package.json`. -->

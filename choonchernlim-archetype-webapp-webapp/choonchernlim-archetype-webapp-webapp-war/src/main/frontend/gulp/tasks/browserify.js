@@ -29,7 +29,7 @@ var browserifyTask = function ( devMode ) {
 
         // if watch is enabled, add in watchify arguments
         var b = browserify( enableWatch ? _.extend( bundleConfig, watchify.args ) : bundleConfig )
-            .transform( babelify );
+            .transform( babelify, { presets : ['es2015', 'react'] } );
 
         var bundle = function () {
             return b.bundle()

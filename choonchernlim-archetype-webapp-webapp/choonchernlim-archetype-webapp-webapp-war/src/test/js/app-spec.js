@@ -1,8 +1,7 @@
 'use strict';
 
-describe( 'app', function () {
-
-    it( 'a really stupid test', function () {
+describe( 'app', () => {
+    it( 'a really stupid test', () => {
         expect( true ).toBe( true );
     } );
 } );

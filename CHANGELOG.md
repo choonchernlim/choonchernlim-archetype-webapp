@@ -67,6 +67,31 @@ org.springframework.ws:spring-ws-core ...
 org.springframework.ws:spring-ws-test ...
                                         2.2.2.RELEASE -> 2.2.4.RELEASE
 ```      
+
+* Node v4.1.2 to v5.4.1
+* NPM 2.14.7 to 3.5.3
+* Enabled Babelify in Karma conf
+ 
+* NPM module added
+
+```text
+babel-preset-es2015 
+babel-preset-react
+```      
+
+* NPM module updates
+
+```text
+babelify       6.4.x  →   7.2.x 
+bluebird       3.0.x  →   3.1.x 
+browser-sync   2.9.x  →  2.11.x 
+browserify    12.0.x  →  13.0.x 
+gulp-uglify    1.4.x  →   1.5.x 
+jasmine-core   2.3.x  →   2.4.x 
+jquery         2.1.x  →   2.2.x 
+moment        2.10.x  →  2.11.x 
+watchify       3.6.x  →   3.7.x 
+```
             
 ## 0.3.0 - 2015-11-03
 
