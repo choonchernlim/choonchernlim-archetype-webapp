@@ -40,7 +40,6 @@ com.fasterxml.jackson.datatype:jackson-datatype-joda ...
                                                         2.6.3 -> 2.7.0
 com.google.guava:guava .............................. 19.0-rc2 -> 19.0
 com.google.guava:guava-testlib ...................... 19.0-rc2 -> 19.0
-org.jadira.usertype:usertype.core ............... 4.0.0.GA -> 5.0.0.GA
 com.jayway.jsonpath:json-path ......................... 0.9.1 -> 2.1.0
 com.jayway.jsonpath:json-path-assert .................. 0.9.1 -> 2.1.0
 joda-time:joda-time ..................................... 2.9 -> 2.9.1

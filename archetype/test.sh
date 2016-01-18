@@ -2,10 +2,10 @@
 
 export JAVA_HOME="`/usr/libexec/java_home -v '1.7*'`"
 
-rm -rf /tmp/archetype/test
+rm -rf /tmp/archetype/test-archetype
 
 cd /tmp/archetype
 
 mvn archetype:generate -DinteractiveMode=false \
 -DarchetypeGroupId=com.github.choonchernlim -DarchetypeArtifactId=choonchernlim-archetype-webapp -DarchetypeVersion=0.4.0-SNAPSHOT \
--DgroupId=org.project.test -DartifactId=test -Dversion=1.0.0-SNAPSHOT
+-DgroupId=org.project.test -DartifactId=test-archetype -Dversion=1.0.0-SNAPSHOT

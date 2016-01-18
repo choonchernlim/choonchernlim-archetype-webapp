@@ -250,7 +250,8 @@ Some dependencies and plugins cannot be upgraded to the latest version to ensure
 | javax.mail:mail                       | 1.4.x         | Match WAS 8.5.5 specs                                   |
 | javax.servlet:jstl                    | 1.2           | Match WAS 8.5.5 specs                                   |
 | org.hibernate:hibernate-core          | 4.2.x         | 4.3.x requires JPA 2.1                                  |
-
+| org.jadira.usertype:usertype.core     | 4.x           | 5.x requires Hibernate 5                                |
+            
 ## Troubleshooting
 
 ### Problem creating jar: Execution exception: Java heap space
