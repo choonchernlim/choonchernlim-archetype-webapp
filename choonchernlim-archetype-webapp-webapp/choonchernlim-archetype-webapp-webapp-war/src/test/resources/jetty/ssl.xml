@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
 
-<!-- ============================================================= -->
-<!-- Configure a TLS (SSL) Context Factory                         -->
-<!-- ============================================================= -->
+<!--
+Configuring SSL
+-->
 <Configure id="sslContextFactory" class="org.eclipse.jetty.util.ssl.SslContextFactory">
     <Set name="KeyStorePath">src/test/resources/jetty/jetty.keystore</Set>
     <Set name="KeyStorePassword">secret</Set>
@@ -22,11 +22,6 @@
         </Array>
     </Set>
 
-    <!-- =========================================================== -->
-    <!-- Create a TLS specific HttpConfiguration.                    -->
-    <!-- Add a SecureRequestCustomizer to extract certificate and    -->
-    <!-- session information                                         -->
-    <!-- =========================================================== -->
     <New id="sslHttpConfig" class="org.eclipse.jetty.server.HttpConfiguration">
         <Call name="addCustomizer">
             <Arg>

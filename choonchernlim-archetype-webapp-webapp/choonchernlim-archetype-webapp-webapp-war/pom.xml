@@ -13,6 +13,10 @@
     <artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+        <jetty.dir>${project.basedir}/src/test/resources/jetty</jetty.dir>
+    </properties>
+
     <dependencies>
         <!-- Groovy. -->
         <dependency>
@@ -307,16 +311,9 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
                     <jettyXml>
-                        ${project.basedir}/src/test/resources/jetty/jetty-ssl.xml,${project.basedir}/src/test/resources/jetty/jetty-https.xml
+                        ${jetty.dir}/context.xml,${jetty.dir}/requestlog.xml,${jetty.dir}/ssl.xml,${jetty.dir}/https.xml
                     </jettyXml>
-                    <!--<stopKey>jetty-stop-key</stopKey>-->
-                    <!--<stopPort>7778</stopPort>-->
                     <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <!-- Displays server log in the console. If it gets to be too chatty, this can be disabled. -->
-                    <requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
-                        <extended>true</extended>
-                        <logTimeZone>CST</logTimeZone>
-                    </requestLog>
                     <webApp>
                         <!--
                         The `${project.parent.artifactId}` should be defined as the context path, so the project
@@ -329,12 +326,6 @@
                         -->
                         <!-- TODO Hibernate: Uncomment to enable Jetty Env XML containing JNDIs -->
                         <!--<jettyEnvXml>${env.JETTY_ENV_XML}</jettyEnvXml>-->
-                        <!--
-                        Forces Jetty to scan just jars that match the provided pattern to significantly speed up the
-                        server startup.
-                        -->
-                        <webInfIncludeJarPattern>.*/.*jsp-api-[^/]\.jar$|./.*jsp-[^/]\.jar$|./.*taglibs[^/]*\.jar$
-                        </webInfIncludeJarPattern>
                     </webApp>
                 </configuration>
                 <!--
