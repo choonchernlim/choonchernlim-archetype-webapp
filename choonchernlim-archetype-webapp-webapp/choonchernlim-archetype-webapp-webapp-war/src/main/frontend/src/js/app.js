@@ -5,7 +5,7 @@
 import $ from 'jquery';
 global.jQuery = $;
 
-import bootstrap from 'bootstrap';
+import 'bootstrap';
 
 // getting scroll-spy content to align properly on menu click
 const offset = 100;

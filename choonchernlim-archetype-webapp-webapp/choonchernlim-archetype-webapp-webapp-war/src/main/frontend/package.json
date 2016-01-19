@@ -42,7 +42,6 @@
     "moment": "2.11.x",
     "phantomjs": "1.9.x",
     "pretty-hrtime": "1.0.x",
-    "proxyquireify": "3.0.x",
     "require-dir": "0.3.x",
     "vinyl-buffer": "1.0.x",
     "vinyl-source-stream": "1.1.x",

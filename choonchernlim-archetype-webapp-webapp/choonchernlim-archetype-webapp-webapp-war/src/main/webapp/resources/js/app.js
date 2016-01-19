@@ -9,9 +9,7 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _bootstrap = require('bootstrap');
-
-var _bootstrap2 = _interopRequireDefault(_bootstrap);
+require('bootstrap');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

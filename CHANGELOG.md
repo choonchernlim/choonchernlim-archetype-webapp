@@ -9,89 +9,77 @@
 * Configured Jetty to use HTTPS (currently `https://localhost:8443` vs previously `http://localhost:7777`).
 * Modified `gulp watch` to listen to HTTPS link.
 
-* Maven plugins
+* Maven plugins and dependencies
     * Added
         * `org.codehaus.mojo:keytool-maven-plugin:1.5` - For generated self-signed cert for Jetty to use HTTPS
         * `org.eclipse.jetty:jetty-maven-plugin:9.2.14.v20151106` - Upgraded from Jetty 8
     * Removed
         * `org.mortbay.jetty:jetty-maven-plugin:8.1.16.v20140903` - Jetty 9 has different group ID
         * `org.codehaus.mojo:exec-maven-plugin:1.4.0` - Initially added to run `./node_modules/gulp/bin/gulp.js watch`, but user can run that from command line
-
-* Maven plugin updates
-
-```text
-com.github.eirslett:frontend-maven-plugin .......... 0.0.26 -> 0.0.27
-maven-surefire-plugin ................................ 2.19 -> 2.19.1
-```
-
-* Maven parent updates
-
-```text
-com.github.choonchernlim:build-reports ............. 0.2.2 -> 0.2.3
-```
-
-* Maven dependency updates
-
-```text
-com.fasterxml.jackson.core:jackson-annotations ........ 2.6.3 -> 2.7.0
-com.fasterxml.jackson.core:jackson-core ............... 2.6.3 -> 2.7.0
-com.fasterxml.jackson.core:jackson-databind ........... 2.6.3 -> 2.7.0
-com.fasterxml.jackson.datatype:jackson-datatype-joda ...
-                                                        2.6.3 -> 2.7.0
-com.google.guava:guava .............................. 19.0-rc2 -> 19.0
-com.google.guava:guava-testlib ...................... 19.0-rc2 -> 19.0
-com.jayway.jsonpath:json-path ......................... 0.9.1 -> 2.1.0
-com.jayway.jsonpath:json-path-assert .................. 0.9.1 -> 2.1.0
-joda-time:joda-time ..................................... 2.9 -> 2.9.1
-org.apache.commons:commons-collections4 ................... 4.0 -> 4.1
-org.slf4j:slf4j-api ................................. 1.7.12 -> 1.7.13
-org.slf4j:slf4j-log4j12 ............................. 1.7.12 -> 1.7.13
-org.springframework:spring-aop ........ 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-beans ...... 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-context .... 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-context-support ...
-                                        4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-core ....... 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-expression ...
-                                        4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-jdbc ....... 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-orm ........ 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-test ....... 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-tx ......... 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-web ........ 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework:spring-webmvc ..... 4.2.2.RELEASE -> 4.2.4.RELEASE
-org.springframework.data:spring-data-jpa ...
-                                        1.9.0.RELEASE -> 1.9.2.RELEASE
-org.springframework.ws:spring-ws-core ...
-                                        2.2.2.RELEASE -> 2.2.4.RELEASE
-org.springframework.ws:spring-ws-test ...
-                                        2.2.2.RELEASE -> 2.2.4.RELEASE
-```      
+    * Updated
+    
+        com.github.choonchernlim:build-reports ................ 0.2.2 -> 0.2.3
+        com.github.eirslett:frontend-maven-plugin ........... 0.0.26 -> 0.0.27
+        maven-surefire-plugin ................................. 2.19 -> 2.19.1
+        com.fasterxml.jackson.core:jackson-annotations ........ 2.6.3 -> 2.7.0
+        com.fasterxml.jackson.core:jackson-core ............... 2.6.3 -> 2.7.0
+        com.fasterxml.jackson.core:jackson-databind ........... 2.6.3 -> 2.7.0
+        com.fasterxml.jackson.datatype:jackson-datatype-joda ...
+                                                                2.6.3 -> 2.7.0
+        com.google.guava:guava .............................. 19.0-rc2 -> 19.0
+        com.google.guava:guava-testlib ...................... 19.0-rc2 -> 19.0
+        com.jayway.jsonpath:json-path ......................... 0.9.1 -> 2.1.0
+        com.jayway.jsonpath:json-path-assert .................. 0.9.1 -> 2.1.0
+        joda-time:joda-time ..................................... 2.9 -> 2.9.1
+        org.apache.commons:commons-collections4 ................... 4.0 -> 4.1
+        org.slf4j:slf4j-api ................................. 1.7.12 -> 1.7.13
+        org.slf4j:slf4j-log4j12 ............................. 1.7.12 -> 1.7.13
+        org.springframework:spring-aop ........ 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-beans ...... 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-context .... 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-context-support ...
+                                                4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-core ....... 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-expression ...
+                                                4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-jdbc ....... 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-orm ........ 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-test ....... 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-tx ......... 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-web ........ 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework:spring-webmvc ..... 4.2.2.RELEASE -> 4.2.4.RELEASE
+        org.springframework.data:spring-data-jpa ...
+                                                1.9.0.RELEASE -> 1.9.2.RELEASE
+        org.springframework.ws:spring-ws-core ...
+                                                2.2.2.RELEASE -> 2.2.4.RELEASE
+        org.springframework.ws:spring-ws-test ...
+                                                2.2.2.RELEASE -> 2.2.4.RELEASE
 
 * Node v4.1.2 to v5.4.1
 * NPM 2.14.7 to 3.5.3
-* Enabled Babelify in Karma conf
+
+* Karma configuration
+    * Enabled Babel presets.
+    * Hack fix on Instanbul.
+    * Removed Proxyquireify.
  
-* NPM module added
-
-```text
-babel-preset-es2015 
-babel-preset-react
-```      
-
-* NPM module updates
-
-```text
-babelify       6.4.x  →   7.2.x 
-bluebird       3.0.x  →   3.1.x 
-browser-sync   2.9.x  →  2.11.x 
-browserify    12.0.x  →  13.0.x 
-gulp-uglify    1.4.x  →   1.5.x 
-jasmine-core   2.3.x  →   2.4.x 
-jquery         2.1.x  →   2.2.x 
-moment        2.10.x  →  2.11.x 
-watchify       3.6.x  →   3.7.x 
-```
+* NPM modules 
+    * Added
+        * `babel-preset-es2015` - Transpiling ES6 to ES5
+        * `babel-preset-react`  - Transpiling React JSX to ES5
+    * Removed
+        * `proxyquireify` - Not needed due to move to ES6
+    * Updated
+    
+        babelify       6.4.x  →   7.2.x 
+        bluebird       3.0.x  →   3.1.x 
+        browser-sync   2.9.x  →  2.11.x 
+        browserify    12.0.x  →  13.0.x 
+        gulp-uglify    1.4.x  →   1.5.x 
+        jasmine-core   2.3.x  →   2.4.x 
+        jquery         2.1.x  →   2.2.x 
+        moment        2.10.x  →  2.11.x 
+        watchify       3.6.x  →   3.7.x 
             
 ## 0.3.0 - 2015-11-03
 
