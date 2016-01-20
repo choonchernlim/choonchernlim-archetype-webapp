@@ -196,7 +196,7 @@ currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifac
 replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/gulp/config.js"
-replace_string_in_file "${currentPath}" 'localhost:7777/choonchernlim-archetype-webapp' 'localhost:7777/${rootArtifactId}'
+replace_string_in_file "${currentPath}" 'localhost:8443/choonchernlim-archetype-webapp' 'localhost:8443/${rootArtifactId}'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/web.xml"
 replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
