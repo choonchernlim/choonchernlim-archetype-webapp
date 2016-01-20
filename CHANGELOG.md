@@ -19,7 +19,7 @@
     * Updated
     
 ```text
-com.github.choonchernlim:build-reports ................ 0.2.2 -> 0.2.3
+com.github.choonchernlim:build-reports ................ 0.2.2 -> 0.2.4
 com.github.eirslett:frontend-maven-plugin ........... 0.0.26 -> 0.0.27
 maven-surefire-plugin ................................. 2.19 -> 2.19.1
 com.fasterxml.jackson.core:jackson-annotations ........ 2.6.3 -> 2.7.0

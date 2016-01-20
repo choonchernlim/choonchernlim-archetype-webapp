@@ -231,7 +231,7 @@ This will create just the WAR file.
 * Create a "Freestyle project" job.
 
 * Under "Add build steps, select "Invoke top-level Maven targets".
-    * Goals: `clean test site -Pjenkins`
+    * Goals: `-U clean test site sonar:sonar -Pjenkins -Dsonar.host.url=http://sonar-server`
     * POM: `[project]/[project]-war/pom.xml`
 
 * Configure post-build actions accordingly.
