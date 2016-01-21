@@ -63,133 +63,6 @@ mvn archetype:generate
 -Dversion=1.0.0-SNAPSHOT
 ```
 
-## Sample Project Structure
-
-If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is `testProject`, the generated project structure looks like this:-
-
-```text
-➜  tree . -I '*.iml' 
-├── CHANGELOG.md
-├── README.md
-├── pom.xml
-└── testProject-webapp
-    ├── pom.xml
-    ├── testProject-webapp-ear
-    │   ├── pom.xml
-    │   ├── src
-    │   │   └── main
-    │   │       └── application
-    │   │           └── deployment.xml
-    │   └── target
-    │       └── application.xml
-    └── testProject-webapp-war
-        ├── pom.xml
-        └── src
-            ├── main
-            │   ├── frontend
-            │   │   ├── gulp
-            │   │   │   ├── config.js
-            │   │   │   ├── tasks
-            │   │   │   │   ├── browser-sync.js
-            │   │   │   │   ├── browserify.js
-            │   │   │   │   ├── default.js
-            │   │   │   │   ├── optimize-images.js
-            │   │   │   │   ├── sass.js
-            │   │   │   │   ├── watch.js
-            │   │   │   │   └── watchify.js
-            │   │   │   └── util
-            │   │   │       ├── browser-sync-instance.js
-            │   │   │       ├── bundle-logger.js
-            │   │   │       └── handle-errors.js
-            │   │   ├── gulpfile.js
-            │   │   ├── package.json
-            │   │   └── src
-            │   │       ├── img
-            │   │       │   ├── favicon.png
-            │   │       │   └── logo.png
-            │   │       ├── js
-            │   │       │   └── app.js
-            │   │       └── scss
-            │   │           └── app.scss
-            │   ├── java
-            │   │   └── com
-            │   │       └── github
-            │   │           └── choonchernlim
-            │   │               └── testProject
-            │   │                   ├── bean
-            │   │                   │   └── MockBean.java
-            │   │                   ├── constant
-            │   │                   │   └── MockConstant.java
-            │   │                   ├── controller
-            │   │                   │   └── IndexController.java
-            │   │                   ├── dao
-            │   │                   │   └── MockDao.java
-            │   │                   ├── entity
-            │   │                   │   └── MockEntity.java
-            │   │                   ├── form
-            │   │                   │   └── MockForm.java
-            │   │                   ├── service
-            │   │                   │   ├── MockService.java
-            │   │                   │   └── impl
-            │   │                   │       └── MockServiceImpl.java
-            │   │                   └── util
-            │   │                       └── MockUtil.java
-            │   ├── resources
-            │   │   ├── log4j.xml
-            │   │   ├── messages.properties
-            │   │   ├── spring-applicationContext.xml
-            │   │   ├── spring-component-scan.xml
-            │   │   ├── spring-data.xml
-            │   │   ├── spring-datasource-jndi.xml
-            │   │   └── spring-security.xml
-            │   └── webapp
-            │       ├── WEB-INF
-            │       │   ├── ibm-web-bnd.xml
-            │       │   ├── jsp
-            │       │   │   └── index.jsp
-            │       │   ├── spring-servlet.xml
-            │       │   └── web.xml
-            │       └── resources
-            │           ├── css
-            │           │   ├── app.css
-            │           │   └── app.min.css
-            │           ├── img
-            │           │   ├── favicon.png
-            │           │   └── logo.png
-            │           └── js
-            │               ├── app.js
-            │               ├── app.min.js
-            │               ├── vendor.js
-            │               └── vendor.min.js
-            └── test
-                ├── groovy
-                │   └── com
-                │       └── github
-                │           └── choonchernlim
-                │               └── testProject
-                │                   ├── bean
-                │                   │   └── MockBeanSpec.groovy
-                │                   ├── controller
-                │                   │   └── MockControllerSpec.groovy
-                │                   └── service
-                │                       └── impl
-                │                           └── MockServiceImplSpec.groovy
-                ├── java
-                │   └── com
-                │       └── github
-                │           └── choonchernlim
-                │               └── testProject
-                │                   └── DummyTest.java
-                ├── js
-                │   └── app-spec.js
-                └── resources
-                    ├── karma.conf.ci.js
-                    ├── karma.conf.js
-                    └── spring-test.xml
-
-56 directories, 61 files
-```                    
-
 ## Usage
 
 ### Configuring VCS Ignore List
@@ -261,3 +134,134 @@ When packaging EAR file, you get this exception:-
 To fix this, add the following VM arguments to increase the heap space:-
 
     -Xms2048m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m 
+
+## Sample Project Structure
+
+If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is `testProject`, the generated project structure looks like this:-
+
+```text
+➜  tree . -I '*.iml'
+.
+├── CHANGELOG.md
+├── README.md
+├── pom.xml
+└── testProject-webapp
+    ├── pom.xml
+    ├── testProject-webapp-ear
+    │   ├── pom.xml
+    │   └── src
+    │       └── main
+    │           └── application
+    │               └── deployment.xml
+    └── testProject-webapp-war
+        ├── pom.xml
+        └── src
+            ├── main
+            │   ├── frontend
+            │   │   ├── gulp
+            │   │   │   ├── config.js
+            │   │   │   ├── tasks
+            │   │   │   │   ├── browser-sync.js
+            │   │   │   │   ├── browserify.js
+            │   │   │   │   ├── default.js
+            │   │   │   │   ├── optimize-images.js
+            │   │   │   │   ├── sass.js
+            │   │   │   │   ├── watch.js
+            │   │   │   │   └── watchify.js
+            │   │   │   └── util
+            │   │   │       ├── bundle-logger.js
+            │   │   │       └── handle-errors.js
+            │   │   ├── gulpfile.js
+            │   │   ├── package.json
+            │   │   └── src
+            │   │       ├── img
+            │   │       │   ├── favicon.png
+            │   │       │   └── logo.png
+            │   │       ├── js
+            │   │       │   └── app.js
+            │   │       └── scss
+            │   │           └── app.scss
+            │   ├── java
+            │   │   └── com
+            │   │       └── github
+            │   │           └── choonchern
+            │   │               └── testProject
+            │   │                   ├── bean
+            │   │                   │   └── MockBean.java
+            │   │                   ├── constant
+            │   │                   │   └── MockConstant.java
+            │   │                   ├── controller
+            │   │                   │   └── IndexController.java
+            │   │                   ├── dao
+            │   │                   │   └── MockDao.java
+            │   │                   ├── entity
+            │   │                   │   └── MockEntity.java
+            │   │                   ├── form
+            │   │                   │   └── MockForm.java
+            │   │                   ├── service
+            │   │                   │   ├── MockService.java
+            │   │                   │   └── impl
+            │   │                   │       └── MockServiceImpl.java
+            │   │                   └── util
+            │   │                       └── MockUtil.java
+            │   ├── resources
+            │   │   ├── log4j.xml
+            │   │   ├── messages.properties
+            │   │   ├── spring-applicationContext.xml
+            │   │   ├── spring-component-scan.xml
+            │   │   ├── spring-data.xml
+            │   │   ├── spring-datasource-jndi.xml
+            │   │   └── spring-security.xml
+            │   └── webapp
+            │       ├── WEB-INF
+            │       │   ├── ibm-web-bnd.xml
+            │       │   ├── jsp
+            │       │   │   └── index.jsp
+            │       │   ├── spring-servlet.xml
+            │       │   └── web.xml
+            │       └── resources
+            │           ├── css
+            │           │   ├── app.css
+            │           │   └── app.min.css
+            │           ├── img
+            │           │   ├── favicon.png
+            │           │   └── logo.png
+            │           └── js
+            │               ├── app.js
+            │               ├── app.min.js
+            │               ├── vendor.js
+            │               └── vendor.min.js
+            └── test
+                ├── groovy
+                │   └── com
+                │       └── github
+                │           └── choonchern
+                │               └── testProject
+                │                   ├── bean
+                │                   │   └── MockBeanSpec.groovy
+                │                   ├── controller
+                │                   │   └── MockControllerSpec.groovy
+                │                   └── service
+                │                       └── impl
+                │                           └── MockServiceImplSpec.groovy
+                ├── java
+                │   └── com
+                │       └── github
+                │           └── choonchern
+                │               └── testProject
+                │                   └── DummyTest.java
+                ├── js
+                │   └── app-spec.js
+                └── resources
+                    ├── jetty
+                    │   ├── context.xml
+                    │   ├── https.xml
+                    │   ├── jetty.keystore
+                    │   ├── requestlog.xml
+                    │   └── ssl.xml
+                    ├── karma.conf.ci.js
+                    ├── karma.conf.js
+                    └── spring-test.xml
+
+56 directories, 64 files
+```                    
