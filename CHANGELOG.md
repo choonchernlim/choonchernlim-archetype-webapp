@@ -1,6 +1,6 @@
 # Change Log
 
-## X.X.X- XXXX-XX-XX
+## 0.4.0- 2016-01-20
 
 * Configured browser-sync to listen to any file changes under `webapp/resources` dir.
 
@@ -31,6 +31,7 @@ com.google.guava:guava .............................. 19.0-rc2 -> 19.0
 com.google.guava:guava-testlib ...................... 19.0-rc2 -> 19.0
 com.jayway.jsonpath:json-path ......................... 0.9.1 -> 2.1.0
 com.jayway.jsonpath:json-path-assert .................. 0.9.1 -> 2.1.0
+javax.mail:mail ................................... 1.4.7 -> 1.5.0-b01
 joda-time:joda-time ..................................... 2.9 -> 2.9.1
 org.apache.commons:commons-collections4 ................... 4.0 -> 4.1
 org.slf4j:slf4j-api ................................. 1.7.12 -> 1.7.13
