@@ -46,7 +46,7 @@ By default, `mvn compile` performs the following tasks:-
 <dependency>
   <groupId>com.github.choonchernlim</groupId>
   <artifactId>choonchernlim-archetype-webapp</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
 </dependency>
 ```
 
@@ -57,7 +57,7 @@ mvn archetype:generate
 -DinteractiveMode=false 
 -DarchetypeGroupId=com.github.choonchernlim 
 -DarchetypeArtifactId=choonchernlim-archetype-webapp 
--DarchetypeVersion=0.3.0
+-DarchetypeVersion=0.4.0
 -DgroupId=com.github.choonchern.testProject 
 -DartifactId=testProject 
 -Dversion=1.0.0-SNAPSHOT
@@ -245,10 +245,6 @@ Some dependencies and plugins cannot be upgraded to the latest version to ensure
 | Dependency                            | Version Used  | Why                                                     |
 | --------------------------------------|---------------|---------------------------------------------------------|
 | org.mortbay.jetty:jetty-maven-plugin  | 9.2.x         | 9.3.x requires Java 8                                   |
-| javax.servlet:servlet-api             | 3.0.1         | Match WAS 8.5.5 specs                                   |
-| javax.servlet.jsp:jsp-api             | 2.2           | Match WAS 8.5.5 specs                                   |
-| javax.mail:mail                       | 1.4.x         | Match WAS 8.5.5 specs                                   |
-| javax.servlet:jstl                    | 1.2           | Match WAS 8.5.5 specs                                   |
 | org.hibernate:hibernate-core          | 4.2.x         | 4.3.x requires JPA 2.1                                  |
 | org.jadira.usertype:usertype.core     | 4.x           | 5.x requires Hibernate 5                                |
             
