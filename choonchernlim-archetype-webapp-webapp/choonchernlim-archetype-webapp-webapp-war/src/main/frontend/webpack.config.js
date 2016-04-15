@@ -9,11 +9,6 @@ module.exports = Object.assign({}, baseConfig, {
     // 1. Only assets/ dir will contain hashed filenames
     // 2. When used in typical JEE app, dist dir will also contain WEB-INF/ and we don't want this
     //    plugin to wipe that dir off
-
-    // TODO fix react router when running directly from Jetty!
-
-    // TODO fix this! project root is outside of project
-    // new CleanPlugin(path.join(baseConfig.output.path, '/assets')),
     new CleanPlugin(['assets'], {
       root: baseConfig.output.path
     }),
