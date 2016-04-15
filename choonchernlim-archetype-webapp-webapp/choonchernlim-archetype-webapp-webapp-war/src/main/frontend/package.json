@@ -3,25 +3,23 @@
   "private": true,
   "config": {
     "context_root": "/choonchernlim-archetype-webapp",
-    "src_dir": "src/",
-    "test_dir": "test/",
-    "dist_dir": "../webapp/resources/",
-    "report_dir": "../../../../target/reports/",
+    "src_dir_path": "src/",
+    "test_dir_path": "test/",
+    "dist_dir_path": "../webapp/",
+    "report_dir_path": "../../../../target/reports/",
     "mocha_opts": "--recursive --compilers js:babel-core/register"
   },
   "scripts": {
-    "test": "mocha $npm_package_config_test_dir $npm_package_config_mocha_opts",
+    "test": "mocha $npm_package_config_test_dir_path $npm_package_config_mocha_opts",
     "test:watch": "npm test -- --watch",
-    "posttest": "eslint $npm_package_config_test_dir",
+    "posttest": "eslint $npm_package_config_test_dir_path",
     "build": "webpack --progress --colors",
-    "build:watch": "webpack --progress --colors --watch",
-    "build:production": "webpack --config webpack.prod.config.js --progress --colors",
-    "ci:clean": "rimraf $npm_package_config_report_dir",
-    "ci:coverage": "isparta cover --root $npm_package_config_src_dir --include-all-sources --report text --report cobertura --dir $npm_package_config_report_dir _mocha -- $npm_package_config_test_dir $npm_package_config_mocha_opts",
-    "ci:test": "npm test -- --reporter mocha-junit-reporter --reporter-options mochaFile=$npm_package_config_report_dir/test-results.xml",
+    "ci:clean": "rimraf $npm_package_config_report_dir_path",
+    "ci:coverage": "isparta cover --root $npm_package_config_src_dir_path --include-all-sources --report text --report cobertura --dir $npm_package_config_report_dir_path _mocha -- $npm_package_config_test_dir_path $npm_package_config_mocha_opts",
+    "ci:test": "npm test -- --reporter mocha-junit-reporter --reporter-options mochaFile=$npm_package_config_report_dir_path/test-results.xml",
     "ci": "npm run ci:clean && npm run ci:test && npm run ci:coverage",
     "reinstall": "npm cache clean && rimraf node_modules && npm install",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --config webpack.dev.config.js "
   },
   "devDependencies": {
     "autoprefixer": "6.3.6",
@@ -45,9 +43,11 @@
     "eslint-plugin-react": "4.3.0",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
-    "image-webpack-loader": "1.6.3",
+    "html-webpack-plugin": "2.15.0",
+    "image-webpack-loader": "1.7.0",
     "isparta": "4.0.0",
     "jsdom": "8.3.1",
+    "json-loader": "^0.5.4",
     "mocha": "2.4.5",
     "mocha-junit-reporter": "1.10.0",
     "nock": "8.0.0",
@@ -55,6 +55,7 @@
     "postcss-loader": "0.8.2",
     "react-addons-test-utils": "15.0.1",
     "rimraf": "2.5.2",
+    "roboto-fontface": "0.4.5",
     "sass-loader": "3.2.0",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
@@ -69,12 +70,11 @@
     "radium-grid": "2.0.0",
     "react": "15.0.1",
     "react-dom": "15.0.1",
-    "react-redux": "4.4.3",
-    "react-router": "2.1.1",
+    "react-redux": "4.4.4",
+    "react-router": "2.2.1",
     "react-router-redux": "4.0.2",
     "react-tap-event-plugin": "1.0.0",
     "redux": "3.4.0",
-    "redux-saga": "0.9.5",
-    "roboto-fontface": "0.4.5"
+    "redux-saga": "0.9.5"
   }
 }

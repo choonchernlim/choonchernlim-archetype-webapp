@@ -1,11 +1,11 @@
 package com.github.choonchernlim.choonchernlimArchetypeWebapp.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
-@RequestMapping(value = "/")
+// TODO client side will serve the entry page
+//@Controller
+//@RequestMapping(value = "/")
 public final class IndexController {
     @RequestMapping(method = RequestMethod.GET)
     public String main() {

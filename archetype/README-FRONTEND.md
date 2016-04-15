@@ -4,36 +4,18 @@
 * `package.json`
 
 ```
-{
   "name": "choonchernlim-archetype-webapp",
-  ...
+  "private": true,
   "config": {
     "context_root": "/choonchernlim-archetype-webapp",
-    "src_dir": "src/",
-    "test_dir": "test/",
-    "dist_dir": "../webapp/resources/",
-    "report_dir": "../../../../target/reports/",
+    "src_dir_path": "src/",
+    "test_dir_path": "test/",
+    "dist_dir_path": "../webapp/",
+    "report_dir_path": "../../../../target/reports/",
     ...
   },
-  ...
-}
 ```
 
-* `webpack.config.js`
-
-```
-const packageJson = require('./package.json');
-
-module.exports = Object.assign({}, baseConfig, {
-  devServer: {
-    ...
-    contentBase: packageJson.config.dist_dir
-  },
-  ...
-});
-```
-
-* Delete everything under `src/main/webapp/resources`
-
-* `npm run build` to populate `src/main/webapp/resources`
-
+* Under `frontend`...
+    * `npm run reinstall`
+    * `npm run build` to populate `src/main/webapp`
