@@ -17,7 +17,7 @@ error() {
 
     display_line
     echo "AN UNEXPECTED ERROR HAS OCCURRED! QUITING PROGRAM!" 1>&2
-    echo "- ${errorMessage}" 1>&2
+    echo -e "- ${errorMessage}" 1>&2
     display_line
     exit 1
 }
@@ -89,9 +89,10 @@ replace_string_in_file() {
     assert_file_exist "${path}"
 
     display_line
-    echo "File    : ${path}"
-    echo "   From : ${fromString}"
-    echo "   To   : ${toString}"
+    echo "replace_string_in_file"
+    echo "    File    : ${path}"
+    echo "       From : ${fromString}"
+    echo "       To   : ${toString}"
 
     assert_string_matched_count 'Before String Replace' "${path}" "${fromString}" true
     assert_string_matched_count 'Before String Replace' "${path}" "${toString}" false
@@ -119,17 +120,26 @@ insert_velocity_escape_variables_in_file() {
     " "${path}"
 }
 
-# Finds string occurrence and prints them on console
+# Assert that the string occurrence matches the expected count
 # $1 = path
 # $2 = expected count
 # $3 = search string
-find_string_occurence() {
+assert_string_occurrence() {
     local path=$1
-    local expectedCount=$2
+    local expectedCount=$(($2))
     local searchString=$3
 
+    local label="assert_string_occurrence\n    Search string [ ${searchString} ] should have count [ ${expectedCount} ]"
+    local actualCount=$((`find ${path} -type f -exec grep -e "${searchString}" {} \; | wc -l`))
+
     display_line
-    echo "Files that contain '${searchString}'. ( Should have ${expectedCount} ):-"
-    find "${path}" -type f -exec grep -e "${searchString}" {} \; -print
+
+    if [ ${actualCount} -eq ${expectedCount} ]
+    then
+        echo -e "${label}... OK"
+    else
+        local result=`find ${path} -type f -exec grep -e "${searchString}" {} \; -print`
+        error "${label}... ERROR. Actual count [ ${actualCount} ].\n${result}"
+    fi
 }
 

@@ -113,11 +113,11 @@ currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/jsp/index.j
 replace_string_in_file "${currentPath}" '<title>choonchernlim-archetype-webapp</title>' '<title>${rootArtifactId}</title>'
 replace_string_in_file "${currentPath}" '<span>choonchernlim-archetype-webapp</span>' '<span>${rootArtifactId}</span>'
 
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 3 'choonchernlim-archetype-webapp'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
-find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 0 'choonchernlimArchetypeWebapp'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 3 'choonchernlim-archetype-webapp'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'choonchernlimArchetypeWebapp'
 display_line
 
 echo "Remove existing archetype from local repository..."
