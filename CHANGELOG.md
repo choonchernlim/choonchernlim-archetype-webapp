@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.0- 2016-XX-XX
+
+* Replaced existing Gulp stack with `front-end-stack` from https://github.com/choonchernlim/front-end-stack. This stack uses Webpack + React + Redux + ImmutableJS.
+
 ## 0.4.0- 2016-01-20
 
 * Configured browser-sync to listen to any file changes under `webapp/resources` dir.
