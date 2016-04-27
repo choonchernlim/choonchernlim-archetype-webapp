@@ -15,7 +15,9 @@ set -e
 # Include common functions
 source archetype/archetype-functions.sh
 
-FRONTEND_PATH='../choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend'
+WAR_PATH='choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war'
+WEBAPP_PATH="${WAR_PATH}/src/main/webapp"
+FRONTEND_PATH="${WAR_PATH}/src/main/frontend"
 
 echo "Deleting ${FRONTEND_PATH} dir..."
 rm -rf ${FRONTEND_PATH}
@@ -45,7 +47,7 @@ replace_string_in_file "${currentPath}" '"report_dir_path": "reports/",' '"repor
 
 cd ${FRONTEND_PATH}
 
-echo "Installing dependencies..."
+echo "Installing NPM dependencies..."
 npm install
 
 echo "Building production bundles..."

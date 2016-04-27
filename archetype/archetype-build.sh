@@ -94,6 +94,10 @@ replace_string_in_file "${currentPath}" '"context_root": "/choonchernlim-archety
 
 # TODO LIMC need to replace "choonchernlim-archetype-webapp" on assets dir with ${rootArtifactId}
 
+#currentPath=`ls -a ${WEBAPP_PATH}/assets/js/app.*.js`
+#replace_string_in_file "${currentPath}" '"name": "front-end-stack",' "\"name\": \"${BASE_PROJECT_NAME}\","
+
+
 currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/index.html"
 replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
 
