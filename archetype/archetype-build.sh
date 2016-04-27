@@ -27,7 +27,10 @@ TMP_PATH="/tmp/archetype"
 PROJECT_PATH="${TMP_PATH}/choonchernlim-archetype-webapp"
 
 ARCHETYPE_BASE_PATH="${PROJECT_PATH}/target/generated-sources/archetype"
-ARCHETYPE_RESOURCES_PATH="$ARCHETYPE_BASE_PATH/src/main/resources/archetype-resources"
+ARCHETYPE_RESOURCES_PATH="${ARCHETYPE_BASE_PATH}/src/main/resources/archetype-resources"
+ARCHETYPE_RESOURCES_EAR_PATH="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear"
+ARCHETYPE_RESOURCES_WAR_PATH="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war"
+
 
 # ~/.m2 path for previously installed archetype
 ARCHETYPE_LOCAL_REPO_PATH="$HOME/.m2/repository/com/github/choonchernlim/choonchernlim-archetype-webapp/$ARCHETYPE_VERSION/"
@@ -52,6 +55,7 @@ rsync . ${TMP_PATH} -av \
 rsync . ${PROJECT_PATH} -av \
 --exclude="*.iml" \
 --exclude="LICENSE" \
+--exclude="npm-debug.log" \
 --exclude="README.md" \
 --exclude="CHANGELOG.md" \
 --exclude=".git/" \
@@ -85,44 +89,29 @@ sed -i '' "s|</modelVersion>|</modelVersion> ${PARENT_POM}|g" "$ARCHETYPE_BASE_P
 export XMLLINT_INDENT="    "
 xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/pom.xml"
 
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
-replace_string_in_file "${currentPath}" '<artifactId>choonchernlim-archetype-webapp-webapp-war</artifactId>' '<artifactId>${rootArtifactId}-webapp-war</artifactId>'
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/frontend/package.json"
+currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/frontend/package.json"
 replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
 replace_string_in_file "${currentPath}" '"context_root": "/choonchernlim-archetype-webapp"' '"context_root": "/${rootArtifactId}"'
 
-# TODO LIMC need to replace "choonchernlim-archetype-webapp" on assets dir with ${rootArtifactId}
-
-#currentPath=`ls -a ${WEBAPP_PATH}/assets/js/app.*.js`
-#replace_string_in_file "${currentPath}" '"name": "front-end-stack",' "\"name\": \"${BASE_PROJECT_NAME}\","
-
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/index.html"
+currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/css/app.*.css`
 replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
 
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/web.xml"
+currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/js/app.*.js`
+replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
+
+currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/js/vendor.*.js`
+replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
+
+currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/index.html"
+replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
+
+currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/web.xml"
 replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
 
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/src/main/webapp/WEB-INF/jsp/index.jsp"
+# TODO remove this file since we are using index.html now
+currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/jsp/index.jsp"
 replace_string_in_file "${currentPath}" '<title>choonchernlim-archetype-webapp</title>' '<title>${rootArtifactId}</title>'
 replace_string_in_file "${currentPath}" '<span>choonchernlim-archetype-webapp</span>' '<span>${rootArtifactId}</span>'
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/pom.xml"
-replace_string_in_file "${currentPath}" '#' '$symbol_pound'
-insert_velocity_escape_variables_in_file "${currentPath}"
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/pom.xml"
-replace_string_in_file "${currentPath}" '#' '$symbol_pound'
-insert_velocity_escape_variables_in_file "${currentPath}"
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear/pom.xml"
-replace_string_in_file "${currentPath}" '#' '$symbol_pound'
-insert_velocity_escape_variables_in_file "${currentPath}"
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war/pom.xml"
-replace_string_in_file "${currentPath}" '#' '$symbol_pound'
-insert_velocity_escape_variables_in_file "${currentPath}"
 
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
 find_string_occurence "${ARCHETYPE_RESOURCES_PATH}" 3 'choonchernlim-archetype-webapp'

@@ -16,7 +16,7 @@ error() {
     local errorMessage=$1
 
     display_line
-    echo "AN UNEXPECTED ERROR HAS OCCURRED!" 1>&2
+    echo "AN UNEXPECTED ERROR HAS OCCURRED! QUITING PROGRAM!" 1>&2
     echo "- ${errorMessage}" 1>&2
     display_line
     exit 1
