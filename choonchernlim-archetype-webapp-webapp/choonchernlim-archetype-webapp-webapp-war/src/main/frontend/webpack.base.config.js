@@ -85,7 +85,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: packageJson.name,
       template: path.join(srcPath, '/index.html'),
-      favicon: path.join(srcPath, '/img/favicon.png')
+      favicon: path.join(srcPath, '/img/favicon.png'),
+      filename: 'WEB-INF/html/index.html'
     })
   ],
 
