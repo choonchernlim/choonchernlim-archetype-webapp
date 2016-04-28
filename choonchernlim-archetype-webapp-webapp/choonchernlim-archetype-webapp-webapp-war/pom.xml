@@ -395,30 +395,49 @@
                             <npmVersion>3.5.3</npmVersion>
                         </configuration>
                     </execution>
-                    <!-- Perform `npm-install` to install any dependencies listed in `package.json`. -->
+                    <!-- Run `npm install` to install any dependencies listed in `package.json`. -->
                     <execution>
                         <id>npm-install</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                     </execution>
+                    <!-- Run `npm run build` in `generate-resources` phase. -->
+                    <execution>
+                        <id>webpack-build</id>
+                        <goals>
+                            <goal>webpack</goal>
+                        </goals>
+                    </execution>
+                    <!--TODO LIMC configure this to run on `mvn test`-->
+                    <!-- Run `npm run build` in `generate-resources` phase. -->
+                    <execution>
+                        <id>js-test</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>test:ci</arguments>
+                        </configuration>
+                    </execution>
                     <!-- TODO LIMC disable GULP and KARMA for now-->
                     <!-- Execute Gulp with `production` task -->
                     <!--<execution>-->
-                        <!--<id>gulp-production</id>-->
-                        <!--<goals>-->
-                            <!--<goal>gulp</goal>-->
-                        <!--</goals>-->
+                    <!--<id>gulp-production</id>-->
+                    <!--<goals>-->
+                    <!--<goal>gulp</goal>-->
+                    <!--</goals>-->
                     <!--</execution>-->
                     <!--&lt;!&ndash; Run Karma tests &ndash;&gt;-->
                     <!--<execution>-->
-                        <!--<id>karma</id>-->
-                        <!--<goals>-->
-                            <!--<goal>karma</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<karmaConfPath>${project.basedir}/src/test/resources/karma.conf.ci.js</karmaConfPath>-->
-                        <!--</configuration>-->
+                    <!--<id>karma</id>-->
+                    <!--<goals>-->
+                    <!--<goal>karma</goal>-->
+                    <!--</goals>-->
+                    <!--<configuration>-->
+                    <!--<karmaConfPath>${project.basedir}/src/test/resources/karma.conf.ci.js</karmaConfPath>-->
+                    <!--</configuration>-->
                     <!--</execution>-->
                 </executions>
             </plugin>
@@ -462,15 +481,15 @@
                         <artifactId>frontend-maven-plugin</artifactId>
                         <!-- TODO LIMC disable GULP for now-->
                         <!--<executions>-->
-                            <!--<execution>-->
-                                <!--<id>gulp-production</id>-->
-                                <!--<goals>-->
-                                    <!--<goal>gulp</goal>-->
-                                <!--</goals>-->
-                                <!--<configuration>-->
-                                    <!--<skip>true</skip>-->
-                                <!--</configuration>-->
-                            <!--</execution>-->
+                        <!--<execution>-->
+                        <!--<id>gulp-production</id>-->
+                        <!--<goals>-->
+                        <!--<goal>gulp</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                        <!--<skip>true</skip>-->
+                        <!--</configuration>-->
+                        <!--</execution>-->
                         <!--</executions>-->
                     </plugin>
                 </plugins>

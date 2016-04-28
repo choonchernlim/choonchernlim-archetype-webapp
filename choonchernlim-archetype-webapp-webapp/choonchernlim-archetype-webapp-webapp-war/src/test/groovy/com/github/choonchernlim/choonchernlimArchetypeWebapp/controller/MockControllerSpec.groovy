@@ -9,6 +9,7 @@ import spock.lang.Specification
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
+// TODO LIMC fix this test!
 @ContextConfiguration(["classpath*:spring-test.xml"])
 class MockControllerSpec extends Specification {
 
