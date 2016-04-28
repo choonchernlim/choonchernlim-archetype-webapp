@@ -2,10 +2,12 @@
   "name": "choonchernlim-archetype-webapp",
   "private": true,
   "config": {
-    "context_root": "/choonchernlim-archetype-webapp",
+    "context_root": "/choonchernlim-archetype-webapp/",
+    "dist_uri": "/choonchernlim-archetype-webapp/assets",
     "src_dir_path": "src/",
     "test_dir_path": "test/",
-    "dist_dir_path": "../webapp/",
+    "dist_dir_path": "../webapp/assets/",
+    "entry_file_path": "../webapp/WEB-INF/html/index.html",
     "report_dir_path": "../../../../target/reports/",
     "mocha_opts": "--recursive --compilers js:babel-core/register"
   },

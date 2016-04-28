@@ -77,10 +77,6 @@ echo "Creating Maven archetype from existing project..."
 mvn clean archetype:create-from-project -Darchetype.properties=../archetype/archetype.properties
 display_line
 
-# Now, it is safe to get rid of `archetype` dirs
-#rm -rf ${PROJECT_PATH}/archetype
-#rm -rf ${ARCHETYPE_RESOURCES_PATH}/archetype
-
 # Pluck out `<parent>...</parent>` from `pom.xml` and replace all line breaks with blank string to prevent `sed`
 # from throwing "unescaped newline inside substitute pattern" error. Then, use xmllint to reformat the file back.
 echo "Adding parent pom to archetype pom..."
@@ -107,11 +103,6 @@ replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${root
 
 currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/web.xml"
 replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
-
-# TODO remove this file since we are using index.html now
-currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/jsp/index.jsp"
-replace_string_in_file "${currentPath}" '<title>choonchernlim-archetype-webapp</title>' '<title>${rootArtifactId}</title>'
-replace_string_in_file "${currentPath}" '<span>choonchernlim-archetype-webapp</span>' '<span>${rootArtifactId}</span>'
 
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 3 'choonchernlim-archetype-webapp'

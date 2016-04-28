@@ -8,8 +8,6 @@
 
 set -e
 
-BASE_PROJECT_NAME='choonchernlim-archetype-webapp'
-
 # Prints error message to stderr and exit the program
 # $1 = error message
 error() {
