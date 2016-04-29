@@ -106,10 +106,6 @@ This will create just the WAR file.
 * Under "Add build steps, select "Invoke top-level Maven targets".
     * Goals: `-U clean test site sonar:sonar -Pjenkins -Dsonar.host.url=http://sonar-server`
     * POM: `[project]/[project]-war/pom.xml`
-
-* Configure post-build actions accordingly.
-
-The `jenkins` profile will not run `gulp production` that will regenerate the client-side source files in Jenkins. This ensures Karma is running the tests against the existing source files under `resources/js` directory.
     
 ## Version Restrictions
 

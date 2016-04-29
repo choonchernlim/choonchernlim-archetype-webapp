@@ -20,8 +20,8 @@
     <dependencies>
         <!-- Scope = provided. -->
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -381,10 +381,7 @@
                     <installDirectory>src/main/frontend</installDirectory>
                 </configuration>
                 <executions>
-                    <!--
-                    Install local node and npm within the project so that we can ensure all team members
-                    use the same version.
-                    -->
+                    <!-- Install local node and npm within the project to ensure everyone use the same version. -->
                     <execution>
                         <id>install-node-and-npm</id>
                         <goals>
@@ -395,50 +392,35 @@
                             <npmVersion>3.5.3</npmVersion>
                         </configuration>
                     </execution>
-                    <!-- Run `npm install` to install any dependencies listed in `package.json`. -->
+                    <!-- `npm install` to install any dependencies listed in `package.json`. -->
                     <execution>
                         <id>npm-install</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                     </execution>
-                    <!-- Run `npm run build` in `generate-resources` phase. -->
+                    <!-- `npm run build` in `generate-resources` phase to create production build. -->
                     <execution>
-                        <id>webpack-build</id>
+                        <id>production-build</id>
                         <goals>
-                            <goal>webpack</goal>
+                            <goal>npm</goal>
                         </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
                     </execution>
-                    <!--TODO LIMC configure this to run on `mvn test`-->
-                    <!-- Run `npm run build` in `generate-resources` phase. -->
+                    <!-- `npm run ci` in `test` phase to run unit test/code coverage and generate CI reports. -->
                     <execution>
-                        <id>js-test</id>
+                        <id>ci-reports</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <arguments>test:ci</arguments>
+                            <arguments>run ci</arguments>
                         </configuration>
                     </execution>
-                    <!-- TODO LIMC disable GULP and KARMA for now-->
-                    <!-- Execute Gulp with `production` task -->
-                    <!--<execution>-->
-                    <!--<id>gulp-production</id>-->
-                    <!--<goals>-->
-                    <!--<goal>gulp</goal>-->
-                    <!--</goals>-->
-                    <!--</execution>-->
-                    <!--&lt;!&ndash; Run Karma tests &ndash;&gt;-->
-                    <!--<execution>-->
-                    <!--<id>karma</id>-->
-                    <!--<goals>-->
-                    <!--<goal>karma</goal>-->
-                    <!--</goals>-->
-                    <!--<configuration>-->
-                    <!--<karmaConfPath>${project.basedir}/src/test/resources/karma.conf.ci.js</karmaConfPath>-->
-                    <!--</configuration>-->
-                    <!--</execution>-->
                 </executions>
             </plugin>
 
@@ -465,37 +447,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!--
-        When running on Jenkins, don't re-generate client-side files (JS, CSS, images) since there maybe a possibility
-        the generated files could be different if Jenkins runs on different OS platform. This way, we ensure Jenkins
-        job isn't modifying the source files and Karma will execute tests based on the existing JS files in `dist/js/` dir.
-        -->
-        <profile>
-            <id>jenkins</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <!-- TODO LIMC disable GULP for now-->
-                        <!--<executions>-->
-                        <!--<execution>-->
-                        <!--<id>gulp-production</id>-->
-                        <!--<goals>-->
-                        <!--<goal>gulp</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                        <!--<skip>true</skip>-->
-                        <!--</configuration>-->
-                        <!--</execution>-->
-                        <!--</executions>-->
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
 
 
