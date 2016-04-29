@@ -4,6 +4,14 @@
 
 * Replaced existing Gulp stack with `front-end-stack` from https://github.com/choonchernlim/front-end-stack. This stack uses Webpack + React + Redux + ImmutableJS.
 
+* Node `v5.4.1` to `v5.11.0`
+    * `node-sass` doesn't work properly with v6.0.0, throwing these errors:-
+```
+[ERROR] (node) v8::ObjectTemplate::Set() with non-primitive values is deprecated
+[ERROR] (node) and will stop working in the next major release.
+```
+* NPM `3.5.3` to `3.8.8`
+
 ## 0.4.0- 2016-01-20
 
 * Configured browser-sync to listen to any file changes under `webapp/resources` dir.
@@ -62,8 +70,8 @@ org.springframework.ws:spring-ws-test ...
                                         2.2.2.RELEASE -> 2.2.4.RELEASE
 ```
 
-* Node v4.1.2 to v5.4.1
-* NPM 2.14.7 to 3.5.3
+* Node `v4.1.2` to `v5.4.1`
+* NPM `2.14.7` to `3.5.3`
 
 * Karma configuration
     * Enabled Babel presets.
@@ -224,8 +232,8 @@ watchify            3.3.x  →   3.4.x
 
 * `ROOT/pom.xml` - Added `<scm>` stub tag with a TODO to remind user to update the project SCM info so that it won't inherit the SCM info from `build-reports`.
 * `src/main/frontend/gulp/config.js` - Removed unused `production` block.
-*  `frontend-maven-plugin` - Upgraded node from v0.10.40 to v4.1.2.
-*  `frontend-maven-plugin` - Upgraded npm from 2.13.4 to 2.14.7.
+*  Node `v0.10.40` to `v4.1.2`.
+*  NPM `2.13.4` to `2.14.7`.
 
 ## 0.1.1 - 2015-09-01
 

@@ -388,8 +388,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v5.4.1</nodeVersion>
-                            <npmVersion>3.5.3</npmVersion>
+                            <nodeVersion>v5.11.0</nodeVersion>
+                            <npmVersion>3.8.8</npmVersion>
                         </configuration>
                     </execution>
                     <!-- `npm install` to install any dependencies listed in `package.json`. -->
