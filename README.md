@@ -114,7 +114,8 @@ Some dependencies and plugins cannot be upgraded to the latest version to ensure
 | Dependency                            | Version Used  | Why                                                     |
 | --------------------------------------|---------------|---------------------------------------------------------|
 | org.mortbay.jetty:jetty-maven-plugin  | 9.2.x         | 9.3.x requires Java 8                                   |
-| org.hibernate:hibernate-core          | 4.2.x         | 4.3.x requires JPA 2.1                                  |
+| javax.servlet:javax.servlet-api       | 3.x           | 4.x requires Java 8                                     |
+| org.hibernate:hibernate-entitymanager | 4.2.x         | 4.3.x requires JPA 2.1                                  |
 | org.jadira.usertype:usertype.core     | 4.x           | 5.x requires Hibernate 5                                |
             
 ## Troubleshooting
