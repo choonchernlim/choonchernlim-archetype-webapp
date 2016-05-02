@@ -17,6 +17,8 @@
     * Updated
 
 ```text
+com.github.choonchernlim:build-reports ................ 0.2.4 -> 0.3.0
+
 com.github.eirslett:frontend-maven-plugin .............. 0.0.27 -> 1.0
 org.codehaus.mojo:properties-maven-plugin ....... 1.0-alpha-2 -> 1.0.0
 
