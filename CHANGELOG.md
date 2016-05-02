@@ -19,15 +19,17 @@
 ```text
 com.github.choonchernlim:build-reports ................ 0.2.4 -> 0.3.0
 
+maven-site-plugin ....................................... 3.4 -> 3.5.1
+maven-source-plugin ..................................... 2.4 -> 3.0.0
 com.github.eirslett:frontend-maven-plugin .............. 0.0.27 -> 1.0
 org.codehaus.mojo:properties-maven-plugin ....... 1.0-alpha-2 -> 1.0.0
 
 cglib:cglib-nodep ..................................... 3.2.0 -> 3.2.2
-com.fasterxml.jackson.core:jackson-annotations ........ 2.7.0 -> 2.7.3
-com.fasterxml.jackson.core:jackson-core ............... 2.7.0 -> 2.7.3
-com.fasterxml.jackson.core:jackson-databind ........... 2.7.0 -> 2.7.3
+com.fasterxml.jackson.core:jackson-annotations ........ 2.7.0 -> 2.7.4
+com.fasterxml.jackson.core:jackson-core ............... 2.7.0 -> 2.7.4
+com.fasterxml.jackson.core:jackson-databind ........... 2.7.0 -> 2.7.4
 com.fasterxml.jackson.datatype:jackson-datatype-joda ...
-                                                        2.7.0 -> 2.7.3
+                                                        2.7.0 -> 2.7.4
 com.h2database:h2 ................................. 1.4.190 -> 1.4.191
 com.jayway.jsonpath:json-path ......................... 2.1.0 -> 2.2.0
 com.jayway.jsonpath:json-path-assert .................. 2.1.0 -> 2.2.0
