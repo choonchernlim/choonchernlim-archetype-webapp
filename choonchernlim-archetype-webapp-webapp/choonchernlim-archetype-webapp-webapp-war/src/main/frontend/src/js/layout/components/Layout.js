@@ -101,7 +101,7 @@ export default class extends React.Component {
           <Subheader>External Links</Subheader>
 
           <MenuItem
-            href="https://github.com/choonchernlim/front-end-stack"
+            href="https://github.com/choonchernlim/choonchernlim-archetype-webapp"
             leftIcon={<BugReportIcon />}
           >GitHub
           </MenuItem>

@@ -51,6 +51,11 @@ replace_string_in_file "${currentPath}" '"dist_dir_path": "dist/assets/",' '"dis
 replace_string_in_file "${currentPath}" '"entry_file_path": "dist/index.html",' '"entry_file_path": "../webapp/WEB-INF/html/index.html",'
 replace_string_in_file "${currentPath}" '"report_dir_path": "reports/",' '"report_dir_path": "../../../../target/reports/",'
 
+currentPath="${FRONTEND_PATH}/src/js/layout/components/Layout.js"
+replace_string_in_file "${currentPath}" 'https://github.com/choonchernlim/front-end-stack' 'https://github.com/choonchernlim/choonchernlim-archetype-webapp'
+
+cp archetype/frontend/Home.js ${FRONTEND_PATH}/src/js/home/components/Home.js
+
 cd ${FRONTEND_PATH}
 
 echo "Installing NPM dependencies..."

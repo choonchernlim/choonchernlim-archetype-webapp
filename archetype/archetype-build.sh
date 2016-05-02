@@ -87,7 +87,8 @@ xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/p
 
 currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/frontend/package.json"
 replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
-replace_string_in_file "${currentPath}" '"context_root": "/choonchernlim-archetype-webapp"' '"context_root": "/${rootArtifactId}"'
+replace_string_in_file "${currentPath}" '"context_root": "/choonchernlim-archetype-webapp/"' '"context_root": "/${rootArtifactId}/"'
+replace_string_in_file "${currentPath}" '"dist_uri": "/choonchernlim-archetype-webapp/assets"' '"dist_uri": "/${rootArtifactId}/assets"'
 
 currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/css/app.*.css`
 replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
@@ -98,14 +99,14 @@ replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${root
 currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/js/vendor.*.js`
 replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
 
-currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/index.html"
+currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/html/index.html"
 replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
 
 currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/web.xml"
 replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
 
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
-assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 3 'choonchernlim-archetype-webapp'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 2 'choonchernlim-archetype-webapp'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'choonchernlimArchetypeWebapp'
