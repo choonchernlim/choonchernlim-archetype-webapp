@@ -1,40 +1,40 @@
 import React from 'react';
+import Radium, { Style } from 'radium';
 import Container from '../../common/components/Container';
 import Card from 'material-ui/lib/card/card';
-import CardTitle from 'material-ui/lib/card/card-title';
 import CardText from 'material-ui/lib/card/card-text';
-import { grey300 } from 'material-ui/lib/styles/colors';
-
-const style = {
-  card: {
-    marginBottom: '2rem'
-  },
-  cardTitle: {
-    backgroundColor: grey300
-  }
-};
+import { grey600 } from 'material-ui/lib/styles/colors';
 
 /* eslint-disable max-len */
 const Home = () => (
   <Container>
+    <Style
+      rules={{
+        pre: {
+          fontSize: '0.8rem',
+          color: grey600,
+          marginBottom: '2rem'
+        }
+      }}
+    />
+
     <h1>Congratulations!</h1>
 
-    <p>You have successfully created your first web application using {' '}
+    <p>You have successfully created your a web application using {' '}
       <a href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">choonchernlim-archetype-webapp</a>
       {' '} Maven Archetype!
     </p>
 
-    <p>Some features as listed below are disabled by default to ensure you see this
-      landing page. To enable them, please follow the instruction below.
+    <p>Some features are disabled by default to ensure you see this landing page. To enable them,
+      please follow the instruction below.
     </p>
 
     <h2>Front End Stack</h2>
 
-
     <Card>
       <CardText>
         <p>This archetype uses <a href="https://github.com/choonchernlim/front-end-stack">front-end-stack</a>
-          {' '} for client side development, which uses WebPack, React, Redux, Radium and
+          {' '} for client side development, which uses Webpack, React, Redux, Radium and
           ImmutableJS.
         </p>
       </CardText>
@@ -54,11 +54,13 @@ const Home = () => (
 
     <h2>Hibernate</h2>
 
-    <Card style={style.card}>
-      <CardTitle title="<external-path>/jetty-env.xml" style={style.cardTitle} />
+    <Card>
       <CardText>
-        Create an external file outside the project called <code>jetty-env.xml</code> with the
-        following lines:-
+        <h3>&lt;external-path&gt;/jetty-env.xml</h3>
+
+        <p>Create an external file outside the project called <code>jetty-env.xml</code> with the
+          following lines:-
+        </p>
 
         <pre>
           {'\n<?xml version="1.0"?>'}
@@ -80,30 +82,22 @@ const Home = () => (
           {'\n  </New>'}
           {'\n</Configure>'}
         </pre>
-      </CardText>
-    </Card>
 
-    <Card style={style.card}>
-      <CardTitle title="JETTY_ENV_XML environment variable" style={style.cardTitle} />
-      <CardText>
-        Create an environment variable called <code>JETTY_ENV_XML</code> pointing to
-        <code>{'<external-path></external-path>/jetty-env.xml'}</code>.
-      </CardText>
-    </Card>
+        <h3>JETTY_ENV_XML environment variable</h3>
 
-    <Card style={style.card}>
-      <CardTitle title="WAR/pom.xml" style={style.cardTitle} />
-      <CardText>
-        Uncomment the following lines under Jetty Maven Plugin:-
+        <p>Create an environment variable called <code>JETTY_ENV_XML</code> pointing to
+          <code>{' <external-path>/jetty-env.xml'}</code>.
+        </p>
+
+        <h3>WAR/pom.xml</h3>
+        <p>Uncomment the following lines under Jetty Maven Plugin:-
+        </p>
 
         <pre>{'\n<jettyEnvXml>${env.JETTY_ENV_XML}</jettyEnvXml>'}</pre>
-      </CardText>
-    </Card>
 
-    <Card style={style.card}>
-      <CardTitle title="WAR/src/main/webapp/WEB-INF/web.xml" style={style.cardTitle} />
-      <CardText>
-        Uncomment the following lines:-
+        <h3>WAR/src/main/webapp/WEB-INF/web.xml</h3>
+
+        <p>Uncomment the following lines:-</p>
 
         <pre>
           {'\n<filter>'}
@@ -117,8 +111,6 @@ const Home = () => (
           {'\n</filter-mapping>'}
         </pre>
 
-        <br />
-
         <p>Add JNDI resource reference.</p>
 
         <pre>
@@ -129,42 +121,22 @@ const Home = () => (
           {'\n  <res-sharing-scope>Shareable</res-sharing-scope>'}
           {'\n</resource-ref>'}
         </pre>
-      </CardText>
-    </Card>
 
-    <Card style={style.card}>
-      <CardTitle title="WAR/src/main/webapp/WEB-INF/ibm-web-bnd.xml" style={style.cardTitle} />
-      <CardText>
-        Add a new resource reference to bind the local JNDI to global JNDI. By doing
-        this, the Middleware WAS admins do not need to manually configure the JNDI(s) during EAR
-        deployment.
+        <h3>WAR/src/main/webapp/WEB-INF/ibm-web-bnd.xml</h3>
+        <p>Add a new resource reference to bind the local JNDI to global JNDI. By doing
+          this, the Middleware WAS admins do not need to manually configure the JNDI(s) during EAR
+          deployment.
+        </p>
+        <pre>{'<resource-ref name="jdbc/db" binding-name="jdbc/db"/>'}</pre>
 
-        <pre>
-          {'<resource-ref name="jdbc/db" binding-name="jdbc/db"/>'}
-        </pre>
-      </CardText>
-    </Card>
 
-    <Card style={style.card}>
-      <CardTitle
-        title="WAR/src/main/resources/spring-datasource-jndi.xml"
-        style={style.cardTitle}
-      />
-      <CardText>
-        Add a JNDI data source pointing to your project database.
+        <h3>WAR/src/main/resources/spring-datasource-jndi.xml</h3>
+        <p>Add a JNDI data source pointing to your project database.</p>
 
         <pre>{'<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/db"/>'}</pre>
-      </CardText>
-    </Card>
 
-    <Card style={style.card}>
-      <CardTitle
-        title="WAR/src/main/resources/spring-data.xml"
-        style={style.cardTitle}
-      />
-      <CardText>
-        Uncomment the whole file.
-
+        <h3>WAR/src/main/resources/spring-data.xml</h3>
+        <p>Uncomment the whole file.</p>
         <p>Change Hibernate dialect to match your database type.</p>
 
         <pre>
@@ -188,25 +160,19 @@ const Home = () => (
           {'\n  </property>'}
           {'\n</bean>'}
         </pre>
+
+        <h3>WAR/src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/entity</h3>
+        <p>All Hibernate entities are placed in this package.</p>
       </CardText>
     </Card>
 
-    <Card style={style.card}>
-      <CardTitle
-        title="WAR/src/main/java/com/github/choonchernlim/choonchernlimArchetypeWebapp/entity"
-        style={style.cardTitle}
-      />
-      <CardText>
-        All Hibernate entities are placed in this package.
-      </CardText>
-    </Card>
 
     <h2>Spring Security</h2>
 
-    <Card style={style.card}>
-      <CardTitle title="WAR/src/main/webapp/WEB-INF/web.xml" style={style.cardTitle} />
+    <Card>
       <CardText>
-        Uncomment the following lines:-
+        <h3>WAR/src/main/webapp/WEB-INF/web.xml</h3>
+        <p>Uncomment the following lines:-</p>
 
         <pre>
           {'\n<filter>'}
@@ -219,13 +185,10 @@ const Home = () => (
           {'\n  <url-pattern>/*</url-pattern>'}
           {'\n</filter-mapping>'}
         </pre>
-      </CardText>
-    </Card>
 
-    <Card style={style.card}>
-      <CardTitle title="WAR/src/main/resources/spring-security.xml" style={style.cardTitle} />
-      <CardText>
-        Uncomment the entire file. Tweak the configuration based on your project needs:-
+        <h3>WAR/src/main/resources/spring-security.xml</h3>
+        <p>Uncomment the entire file. Tweak the configuration based on your project needs:-
+        </p>
 
         <pre>
           {'\n<security:http pattern="/resources/**" security="none"/>'}
@@ -249,6 +212,7 @@ const Home = () => (
           {'\n  <security:authentication-provider ref="customAuthenticationProvider"/>'}
           {'\n</security:authentication-manager>'}
         </pre>
+
       </CardText>
     </Card>
 
@@ -256,4 +220,4 @@ const Home = () => (
 );
 /* eslint-enable max-len */
 
-export default Home;
+export default Radium(Home); // eslint-disable-line new-cap
