@@ -2,7 +2,7 @@
   "name": "choonchernlim-archetype-webapp",
   "private": true,
   "config": {
-    "context_root": "/choonchernlim-archetype-webapp/",
+    "context_root": "/choonchernlim-archetype-webapp",
     "dist_uri": "/choonchernlim-archetype-webapp/assets",
     "src_dir_path": "src/",
     "test_dir_path": "test/",
