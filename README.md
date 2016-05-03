@@ -4,9 +4,37 @@ This Maven archetype creates a dynamic web project that plays nicely with Jenkin
 
 Although it primarily targets WebSphere 8.5.5, the bundled EAR/WAR file will also work with other application servers, such as Tomcat, Jetty, etc.
 
+## Prerequisites
+
+* Java version >= 7.
+* Maven version >= 3.3.x.
+
+## Latest Release
+
+```xml
+<dependency>
+  <groupId>com.github.choonchernlim</groupId>
+  <artifactId>choonchernlim-archetype-webapp</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+For example:
+
+```bash
+mvn archetype:generate 
+-DinteractiveMode=false 
+-DarchetypeGroupId=com.github.choonchernlim 
+-DarchetypeArtifactId=choonchernlim-archetype-webapp 
+-DarchetypeVersion=1.0.0
+-DgroupId=com.github.choonchern.testProject 
+-DartifactId=testProject 
+-Dversion=1.0.0-SNAPSHOT
+```
+
 ## Back-End Stack
 
-The back-end stack handles app security and generates Restful web services for front-end stack to consume.
+Handles app security and generates Restful web services for front-end stack to consume.
 
 |  Key Dependencies                                                             | Description                                                             |
 |-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
@@ -41,40 +69,11 @@ Configure IntelliJ IDEA to use [intellij-config](https://github.com/choonchernli
 |[Redux](https://github.com/reactjs/redux)                                      |One-way data flow, inspired by Flux pattern                              |
 |[Saga](https://github.com/yelouafi/redux-saga) 	                            |Side Effects middleware using ES6 Generator                              |
 |[Immutable](https://facebook.github.io/immutable-js/) 	                        |Creates immutable objects                                                |
-|[Material UI](http://www.material-ui.com/) 	                                |UI components, adhering to Google Material Design                        |     
+|[Material UI](http://www.material-ui.com/) 	                                |UI components, adhering to [Google Material Design](https://www.google.com/design/spec/material-design/introduction.htm)|     
 |[Radium](https://github.com/FormidableLabs/radium) and [Radium Grid](https://github.com/FormidableLabs/radium-grid)|Inline CSS and grid layout           |
-|[ESLint](https://github.com/eslint/eslint) 	                                |Validates JavaScript, adhering to Airbnb's JavaScript style guide        |                    
+|[ESLint](https://github.com/eslint/eslint) 	                                |Validates JavaScript, adhering to [Airbnb's JavaScript style guide](https://github.com/airbnb/javascript) |                    
 |[Mocha](https://mochajs.org/) 	                                                |JavaScript test framework                                                |                    
                                                                                                                                                       
-                                                                                                                                                      
-## Prerequisites
-
-* Java version >= 7.
-* Maven version >= 3.3.x.
-
-## Latest Release
-
-```xml
-<dependency>
-  <groupId>com.github.choonchernlim</groupId>
-  <artifactId>choonchernlim-archetype-webapp</artifactId>
-  <version>1.0.0</version>
-</dependency>
-```
-
-For example:
-
-```bash
-mvn archetype:generate 
--DinteractiveMode=false 
--DarchetypeGroupId=com.github.choonchernlim 
--DarchetypeArtifactId=choonchernlim-archetype-webapp 
--DarchetypeVersion=1.0.0
--DgroupId=com.github.choonchern.testProject 
--DartifactId=testProject 
--Dversion=1.0.0-SNAPSHOT
-```
-
 ## Usage
 
 ### Configuring VCS Ignore List
@@ -143,134 +142,3 @@ When packaging EAR file, you get this exception:-
 To fix this, add the following VM arguments to increase the heap space:-
 
     -Xms2048m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m 
-
-## Sample Project Structure
-
-If the `groupId` is `com.github.choonchern.testProject` and the `artifactId` is `testProject`, the generated project structure looks like this:-
-
-```text
-➜  tree . -I '*.iml'
-.
-├── CHANGELOG.md
-├── README.md
-├── pom.xml
-└── testProject-webapp
-    ├── pom.xml
-    ├── testProject-webapp-ear
-    │   ├── pom.xml
-    │   └── src
-    │       └── main
-    │           └── application
-    │               └── deployment.xml
-    └── testProject-webapp-war
-        ├── pom.xml
-        └── src
-            ├── main
-            │   ├── frontend
-            │   │   ├── gulp
-            │   │   │   ├── config.js
-            │   │   │   ├── tasks
-            │   │   │   │   ├── browser-sync.js
-            │   │   │   │   ├── browserify.js
-            │   │   │   │   ├── default.js
-            │   │   │   │   ├── optimize-images.js
-            │   │   │   │   ├── sass.js
-            │   │   │   │   ├── watch.js
-            │   │   │   │   └── watchify.js
-            │   │   │   └── util
-            │   │   │       ├── bundle-logger.js
-            │   │   │       └── handle-errors.js
-            │   │   ├── gulpfile.js
-            │   │   ├── package.json
-            │   │   └── src
-            │   │       ├── img
-            │   │       │   ├── favicon.png
-            │   │       │   └── logo.png
-            │   │       ├── js
-            │   │       │   └── app.js
-            │   │       └── scss
-            │   │           └── app.scss
-            │   ├── java
-            │   │   └── com
-            │   │       └── github
-            │   │           └── choonchern
-            │   │               └── testProject
-            │   │                   ├── bean
-            │   │                   │   └── MockBean.java
-            │   │                   ├── constant
-            │   │                   │   └── MockConstant.java
-            │   │                   ├── controller
-            │   │                   │   └── IndexController.java
-            │   │                   ├── dao
-            │   │                   │   └── MockDao.java
-            │   │                   ├── entity
-            │   │                   │   └── MockEntity.java
-            │   │                   ├── form
-            │   │                   │   └── MockForm.java
-            │   │                   ├── service
-            │   │                   │   ├── MockService.java
-            │   │                   │   └── impl
-            │   │                   │       └── MockServiceImpl.java
-            │   │                   └── util
-            │   │                       └── MockUtil.java
-            │   ├── resources
-            │   │   ├── log4j.xml
-            │   │   ├── messages.properties
-            │   │   ├── spring-applicationContext.xml
-            │   │   ├── spring-component-scan.xml
-            │   │   ├── spring-data.xml
-            │   │   ├── spring-datasource-jndi.xml
-            │   │   └── spring-security.xml
-            │   └── webapp
-            │       ├── WEB-INF
-            │       │   ├── ibm-web-bnd.xml
-            │       │   ├── jsp
-            │       │   │   └── index.jsp
-            │       │   ├── spring-servlet.xml
-            │       │   └── web.xml
-            │       └── resources
-            │           ├── css
-            │           │   ├── app.css
-            │           │   └── app.min.css
-            │           ├── img
-            │           │   ├── favicon.png
-            │           │   └── logo.png
-            │           └── js
-            │               ├── app.js
-            │               ├── app.min.js
-            │               ├── vendor.js
-            │               └── vendor.min.js
-            └── test
-                ├── groovy
-                │   └── com
-                │       └── github
-                │           └── choonchern
-                │               └── testProject
-                │                   ├── bean
-                │                   │   └── MockBeanSpec.groovy
-                │                   ├── controller
-                │                   │   └── MockControllerSpec.groovy
-                │                   └── service
-                │                       └── impl
-                │                           └── MockServiceImplSpec.groovy
-                ├── java
-                │   └── com
-                │       └── github
-                │           └── choonchern
-                │               └── testProject
-                │                   └── DummyTest.java
-                ├── js
-                │   └── app-spec.js
-                └── resources
-                    ├── jetty
-                    │   ├── context.xml
-                    │   ├── https.xml
-                    │   ├── jetty.keystore
-                    │   ├── requestlog.xml
-                    │   └── ssl.xml
-                    ├── karma.conf.ci.js
-                    ├── karma.conf.js
-                    └── spring-test.xml
-
-56 directories, 64 files
-```                    
