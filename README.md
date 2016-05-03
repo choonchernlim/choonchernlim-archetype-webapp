@@ -4,37 +4,49 @@ This Maven archetype creates a dynamic web project that plays nicely with Jenkin
 
 Although it primarily targets WebSphere 8.5.5, the bundled EAR/WAR file will also work with other application servers, such as Tomcat, Jetty, etc.
 
-The following development stack is pre-configured:-
+## Back-End Stack
 
-* [Jetty](http://www.eclipse.org/jetty/) - application server for development purpose
-* [H2](http://www.h2database.com/html/main.html) - embedded database for development purpose
-* [Spring](http://projects.spring.io/spring-framework/) - for dependency injection
-* [Spring Security](http://projects.spring.io/spring-security/) - for web security
-* [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) - for implementing JPA based repositories
-* [Hibernate](http://hibernate.org/orm/) - for ORM
-* [Guava](https://github.com/google/guava) - utility API and for creating immutable collections 
-* [Spock](https://github.com/spockframework/spock) - for writing Groovy test cases
-* [Better Preconditions](https://github.com/choonchernlim/better-preconditions) - More fluent precondition API
-* [Build Reports](https://github.com/choonchernlim/build-reports) - for configuring static code analysis reports for Jenkins and Sonar
-* [Pojo Builder](https://github.com/mkarneim/pojobuilder) - for creating immutable objects
-* [Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin) - for installing Node.js and Node modules
-* [Bootstrap](http://getbootstrap.com/) - for front-end UI
-* [Browserify](https://github.com/substack/node-browserify) - for handling JavaScript dependencies
-* [Babelify](https://www.npmjs.com/package/babelify) - for transpiling ECMAScript 2015 (ES6) and React's JSX to ES5.
-* [Gulp](http://gulpjs.com/) - for front-end automation, including minifying JS, CSS and images
-* [Jasmine](https://github.com/jasmine/jasmine) - for writing JavaScript test cases
-* [Karma](https://github.com/karma-runner/karma) - for running JavaScript test cases
-* Gulp configurations are heavily inspired by [@greypants' gulp-starter](https://github.com/greypants/gulp-starter)
+The back-end stack handles app security and generates Restful web services for front-end stack to consume.
 
-By default, `mvn compile` performs the following tasks:-
+|  Key Dependencies                                                             | Description                                                             |
+|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+|[Jetty](http://www.eclipse.org/jetty/)                                         |JEE server (for app dev)                                                 |
+|[H2](http://www.h2database.com/html/main.html)                                 |Embedded database (for app dev)                                          |
+|[Spring](http://projects.spring.io/spring-framework/)                          |Dependency injection, handles plumbing code                              |
+|[Spring Security](http://projects.spring.io/spring-security/)                  |App security                                                             |
+|[Spring Data JPA](http://projects.spring.io/spring-data-jpa/)                  |JPA-based repositories                                                   |
+|[Hibernate](http://hibernate.org/orm/)                                         |ORM framework                                                            |
+|[Guava](https://github.com/google/guava)                                       |Utility API, creates immutable collections, functional-style programming |  
+|[Spock](https://github.com/spockframework/spock)                               |Groovy test cases                                                        |
+|[Better Preconditions](https://github.com/choonchernlim/better-preconditions)  |Fluent precondition API                                                  |
+|[Build Reports](https://github.com/choonchernlim/build-reports)                |Static code analysis reports for Jenkins and Sonar                       |
+|[Pojo Builder](https://github.com/mkarneim/pojobuilder)                        |Creates immutable objects                                                |
 
-* Ensure no banned dependencies are included
-* Install Node.js
-* Install Node modules
-* Run default Gulp task
-* Compile Java files
-* Clean up Builder files created by Pojo Builder
- 
+## Front-End Stack
+
+True single-page app from [front-end-stack](https://github.com/choonchernlim/front-end-stack).
+
+Configure IntelliJ IDEA to use [intellij-config](https://github.com/choonchernlim/intellij-config) to satisfy ESLint rules.
+
+|  Key Dependencies                                                             | Description                                                             |
+|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+|[Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin)     |Installs Node.js and NPM dependencies using Maven goals                  |
+|[NPM](https://www.npmjs.com/)                                                  |JavaScript package manager                                               |
+|[Node.js](https://nodejs.org)                                                  |Event-driven I/O server-side JavaScript environment (for app dev)        |
+|[Webpack](https://webpack.github.io/) 	                                        |Module bundler                                                           |
+|[Webpack Dev Server](https://github.com/webpack/webpack-dev-server)            |Live reloading server (for app dev)                                      |
+|[ES6](http://www.ecma-international.org/ecma-262/6.0/) and ES7                 |Latest and greatest JavaScript language                                  |
+|[Babel](https://babeljs.io/) 	                                                |Transpiles ES6+ to ES5 to maximize cross browser compatibility           |                   
+|[React](https://facebook.github.io/react/)                                     |Handles view layer                                                       |
+|[Redux](https://github.com/reactjs/redux)                                      |One-way data flow, inspired by Flux pattern                              |
+|[Saga](https://github.com/yelouafi/redux-saga) 	                            |Side Effects middleware using ES6 Generator                              |
+|[Immutable](https://facebook.github.io/immutable-js/) 	                        |Creates immutable objects                                                |
+|[Material UI](http://www.material-ui.com/) 	                                |UI components, adhering to Google Material Design                        |     
+|[Radium](https://github.com/FormidableLabs/radium) and [Radium Grid](https://github.com/FormidableLabs/radium-grid)|Inline CSS and grid layout           |
+|[ESLint](https://github.com/eslint/eslint) 	                                |Validates JavaScript, adhering to Airbnb's JavaScript style guide        |                    
+|[Mocha](https://mochajs.org/) 	                                                |JavaScript test framework                                                |                    
+                                                                                                                                                      
+                                                                                                                                                      
 ## Prerequisites
 
 * Java version >= 7.
@@ -46,7 +58,7 @@ By default, `mvn compile` performs the following tasks:-
 <dependency>
   <groupId>com.github.choonchernlim</groupId>
   <artifactId>choonchernlim-archetype-webapp</artifactId>
-  <version>0.4.0</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
@@ -57,7 +69,7 @@ mvn archetype:generate
 -DinteractiveMode=false 
 -DarchetypeGroupId=com.github.choonchernlim 
 -DarchetypeArtifactId=choonchernlim-archetype-webapp 
--DarchetypeVersion=0.4.0
+-DarchetypeVersion=1.0.0
 -DgroupId=com.github.choonchern.testProject 
 -DartifactId=testProject 
 -Dversion=1.0.0-SNAPSHOT
@@ -73,19 +85,19 @@ mvn archetype:generate
     * `**/src/main/frontend/node/`   
     * `**/src/main/frontend/node_modules/`
 
-### Starting Jetty Server for Development
+### Starting Jetty Server for Back-End Development
 
 * From `war` module, run `mvn clean jetty:run` to start Jetty server.
 
 * Go to `https://localhost:8443` and select the link to see the project main page.
 
-### Auto Watching JS/CSS Changes
+### Starting webpackge-dev-server for Front-End Development
 
 * Change directory to `frontend` dir.
 
-* Run `./node_modules/gulp/bin/gulp.js watch`.
+* Run `npm start`.
     
-* You will be directed to `https://localhost:3000/[project]`. 
+* Open `http://localhost:8080` in browser. 
  
 ### Creating EAR File
 
