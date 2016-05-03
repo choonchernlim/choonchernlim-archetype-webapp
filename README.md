@@ -90,7 +90,7 @@ Configure IntelliJ IDEA to use [intellij-config](https://github.com/choonchernli
 
 * Go to `https://localhost:8443` and select the link to see the project main page.
 
-### Starting webpackge-dev-server for Front-End Development
+### Starting Webpack Dev Server for Front-End Development
 
 * Change directory to `frontend` dir.
 
@@ -110,7 +110,7 @@ From `war` module, run `mvn clean package`.
 
 This will create just the WAR file.
 
-### Jenkins Integration
+### Configuring Jenkins
 
 * Create a "Freestyle project" job.
 
