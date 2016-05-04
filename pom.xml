@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>build-reports</artifactId>
-        <version>0.3.0</version>
+        <version>0.3.1</version>
     </parent>
 
     <groupId>com.github.choonchernlim</groupId>
@@ -38,6 +38,9 @@
     </scm>
 
     <properties>
+        <!-- TODO Update Nexus server!-->
+        <nexus.server>nexus</nexus.server>
+
         <jdk.version>1.7</jdk.version>
         <maven.min.version>3.3.0</maven.min.version>
 
@@ -67,6 +70,26 @@
         <db2jcc4.version>9.7.0.5-FP005</db2jcc4.version>
         <db2jcc4.classifier>FP005</db2jcc4.classifier>
     </properties>
+
+    <distributionManagement>
+        <!--
+        `site` configuration to prevent Maven from throwing these warnings:-
+        * No project URL defined - decoration links will not be relativized!
+        * Unable to find a URL to the parent project. The parent menu will NOT be added.
+        -->
+        <site>
+            <id>${nexus.server}-site</id>
+            <url>http://${nexus.server}/nexus/content/sites/site/${project.groupId}/${project.artifactId}</url>
+        </site>
+        <repository>
+            <id>${nexus.server}-releases</id>
+            <url>http://${nexus.server}/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>${nexus.server}-snapshots</id>
+            <url>http://${nexus.server}/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>

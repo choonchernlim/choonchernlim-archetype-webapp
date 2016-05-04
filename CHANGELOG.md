@@ -12,12 +12,15 @@
 ```
 * NPM `3.5.3` to `3.8.8`
 
-
+* Root `pom.xml`
+    * Added `distributionManagement` block to satisfy `mvn deploy` to Nexus.
+    * Aded `nexus.server` property for user to specify the Nexus server name.
+    
 * Maven plugins and dependencies
     * Updated
 
 ```text
-com.github.choonchernlim:build-reports ................ 0.2.4 -> 0.3.0
+com.github.choonchernlim:build-reports ................ 0.2.4 -> 0.3.1
 
 maven-site-plugin ....................................... 3.4 -> 3.5.1
 maven-source-plugin ..................................... 2.4 -> 3.0.0
