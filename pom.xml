@@ -78,8 +78,8 @@
         project in Sonarqube
         -->
         <sonar.language/>
-        <sonar.sources>**/src/main/java,**/src/main/groovy,**/src/main/frontend/src/js</sonar.sources>
-        <sonar.tests>**/src/test/java,**/src/test/groovy,**/src/main/frontend/test</sonar.tests>
+        <sonar.sources>src/main/java,src/main/groovy,src/main/frontend/src/js</sonar.sources>
+        <sonar.tests>src/test/java,src/test/groovy,src/main/frontend/test</sonar.tests>
     </properties>
 
     <distributionManagement>
