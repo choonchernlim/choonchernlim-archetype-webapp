@@ -73,9 +73,13 @@
 
 
         <!-- TODO Trying to fix "Resource Not Found" on test -->
+        <!--
+        `sonar.language` cannot be set to ensure `sonar.sources` gets picked up to create multi-language
+        project in Sonarqube
+        -->
         <sonar.language/>
-        <sonar.tests>src/test/java,src/test/groovy,src/main/frontend/test</sonar.tests>
-        <sonar.sources>src/main/java,src/main/frontend/src/js</sonar.sources>
+        <sonar.sources>**/src/main/java,**/src/main/groovy,**/src/main/frontend/src/js</sonar.sources>
+        <sonar.tests>**/src/test/java,**/src/test/groovy,**/src/main/frontend/test</sonar.tests>
     </properties>
 
     <distributionManagement>
