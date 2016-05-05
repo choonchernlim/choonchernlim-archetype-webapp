@@ -15,6 +15,11 @@
 
     <properties>
         <jetty.dir>${project.basedir}/src/test/resources/jetty</jetty.dir>
+
+
+        <!-- TODO Trying to fix "Resource Not Found" on test -->
+        <sonar.tests>src/test/java,src/test/groovy,src/main/frontend/test</sonar.tests>
+        <sonar.sources>src/main/java,src/main/frontend/src/js</sonar.sources>
     </properties>
 
     <dependencies>
