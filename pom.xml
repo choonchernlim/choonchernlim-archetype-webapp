@@ -69,21 +69,6 @@
         <jtds.version>1.2.4</jtds.version>
         <db2jcc4.version>9.7.0.5-FP005</db2jcc4.version>
         <db2jcc4.classifier>FP005</db2jcc4.classifier>
-
-
-
-        <!-- TODO Trying to fix "Resource Not Found" on test -->
-        <!--
-        `sonar.language` cannot be set to ensure `sonar.sources` gets picked up to create multi-language
-        project in Sonarqube
-        -->
-        <sonar.language/>
-        <sonar.sources>src/main/java,src/main/frontend/src/js</sonar.sources>
-        <sonar.tests>src/test/java,src/test/groovy,src/main/frontend/test</sonar.tests>
-
-        <sonar.javascript.lcov.reportPath>target/js-reports/lcov.info</sonar.javascript.lcov.reportPath>
-        <sonar.groovy.jacoco.reportPath>${jacoco.reportPath}</sonar.groovy.jacoco.reportPath>
-        <sonar.groovy.jacoco.itReportPath>${jacoco.itReportPath}</sonar.groovy.jacoco.itReportPath>
     </properties>
 
     <distributionManagement>
