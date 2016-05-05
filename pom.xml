@@ -69,6 +69,10 @@
         <jtds.version>1.2.4</jtds.version>
         <db2jcc4.version>9.7.0.5-FP005</db2jcc4.version>
         <db2jcc4.classifier>FP005</db2jcc4.classifier>
+
+        <!-- TODO Trying to fix "Resource Not Found" on test -->
+        <sonar.tests>src/test/java,src/test/groovy</sonar.tests>
+
     </properties>
 
     <distributionManagement>
