@@ -39,7 +39,7 @@ rm -rf ${FRONTEND_PATH}/dist
 #    "test_dir_path": "test/",
 #    "dist_dir_path": "../webapp/assets/",
 #    "entry_file_path": "../webapp/WEB-INF/html/index.html",
-#    "report_dir_path": "../../../../target/reports/",
+#    "report_dir_path": "../../../target/js-reports/",
 #  },
 #
 echo "Replacing configuration in package.json..."
@@ -49,7 +49,7 @@ replace_string_in_file "${currentPath}" '"context_root": "/",' "\"context_root\"
 replace_string_in_file "${currentPath}" '"dist_uri": "/assets/",' "\"dist_uri\": \"/choonchernlim-archetype-webapp/assets\","
 replace_string_in_file "${currentPath}" '"dist_dir_path": "dist/assets/",' '"dist_dir_path": "../webapp/assets/",'
 replace_string_in_file "${currentPath}" '"entry_file_path": "dist/index.html",' '"entry_file_path": "../webapp/WEB-INF/html/index.html",'
-replace_string_in_file "${currentPath}" '"report_dir_path": "reports/",' '"report_dir_path": "../../../../target/reports/",'
+replace_string_in_file "${currentPath}" '"report_dir_path": "reports/",' '"report_dir_path": "../../../target/js-reports/",'
 
 currentPath="${FRONTEND_PATH}/src/js/layout/components/Layout.js"
 replace_string_in_file "${currentPath}" 'https://github.com/choonchernlim/front-end-stack' 'https://github.com/choonchernlim/choonchernlim-archetype-webapp'
