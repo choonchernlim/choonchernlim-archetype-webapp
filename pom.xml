@@ -81,7 +81,7 @@
         <sonar.sources>src/main/java,src/main/frontend/src/js</sonar.sources>
         <sonar.tests>src/test/java,src/test/groovy,src/main/frontend/test</sonar.tests>
 
-        <sonar.javascript.lcov.reportPath>target/reports/lcov.info</sonar.javascript.lcov.reportPath>
+        <sonar.javascript.lcov.reportPath>target/js-reports/lcov.info</sonar.javascript.lcov.reportPath>
         <sonar.groovy.jacoco.reportPath>${jacoco.reportPath}</sonar.groovy.jacoco.reportPath>
         <sonar.groovy.jacoco.itReportPath>${jacoco.itReportPath}</sonar.groovy.jacoco.itReportPath>
     </properties>
