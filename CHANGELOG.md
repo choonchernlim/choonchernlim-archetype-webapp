@@ -4,6 +4,8 @@
 
 * Replaced existing Gulp stack with `front-end-stack` from https://github.com/choonchernlim/front-end-stack. This stack uses Webpack + React + Redux + ImmutableJS.
 
+* `sonarqube` profile to activate Sonarqube: `mvn sonar:sonar -Psonarqube`
+
 * Node `v5.4.1` to `v5.11.0`
     * `node-sass` doesn't work properly with v6.0.0, throwing these errors:-
 ```text
@@ -20,7 +22,7 @@
     * Updated
 
 ```text
-com.github.choonchernlim:build-reports ................ 0.2.4 -> 0.3.1
+com.github.choonchernlim:build-reports ................ 0.2.4 -> 0.3.2
 
 maven-site-plugin ....................................... 3.4 -> 3.5.1
 maven-source-plugin ..................................... 2.4 -> 3.0.0

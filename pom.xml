@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>build-reports</artifactId>
-        <version>0.3.1</version>
+        <version>0.3.2</version>
     </parent>
 
     <groupId>com.github.choonchernlim</groupId>
@@ -39,7 +39,12 @@
 
     <properties>
         <!-- TODO Update Nexus server!-->
-        <nexus.server>nexus</nexus.server>
+        <nexus.id>panama</nexus.id>
+        <nexus.url>http://panama/nexus</nexus.url>
+
+        <!-- TODO Update Sonarqube server!-->
+        <!-- Used by `sonarqube` profile -->
+        <sonarqube.url>http://panama/sonar</sonarqube.url>
 
         <jdk.version>1.7</jdk.version>
         <maven.min.version>3.3.0</maven.min.version>
@@ -78,16 +83,16 @@
         * Unable to find a URL to the parent project. The parent menu will NOT be added.
         -->
         <site>
-            <id>${nexus.server}-site</id>
-            <url>http://${nexus.server}/nexus/content/sites/site/${project.groupId}/${project.artifactId}</url>
+            <id>${nexus.id}-site</id>
+            <url>${nexus.url}/content/sites/site/${project.groupId}/${project.artifactId}</url>
         </site>
         <repository>
-            <id>${nexus.server}-releases</id>
-            <url>http://${nexus.server}/nexus/content/repositories/releases/</url>
+            <id>${nexus.id}-releases</id>
+            <url>${nexus.url}/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>${nexus.server}-snapshots</id>
-            <url>http://${nexus.server}/nexus/content/repositories/snapshots/</url>
+            <id>${nexus.id}-snapshots</id>
+            <url>${nexus.url}/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -629,4 +634,78 @@
             </plugin>
         </plugins>
     </build>
+
+<profiles>
+    <!--
+    `sonarqube` profile to ensure `mvn sonar:sonar` works.
+
+    To date, this configuration isn't 100% perfect when configuring as polyglot project.
+
+    - When including JavaScript source, it complains about ES6 syntax.
+    - Not possible to hook up JavaScript unit and coverage result files.
+        - When using Istanbul's LCOV, it complains about line number starting with 0 instead of 1.
+            - "Problem during processing LCOV report: can't save DA data for line 0."
+            - The fix throws bunch of warnings that clutter the output file: https://jira.sonarsource.com/browse/SONARJS-547
+        - When using "Generic Test Coverage" plugin, it doesn't know how to interpret
+            result files from `mocha-junit-reporter` and `mocha-sonar-reporter`.
+    - Surefire reports
+        - SurefireSensor complains about not able to find Spock Groovy files.
+        - GroovySurefireSensor complains about not able to find JUnit Java files.
+        - The problem is because the sensor knows how to handle one file format, but not both.
+    -->
+    <profile>
+        <id>sonarqube</id>
+
+        <properties>
+            <sonar.host.url>${sonarqube.url}</sonar.host.url>
+
+            <!--
+            To prevent "SCM provider was set to "X" but no SCM provider found for this key" error.
+            -->
+            <sonar.scm.disabled>true</sonar.scm.disabled>
+
+            <!--
+            Ensure this property is not set to create polyglot project.
+            http://www.sonarqube.org/at-long-last-sonarqube-is-a-true-polyglot/
+            -->
+            <sonar.language/>
+
+            <sonar.sources>src/main/java</sonar.sources>
+            <sonar.tests>src/test/java,src/test/groovy,src/main/frontend/test</sonar.tests>
+            <sonar.exclusions>**/generated/**,**/scratch/**</sonar.exclusions>
+
+            <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+            <sonar.junit.reportsPath>${project.build.directory}/surefire-reports</sonar.junit.reportsPath>
+
+            <sonar.jacoco.reportPath>${jacoco.reportPath}</sonar.jacoco.reportPath>
+            <sonar.jacoco.itReportPath>${jacoco.itReportPath}</sonar.jacoco.itReportPath>
+
+            <sonar.groovy.reportPath>${jacoco.reportPath}</sonar.groovy.reportPath>
+            <sonar.groovy.itReportPath>${jacoco.itReportPath}</sonar.groovy.itReportPath>
+        </properties>
+
+        <!--
+        Dependencies to fix Sonar 5.x's "Class Not Found" error.
+        http://stackoverflow.com/questions/31528033/sonarqube-class-not-found-during-main-ast-scan
+        -->
+        <dependencies>
+            <dependency>
+                <groupId>org.joda</groupId>
+                <artifactId>joda-convert</artifactId>
+                <version>1.8.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>3.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.8</version>
+            </dependency>
+        </dependencies>
+    </profile>
+</profiles>
+
 </project>
