@@ -115,7 +115,8 @@ This will create just the WAR file.
 * Create a "Freestyle project" job.
 
 * Under "Add build steps, select "Invoke top-level Maven targets".
-    * Goals: `-U clean test site sonar:sonar -Psonarqube`
+    * Goals (without Sonarqube): `-U clean test site`
+    * Goals (with Sonarqube): `-U clean test site sonar:sonar -Psonarqube`
     * POM: `[project]/[project]-war/pom.xml`
     
 ## Version Restrictions
