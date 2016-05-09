@@ -44,30 +44,30 @@ org.apache.httpcomponents:httpclient .................. 4.5.1 -> 4.5.2
 org.codehaus.groovy:groovy-all ........................ 2.4.5 -> 2.4.6
 org.slf4j:slf4j-api ................................. 1.7.13 -> 1.7.21
 org.slf4j:slf4j-log4j12 ............................. 1.7.13 -> 1.7.21
-org.springframework:spring-aop ........ 4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-beans ...... 4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-context .... 4.2.4.RELEASE -> 4.2.5.RELEASE
+org.springframework:spring-aop ........ 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-beans ...... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-context .... 4.2.4.RELEASE -> 4.2.6.RELEASE
 org.springframework:spring-context-support ...
-                                        4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-core ....... 4.2.4.RELEASE -> 4.2.5.RELEASE
+                                        4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-core ....... 4.2.4.RELEASE -> 4.2.6.RELEASE
 org.springframework:spring-expression ...
-                                        4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-jdbc ....... 4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-orm ........ 4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-test ....... 4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-tx ......... 4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-web ........ 4.2.4.RELEASE -> 4.2.5.RELEASE
-org.springframework:spring-webmvc ..... 4.2.4.RELEASE -> 4.2.5.RELEASE
+                                        4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-jdbc ....... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-orm ........ 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-test ....... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-tx ......... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-web ........ 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-webmvc ..... 4.2.4.RELEASE -> 4.2.6.RELEASE
 org.springframework.data:spring-data-jpa ...
                                        1.9.2.RELEASE -> 1.10.1.RELEASE
 org.springframework.security:spring-security-config ...
-                                        4.0.3.RELEASE -> 4.0.4.RELEASE
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
 org.springframework.security:spring-security-core ...
-                                        4.0.3.RELEASE -> 4.0.4.RELEASE
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
 org.springframework.security:spring-security-taglibs ...
-                                        4.0.3.RELEASE -> 4.0.4.RELEASE
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
 org.springframework.security:spring-security-web ...
-                                        4.0.3.RELEASE -> 4.0.4.RELEASE
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
 org.springframework.ws:spring-ws-core ...
                                         2.2.4.RELEASE -> 2.3.0.RELEASE
 org.springframework.ws:spring-ws-test ...
