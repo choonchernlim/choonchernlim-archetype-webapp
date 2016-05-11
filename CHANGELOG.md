@@ -216,6 +216,7 @@ joda-time:joda-time ..................................... 2.8.1 -> 2.9
 org.apache.httpcomponents:httpclient .................. 4.4.1 -> 4.5.1
 org.apache.httpcomponents:httpcore .................... 4.4.1 -> 4.4.4
 org.codehaus.groovy:groovy-all ........................ 2.4.4 -> 2.4.5
+org.objenesis:objenesis ................................... 2.2 -> 2.3
 org.springframework:spring-aop ........ 4.1.7.RELEASE -> 4.2.2.RELEASE
 org.springframework:spring-beans ...... 4.1.7.RELEASE -> 4.2.2.RELEASE
 org.springframework:spring-context .... 4.1.7.RELEASE -> 4.2.2.RELEASE

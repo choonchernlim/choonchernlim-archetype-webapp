@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getJoke } from '../actions/index';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
-let GetJoke = ({ joke, onGetJokeClick }) => (
+const GetJoke = ({ joke, onGetJokeClick }) => (
   <div>
     <RaisedButton primary label="Get Joke" onClick={onGetJokeClick} />
     <h2><span dangerouslySetInnerHTML={{ __html: joke }} /></h2>
@@ -23,6 +23,6 @@ GetJoke.propTypes = {
   onGetJokeClick: PropTypes.func.isRequired
 };
 
-GetJoke = connect(mapStateToProps, mapDispatchToProps)(GetJoke);
+const GetJokeContainer = connect(mapStateToProps, mapDispatchToProps)(GetJoke);
 
-export default GetJoke;
+export default GetJokeContainer;

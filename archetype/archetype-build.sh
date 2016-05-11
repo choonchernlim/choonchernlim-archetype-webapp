@@ -87,7 +87,7 @@ xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/p
 
 currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/frontend/package.json"
 replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
-replace_string_in_file "${currentPath}" '"context_root": "/choonchernlim-archetype-webapp/"' '"context_root": "/${rootArtifactId}/"'
+replace_string_in_file "${currentPath}" '"context_root": "/choonchernlim-archetype-webapp"' '"context_root": "/${rootArtifactId}"'
 replace_string_in_file "${currentPath}" '"dist_uri": "/choonchernlim-archetype-webapp/assets"' '"dist_uri": "/${rootArtifactId}/assets"'
 
 currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/css/app.*.css`

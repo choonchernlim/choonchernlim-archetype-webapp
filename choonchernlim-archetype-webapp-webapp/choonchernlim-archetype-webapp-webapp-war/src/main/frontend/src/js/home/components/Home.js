@@ -1,9 +1,8 @@
 import React from 'react';
 import Radium, { Style } from 'radium';
 import Container from '../../common/components/Container';
-import Card from 'material-ui/lib/card/card';
-import CardText from 'material-ui/lib/card/card-text';
-import { grey600 } from 'material-ui/lib/styles/colors';
+import { Card, CardText } from 'material-ui/Card';
+import { grey600 } from 'material-ui/styles/colors';
 
 /* eslint-disable max-len */
 const Home = () => (
