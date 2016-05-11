@@ -20,8 +20,8 @@
     <dependencies>
         <!-- Scope = provided. -->
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -381,42 +381,44 @@
                     <installDirectory>src/main/frontend</installDirectory>
                 </configuration>
                 <executions>
-                    <!--
-                    Install local node and npm within the project so that we can ensure all team members
-                    use the same version.
-                    -->
+                    <!-- Install local node and npm within the project to ensure everyone use the same version. -->
                     <execution>
                         <id>install-node-and-npm</id>
                         <goals>
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v5.4.1</nodeVersion>
-                            <npmVersion>3.5.3</npmVersion>
+                            <nodeVersion>v5.11.0</nodeVersion>
+                            <npmVersion>3.8.8</npmVersion>
                         </configuration>
                     </execution>
-                    <!-- Perform `npm-install` to install any dependencies listed in `package.json`. -->
+                    <!-- `npm install` to install any dependencies listed in `package.json`. -->
                     <execution>
                         <id>npm-install</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                     </execution>
-                    <!-- Execute Gulp with `production` task -->
+                    <!-- `npm run build` in `generate-resources` phase to create production build. -->
                     <execution>
-                        <id>gulp-production</id>
+                        <id>production-build</id>
                         <goals>
-                            <goal>gulp</goal>
+                            <goal>npm</goal>
                         </goals>
-                    </execution>
-                    <!-- Run Karma tests -->
-                    <execution>
-                        <id>karma</id>
-                        <goals>
-                            <goal>karma</goal>
-                        </goals>
+                        <phase>generate-resources</phase>
                         <configuration>
-                            <karmaConfPath>${project.basedir}/src/test/resources/karma.conf.ci.js</karmaConfPath>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                    <!-- `npm run ci` in `test` phase to run unit test/code coverage and generate CI reports. -->
+                    <execution>
+                        <id>ci-reports</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>run ci</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -445,36 +447,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!--
-        When running on Jenkins, don't re-generate client-side files (JS, CSS, images) since there maybe a possibility
-        the generated files could be different if Jenkins runs on different OS platform. This way, we ensure Jenkins
-        job isn't modifying the source files and Karma will execute tests based on the existing JS files in `dist/js/` dir.
-        -->
-        <profile>
-            <id>jenkins</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>gulp-production</id>
-                                <goals>
-                                    <goal>gulp</goal>
-                                </goals>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
 
 

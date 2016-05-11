@@ -1,5 +1,79 @@
 # Change Log
 
+## 1.0.0- 2016-XX-XX
+
+* Replaced existing Gulp stack with `front-end-stack` from https://github.com/choonchernlim/front-end-stack. This stack uses Webpack + React + Redux + ImmutableJS.
+
+* `sonarqube` profile to activate Sonarqube: `mvn sonar:sonar -Psonarqube`
+
+* Node `v5.4.1` to `v5.11.0`
+    * `node-sass` doesn't work properly with v6.0.0, throwing these errors:-
+```text
+[ERROR] (node) v8::ObjectTemplate::Set() with non-primitive values is deprecated
+[ERROR] (node) and will stop working in the next major release.
+```
+* NPM `3.5.3` to `3.8.8`
+
+* Root `pom.xml`
+    * Added `distributionManagement` block to satisfy `mvn deploy` to Nexus.
+    * Aded `nexus.server` property for user to specify the Nexus server name.
+    
+* Maven plugins and dependencies
+    * Updated
+
+```text
+com.github.choonchernlim:build-reports ................ 0.2.4 -> 0.3.2
+
+maven-site-plugin ....................................... 3.4 -> 3.5.1
+maven-source-plugin ..................................... 2.4 -> 3.0.0
+com.github.eirslett:frontend-maven-plugin .............. 0.0.27 -> 1.0
+org.codehaus.mojo:properties-maven-plugin ....... 1.0-alpha-2 -> 1.0.0
+
+cglib:cglib-nodep ..................................... 3.2.0 -> 3.2.2
+com.fasterxml.jackson.core:jackson-annotations ........ 2.7.0 -> 2.7.4
+com.fasterxml.jackson.core:jackson-core ............... 2.7.0 -> 2.7.4
+com.fasterxml.jackson.core:jackson-databind ........... 2.7.0 -> 2.7.4
+com.fasterxml.jackson.datatype:jackson-datatype-joda ...
+                                                        2.7.0 -> 2.7.4
+com.h2database:h2 ................................. 1.4.190 -> 1.4.191
+com.jayway.jsonpath:json-path ......................... 2.1.0 -> 2.2.0
+com.jayway.jsonpath:json-path-assert .................. 2.1.0 -> 2.2.0
+commons-io:commons-io ..................................... 2.4 -> 2.5
+joda-time:joda-time ................................... 2.9.1 -> 2.9.3
+org.apache.httpcomponents:httpclient .................. 4.5.1 -> 4.5.2
+org.codehaus.groovy:groovy-all ........................ 2.4.5 -> 2.4.6
+org.slf4j:slf4j-api ................................. 1.7.13 -> 1.7.21
+org.slf4j:slf4j-log4j12 ............................. 1.7.13 -> 1.7.21
+org.springframework:spring-aop ........ 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-beans ...... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-context .... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-context-support ...
+                                        4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-core ....... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-expression ...
+                                        4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-jdbc ....... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-orm ........ 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-test ....... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-tx ......... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-web ........ 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework:spring-webmvc ..... 4.2.4.RELEASE -> 4.2.6.RELEASE
+org.springframework.data:spring-data-jpa ...
+                                       1.9.2.RELEASE -> 1.10.1.RELEASE
+org.springframework.security:spring-security-config ...
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
+org.springframework.security:spring-security-core ...
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
+org.springframework.security:spring-security-taglibs ...
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
+org.springframework.security:spring-security-web ...
+                                        4.0.3.RELEASE -> 4.1.0.RELEASE
+org.springframework.ws:spring-ws-core ...
+                                        2.2.4.RELEASE -> 2.3.0.RELEASE
+org.springframework.ws:spring-ws-test ...
+                                        2.2.4.RELEASE -> 2.3.0.RELEASE
+```
+
 ## 0.4.0- 2016-01-20
 
 * Configured browser-sync to listen to any file changes under `webapp/resources` dir.
@@ -58,8 +132,8 @@ org.springframework.ws:spring-ws-test ...
                                         2.2.2.RELEASE -> 2.2.4.RELEASE
 ```
 
-* Node v4.1.2 to v5.4.1
-* NPM 2.14.7 to 3.5.3
+* Node `v4.1.2` to `v5.4.1`
+* NPM `2.14.7` to `3.5.3`
 
 * Karma configuration
     * Enabled Babel presets.
@@ -142,6 +216,7 @@ joda-time:joda-time ..................................... 2.8.1 -> 2.9
 org.apache.httpcomponents:httpclient .................. 4.4.1 -> 4.5.1
 org.apache.httpcomponents:httpcore .................... 4.4.1 -> 4.4.4
 org.codehaus.groovy:groovy-all ........................ 2.4.4 -> 2.4.5
+org.objenesis:objenesis ................................... 2.2 -> 2.3
 org.springframework:spring-aop ........ 4.1.7.RELEASE -> 4.2.2.RELEASE
 org.springframework:spring-beans ...... 4.1.7.RELEASE -> 4.2.2.RELEASE
 org.springframework:spring-context .... 4.1.7.RELEASE -> 4.2.2.RELEASE
@@ -220,8 +295,8 @@ watchify            3.3.x  →   3.4.x
 
 * `ROOT/pom.xml` - Added `<scm>` stub tag with a TODO to remind user to update the project SCM info so that it won't inherit the SCM info from `build-reports`.
 * `src/main/frontend/gulp/config.js` - Removed unused `production` block.
-*  `frontend-maven-plugin` - Upgraded node from v0.10.40 to v4.1.2.
-*  `frontend-maven-plugin` - Upgraded npm from 2.13.4 to 2.14.7.
+*  Node `v0.10.40` to `v4.1.2`.
+*  NPM `2.13.4` to `2.14.7`.
 
 ## 0.1.1 - 2015-09-01
 

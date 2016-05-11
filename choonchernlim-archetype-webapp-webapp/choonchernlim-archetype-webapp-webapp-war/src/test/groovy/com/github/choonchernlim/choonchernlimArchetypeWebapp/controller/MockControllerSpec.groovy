@@ -7,7 +7,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver
 import spock.lang.Specification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
 
 @ContextConfiguration(["classpath*:spring-test.xml"])
 class MockControllerSpec extends Specification {
