@@ -1,5 +1,16 @@
 # Change Log
 
+## TBD
+
+* Add `maven-source-plugin` to root pom.xml's build -> plugin
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+</plugin>
+```
+
 ## 1.0.0- 2016-XX-XX
 
 * Replaced existing Gulp stack with `front-end-stack` from https://github.com/choonchernlim/front-end-stack. This stack uses Webpack + React + Redux + ImmutableJS.
