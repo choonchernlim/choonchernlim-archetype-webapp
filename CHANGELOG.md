@@ -2,7 +2,7 @@
 
 ## TBD
 
-* Add `maven-source-plugin` to root pom.xml's build -> plugin
+* Add `maven-source-plugin` to root pom.xml's <build> -> <plugins> so that `mvn deploy` will push source jar to Nexus.
 
 ```xml
 <plugin>
@@ -11,7 +11,7 @@
 </plugin>
 ```
 
-## 1.0.0- 2016-XX-XX
+## 1.0.0- 2016-05-11
 
 * Replaced existing Gulp stack with `front-end-stack` from https://github.com/choonchernlim/front-end-stack. This stack uses Webpack + React + Redux + ImmutableJS.
 
