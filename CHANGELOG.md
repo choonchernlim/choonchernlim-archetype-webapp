@@ -11,6 +11,8 @@
 </plugin>
 ```
 
+* frontend stack that works in Windows.
+
 ## 1.0.0 - 2016-05-11
 
 * Replaced existing Gulp stack with `front-end-stack` from https://github.com/choonchernlim/front-end-stack. This stack uses Webpack + React + Redux + ImmutableJS.
