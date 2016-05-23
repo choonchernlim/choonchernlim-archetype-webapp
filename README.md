@@ -15,7 +15,7 @@ Although it primarily targets WebSphere 8.5.5, the bundled EAR/WAR file will als
 <dependency>
   <groupId>com.github.choonchernlim</groupId>
   <artifactId>choonchernlim-archetype-webapp</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -26,7 +26,7 @@ mvn archetype:generate
 -DinteractiveMode=false 
 -DarchetypeGroupId=com.github.choonchernlim 
 -DarchetypeArtifactId=choonchernlim-archetype-webapp 
--DarchetypeVersion=1.0.0
+-DarchetypeVersion=1.0.1
 -DgroupId=com.github.choonchern.testProject 
 -DartifactId=testProject 
 -Dversion=1.0.0-SNAPSHOT
