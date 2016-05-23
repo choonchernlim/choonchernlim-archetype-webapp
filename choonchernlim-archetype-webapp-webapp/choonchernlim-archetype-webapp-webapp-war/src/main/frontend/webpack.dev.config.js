@@ -1,5 +1,6 @@
 const baseConfig = require('./webpack.base.config');
 const path = require('path');
+const url = require('url');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('./package.json');
@@ -43,7 +44,8 @@ module.exports = Object.assign({}, baseConfig.webpackOptions, {
 
     // Server side proxy when `<context_root>/api/*` is called
     proxy: {
-      [path.join(packageJson.config.context_root, '/api/*')]: {
+      // Using `url.resolve(..)` to handle possible trailing slash in context root
+      [url.resolve(packageJson.config.context_root, '/api/*')]: {
         target: 'https://localhost:8443',
         secure: false
       }

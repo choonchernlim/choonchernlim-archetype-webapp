@@ -1,17 +1,10 @@
 # Change Log
 
-## TBD
+## 1.0.1 - 2016-05-23
 
-* Add `maven-source-plugin` to root pom.xml's <build> -> <plugins> so that `mvn deploy` will push source jar to Nexus.
+* `front-end-stack` from `0.2.0` to `0.3.0` - More cross-platform compatible NPM scripts (Mac and Windows).
 
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-source-plugin</artifactId>
-</plugin>
-```
-
-* frontend stack that works in Windows.
+* Added `maven-source-plugin` to root `pom.xml` so that `mvn deploy` will push source JAR to Nexus.
 
 ## 1.0.0 - 2016-05-11
 
