@@ -11,5 +11,5 @@ cd /tmp/archetype
 
 echo "Generating project from archetype..."
 mvn archetype:generate -DinteractiveMode=false -DarchetypeCatalog=local \
--DarchetypeGroupId=com.github.choonchernlim -DarchetypeArtifactId=choonchernlim-archetype-webapp -DarchetypeVersion=1.0.0 \
+-DarchetypeGroupId=com.github.choonchernlim -DarchetypeArtifactId=choonchernlim-archetype-webapp -DarchetypeVersion=1.0.1 \
 -DgroupId=com.github.choonchernlim.testProject -DartifactId=testProject -Dversion=1.0.0-SNAPSHOT

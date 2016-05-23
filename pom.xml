@@ -582,6 +582,15 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
 
+
+            <!--
+            Generates source JAR file when doing `mvn deploy` to be pushed to Nexus.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
