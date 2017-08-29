@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    choonchernlim-archetype-webapp:
+      jndi-name: java:comp/env/jdbc/choonchernlim-archetype-webapp
+
+#    TODO If the app has more data sources, add them here.
+#    second-db:
+#      jndi-name: java:comp/env/jdbc/second-db
