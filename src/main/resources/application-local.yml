@@ -2,25 +2,9 @@
 
 logging.level:
   root: INFO
-  com.github.choonchernlim: DEBUG
+  com.github.choonchernlim.choonchernlimArchetypeWebapp: DEBUG
 
 spring:
-  datasource:
-    choonchernlim-archetype-webapp:
-      poolName: ${custom.dataSource.choonchernlim-archetype-webapp.poolName}
-      jdbcUrl: ${custom.dataSource.choonchernlim-archetype-webapp.jdbcUrl}
-      username: ${custom.dataSource.choonchernlim-archetype-webapp.username}
-      password: ${custom.dataSource.choonchernlim-archetype-webapp.password}
-      connectionTestQuery: ${custom.dataSource.choonchernlim-archetype-webapp.connectionTestQuery}
-
-#    TODO If the app has more data sources, add them here.
-#    second-db:
-#      poolName: ${custom.dataSource.second-db.poolName}
-#      jdbcUrl: ${custom.dataSource.second-db.jdbcUrl}
-#      username: ${custom.dataSource.second-db.username}
-#      password: ${custom.dataSource.second-db.password}
-
-
   jpa.properties.hibernate:
       show_sql: false
       format_sql: false

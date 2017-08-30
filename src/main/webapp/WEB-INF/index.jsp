@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,maximum-scale=1,minimum-scale=1">
 
     <title>choonchernlim-archetype-webapp</title>
-<link rel="shortcut icon" href="/favicon.png"><link href="/css/app.969b1fa5f6b846df82a8.css" rel="stylesheet"></head>
+<link rel="shortcut icon" href="/favicon.png"><link href="/css/app.84e4108ff573d9ca3b05.css" rel="stylesheet"></head>
 <body>
 
 <div id="app"></div>
-<script type="text/javascript" src="/js/vendor.6acaeb57d2e6896a8826.js"></script><script type="text/javascript" src="/js/app.969b1fa5f6b846df82a8.js"></script></body>
+<script type="text/javascript" src="/js/vendor.fc5822a21770d2c9ed10.js"></script><script type="text/javascript" src="/js/app.84e4108ff573d9ca3b05.js"></script></body>
 </html>
