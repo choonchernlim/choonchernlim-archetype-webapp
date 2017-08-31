@@ -16,4 +16,3 @@ class Application extends SpringBootServletInitializer {
         return builder.sources(Application)
     }
 }
-// TODO LIMC 8/30 Handle 404 bookmarkable client side link
