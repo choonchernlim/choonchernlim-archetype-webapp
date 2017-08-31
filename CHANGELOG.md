@@ -1,5 +1,10 @@
 # Change Log
 
+## 2.0.0 - 2017-x-x
+
+* Spring Security: Set X-Frame-Options to DENY to prevent clickjacking attacks.
+* Spring Security: Disable OPTIONS method to prevent XST attacks.
+
 ## 1.0.1 - 2016-05-23
 
 * `front-end-stack` from `0.2.0` to `0.3.0` - More cross-platform compatible NPM scripts (Mac and Windows).

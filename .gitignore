@@ -9,7 +9,7 @@ target/
 src/main/frontend/etc/
 src/main/frontend/node/
 src/main/frontend/node_modules/
-src/main/resources/static/
+src/main/resources/static/assets/
 src/main/webapp/WEB-INF/index.jsp
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml

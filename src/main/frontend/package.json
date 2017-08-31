@@ -3,10 +3,10 @@
   "private": true,
   "config": {
     "context_root": "/",
-    "dist_uri": "/",
+    "dist_uri": "assets/",
     "src_dir_path": "src/",
     "test_dir_path": "test/",
-    "dist_dir_path": "../resources/static/",
+    "dist_dir_path": "../resources/static/assets/",
     "entry_file_path": "../webapp/WEB-INF/index.jsp",
     "report_dir_path": "../../../target/js-reports/"
   },
