@@ -1,13 +1,17 @@
+// @flow
+import type { Element } from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
+import { StoreCreator } from 'redux';
+import { HistoryMiddleware, Provider } from 'react-redux';
+import { Router, useRouterHistory } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Layout, Home, TodoManager, ChuckNorris, LookAndFeel } from './component';
-import store from './store';
-import packageJson from '../../../package.json';
+import configureStore from './store';
+import getRoutes from './routes';
+import { sanitizeContextRoot } from './utils/url-helper';
+import './devtools/chrome-react-perf';
 import '../../scss/index.scss';
 
 // http://www.material-ui.com/#/get-started/installation
@@ -15,23 +19,21 @@ injectTapEventPlugin();
 
 // instead of using `browserHistory` from react-router, create one
 // with basename to allow app to specify different context root
-const browserHistory = useRouterHistory(createBrowserHistory)({
-  basename: packageJson.config.context_root
+const browserHistory: HistoryMiddleware = useRouterHistory(createBrowserHistory)({
+  basename: sanitizeContextRoot(),
 });
 
+// configure store
+const store: StoreCreator = configureStore(browserHistory);
+
+const routes: Element<*> = getRoutes();
+
 // Create an enhanced history that syncs navigation events with the store
-const history = syncHistoryWithStore(browserHistory, store);
+const history: HistoryMiddleware = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={Layout}>
-        <IndexRoute component={Home} />
-        <Route path="look-and-feel" component={LookAndFeel} />
-        <Route path="chuck-norris" component={ChuckNorris} />
-        <Route path="todo-manager" component={TodoManager} />
-      </Route>
-    </Router>
+    <Router history={history} routes={routes} />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

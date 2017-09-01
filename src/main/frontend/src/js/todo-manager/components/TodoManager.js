@@ -1,19 +1,19 @@
+// @flow
+import type { Element } from 'react';
 import React from 'react';
 import Footer from './Footer';
-import AddTodo from './AddTodo';
-import VisibleTodoList from './VisibleTodoList';
-import Container from '../../common/components/Container';
+import AddTodoContainer from './AddTodo';
+import TodoListContainer from './TodoList';
+import Container from '../../app/components/Container';
 
-const TodoManager = () => (
+export default (): Element<*> => (
   <Container>
     <h1>Todo Manager</h1>
 
     <p>A simple todo app using Redux.</p>
 
-    <AddTodo />
-    <VisibleTodoList />
+    <AddTodoContainer />
+    <TodoListContainer />
     <Footer />
   </Container>
 );
-
-export default TodoManager;

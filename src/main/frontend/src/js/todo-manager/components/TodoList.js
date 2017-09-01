@@ -1,20 +1,38 @@
-import React, { PropTypes } from 'react';
+// @flow
+import type { Element } from 'react';
+import React from 'react';
+import { List } from 'immutable';
+import { connect } from 'react-redux';
+import { toggleTodo } from '../actions';
+import reselectSelector from '../../app/selectors/reselect-selector';
 import Todo from './Todo';
+import TodoRecord from '../models/todo-record';
 
-const TodoList = ({ todos, onTodoClick }) => (
+type Props = {
+  todos: List<TodoRecord>,
+  onToggleTodo: Function
+};
+
+export const TodoList = ({ todos, onToggleTodo }: Props): Element<*> => (
   <ul>
-    {todos.map(todo => <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />)}
+    {todos.map(todo => (
+      <Todo
+        key={todo.get('id')}
+        text={todo.get('text')}
+        completed={todo.get('completed')}
+        onClick={() => onToggleTodo(todo.get('id'))}
+      />))
+    }
   </ul>
 );
 
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired).isRequired,
-  onTodoClick: PropTypes.func.isRequired
+const makeMapStateToProps = () => {
+  const getVisibleTodos: Function = reselectSelector.makeGetVisibleTodos();
+  return state => ({
+    todos: getVisibleTodos(state),
+  });
 };
 
-export default TodoList;
+const TodoListContainer = connect(makeMapStateToProps, { onToggleTodo: toggleTodo })(TodoList);
+
+export default TodoListContainer;

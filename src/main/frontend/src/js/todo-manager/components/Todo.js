@@ -1,13 +1,23 @@
-import React, { PropTypes } from 'react';
+// @flow
+import type { Element } from 'react';
+import React from 'react';
 
-const Todo = ({ onClick, completed, text }) => (
-  <li onClick={onClick} style={{ textDecoration: completed ? 'line-through' : 'none' }}>{text}</li>
-);
-
-Todo.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+type Props = {
+  onClick: Function,
+  completed: boolean,
+  text: string
 };
+
+const Todo = ({ onClick, completed, text }: Props): Element<*> => (
+  <li>
+    <a
+      href="#toggle"
+      onClick={onClick}
+      style={{ color: 'inherit', textDecoration: completed ? 'line-through' : 'none' }}
+    >
+      {text}
+    </a>
+  </li>
+);
 
 export default Todo;

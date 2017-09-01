@@ -197,7 +197,7 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>build</arguments>
                         </configuration>
                     </execution>
                     <!-- `yarn run ci` in `test` phase to run unit test/code coverage and generate CI reports. -->
@@ -208,7 +208,7 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <arguments>run ci</arguments>
+                            <arguments>ci</arguments>
                         </configuration>
                     </execution>
                 </executions>

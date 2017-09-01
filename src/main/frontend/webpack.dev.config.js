@@ -1,11 +1,17 @@
+// @flow
+
 const baseConfig = require('./webpack.base.config');
 const path = require('path');
-const url = require('url');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('./package.json');
 
 const distPath = path.join(__dirname, packageJson.config.dist_dir_path);
+
+// Use override value if exists, otherwise use the one defined in `package.json`
+const contextRoot = process.env.CONTEXT_ROOT || packageJson.config.context_root;
+
+const trailingSlashContextRoot = path.posix.join(contextRoot, '/');
 
 module.exports = Object.assign({}, baseConfig.webpackOptions, {
   devtool: 'eval',
@@ -13,8 +19,8 @@ module.exports = Object.assign({}, baseConfig.webpackOptions, {
   output: {
     path: distPath,
 
-    // webpack-dev-server hosts directly from context root instead of dist uri
-    publicPath: packageJson.config.context_root,
+    // configure base URI to match server side context root
+    publicPath: trailingSlashContextRoot,
 
     // When using `chunkhash` on filenames, webpack-dev-server throws an error:-
     // "Cannot use [chunkhash] for chunk in 'js/[name].[chunkhash].js' (use [hash] instead)"
@@ -24,32 +30,40 @@ module.exports = Object.assign({}, baseConfig.webpackOptions, {
 
     // Include comments with information about the modules to complement devtool="eval"
     // https://github.com/webpack/docs/wiki/build-performance#sourcemaps
-    pathinfo: true
+    pathinfo: true,
   },
 
   devServer: {
     contentBase: distPath,
 
-    // redirects 404s to context root
+    // to ensure bookmarkable link works instead of getting a blank screen
     historyApiFallback: {
-      index: packageJson.config.context_root
+      index: trailingSlashContextRoot,
     },
 
+    // use HTTPS to ensure client side can read server side generated cookie containing CSRF token
+    https: true,
+
     hot: true,
-    inline: true,
-    progress: true,
+
+    // automatically open the browser link
+    open: true,
 
     // Display only errors to reduce the amount of output.
     stats: 'errors-only',
 
-    // Server side proxy when `<context_root>/api/*` is called
     proxy: {
-      // Using `url.resolve(..)` to handle possible trailing slash in context root
-      [url.resolve(packageJson.config.context_root, '/api/*')]: {
+      // Redirects `https://localhost:8080/api/*` to `https://localhost:8443/<context_root>/api/*`
+      [path.posix.join(contextRoot, '/api/*')]: {
         target: 'https://localhost:8443',
-        secure: false
-      }
-    }
+        secure: false,
+      },
+      // Redirects `https://localhost:8080/saml/*` to `https://localhost:8443/<context_root>/saml/*`
+      [path.posix.join(contextRoot, '/saml/*')]: {
+        target: 'https://localhost:8443',
+        secure: false,
+      },
+    },
   },
 
   plugins: baseConfig.webpackOptions.plugins.concat([
@@ -59,10 +73,19 @@ module.exports = Object.assign({}, baseConfig.webpackOptions, {
 
     // When there are errors while compiling this plugin skips the emitting phase
     // (and recording phase), so there are no assets emitted that include errors.
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
 
     // Generates `index.html` at the default location, which is dist dir, so that webpack-dev-server
     // can find it
-    new HtmlWebpackPlugin(baseConfig.htmlWebpackPluginOptions)
-  ])
+    new HtmlWebpackPlugin(baseConfig.htmlWebpackPluginOptions),
+
+    // Defining variables accessible by client code
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+        CONTEXT_ROOT: JSON.stringify(contextRoot),
+        APP_NAME: JSON.stringify(packageJson.name),
+      },
+    }),
+  ]),
 });

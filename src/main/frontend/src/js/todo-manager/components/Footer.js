@@ -1,15 +1,17 @@
+// @flow
+import type { Element } from 'react';
 import React from 'react';
-import FilterLink from './FilterLink';
+import LinkContainer from './Link';
 
-const Footer = () => (
+const Footer = (): Element<*> => (
   <p>
     Show:
     {' '}
-    <FilterLink filter="SHOW_ALL">All</FilterLink>
+    <LinkContainer filter="SHOW_ALL">All</LinkContainer>
     {' '}
-    <FilterLink filter="SHOW_ACTIVE">Active</FilterLink>
+    <LinkContainer filter="SHOW_ACTIVE">Active</LinkContainer>
     {' '}
-    <FilterLink filter="SHOW_COMPLETED">Completed</FilterLink>
+    <LinkContainer filter="SHOW_COMPLETED">Completed</LinkContainer>
   </p>
 );
 

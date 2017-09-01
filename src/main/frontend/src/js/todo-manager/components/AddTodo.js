@@ -1,67 +1,88 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions/index';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import { Grid, Cell } from 'radium-grid';
+import { addTodo } from '../actions';
 
-class AddTodo extends Component {
-  static propTypes = {
-    value: PropTypes.string,
-    error: PropTypes.string,
-    addTodo: PropTypes.func.isRequired
-  };
+type Props = {
+  addTodo: Function
+};
 
+type State = {
+  value: string,
+  error: string
+};
+
+class AddTodo extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = { value: '', error: '' };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   // on render, set focus on text field
-  componentDidMount() {
-    this.refs.todoTextField.focus();
+  componentDidMount(): void {
+    this.handleInputFocus();
   }
+
+  props: Props;
+  todoTextField: TextField;
+
+  // triggers focus on text field
+  handleInputFocus = (): void => {
+    this.todoTextField.focus();
+  };
 
   // on input change, update state
-  handleInputChange(event) {
+  handleInputChange = (event: SyntheticInputEvent<*>): void => {
     this.setState({ value: event.target.value });
-  }
+  };
+
+  // on enter pressed on input field, trigger button click
+  handleInputEnter = (event: SyntheticKeyboardEvent<*>): void => {
+    if (event.keyCode === 13) {
+      this.handleButtonClick();
+    }
+  };
 
   // on button click, add new value, reset state value and set focus on text field
-  handleButtonClick() {
+  handleButtonClick = (): void => {
     if (this.state.value) {
       this.props.addTodo(this.state.value);
-      this.setState({ value: '', error: '' }, () => this.refs.todoTextField.focus());
+      this.setState({ value: '', error: '' }, () => this.handleInputFocus());
     }
     else {
-      this.setState({ error: 'Field is required' });
+      this.setState({ error: 'Field is required' }, () => this.handleInputFocus());
     }
-  }
+  };
 
   render() {
     return (
-      <Grid>
-        <Cell width="1/3">
-          <TextField
-            ref="todoTextField"
-            hintText="Enter Todo..."
-            errorText={this.state.error}
-            value={this.state.value}
-            onChange={this.handleInputChange}
-          />
-        </Cell>
-        <Cell width="2/3">
-          <RaisedButton
-            primary
-            label="Add Todo"
-            onClick={this.handleButtonClick}
-          />
-        </Cell>
-      </Grid>
+      <div>
+        <TextField
+          ref={(ref) => {
+            this.todoTextField = ref;
+            return false;
+          }}
+          hintText="Enter Todo..."
+          errorText={this.state.error}
+          value={this.state.value}
+          onChange={this.handleInputChange}
+          onKeyDown={this.handleInputEnter}
+        />
+
+        <br />
+
+        <RaisedButton
+          primary
+          label="Add Todo"
+          onClick={this.handleButtonClick}
+        />
+      </div>
     );
   }
 }
 
-export default connect(null, { addTodo })(AddTodo);
+const AddTodoContainer = connect(null, { addTodo })(AddTodo);
+
+export default AddTodoContainer;
