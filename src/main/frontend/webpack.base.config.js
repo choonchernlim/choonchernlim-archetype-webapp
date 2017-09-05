@@ -81,7 +81,6 @@ const webpackOptions = {
           {
             loader: 'image-webpack-loader',
             query: {
-              // TODO LIMC JPEG doesn't get rendered properly!
               mozjpeg: {
                 progressive: true,
               },
