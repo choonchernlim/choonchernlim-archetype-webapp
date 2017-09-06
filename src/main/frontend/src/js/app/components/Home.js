@@ -9,7 +9,16 @@ import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import RadioButton from 'material-ui/RadioButton';
 import Container from '../../app/components/Container';
+import { url } from '../../app/utils/url-helper';
 import styles from '../styles';
+
+// non-existence URI to simulate 404
+const invalidUrl: string = url('/invalid');
+
+// server-side URI that throws purposely throw an error to simulate 500
+const exceptionUrl: string = url('/test/throw-exception');
+
+const swaggerUrl: string = url('/swagger-ui.html');
 
 /* eslint-disable max-len */
 const Home = () => (
@@ -42,6 +51,24 @@ const Home = () => (
         <p>This archetype uses <a href="https://github.com/choonchernlim/front-end-stack">front-end-stack</a>
           {' '} for client side development, which uses Webpack, React, Redux and ImmutableJS.
         </p>
+      </CardText>
+    </Card>
+
+    <h2>Error Handling</h2>
+
+    <Card>
+      <CardText>
+        <p>The client-side determines the appropriate views based on the non-REST errors.
+        </p>
+
+        <ul>
+          <li>404 Not Found ( try it: <a href={invalidUrl}>{invalidUrl}</a> ) will be redirected to
+            {' '} <code>/error/page-not-found</code>.
+          </li>
+          <li>Non-200s ( try it: <a href={exceptionUrl}>{exceptionUrl}</a> ) will be redirected to
+            {' '} <code>/error/unexpected</code>.
+          </li>
+        </ul>
       </CardText>
     </Card>
 
@@ -108,7 +135,7 @@ const Home = () => (
         </h3>
 
         <p>Any Swagger-annotated Spring controllers under this package can be viewed
-          at <a href="swagger-ui.html">/swagger-ui.html</a>.
+          at <a href={swaggerUrl}>{swaggerUrl}</a>.
         </p>
       </CardText>
     </Card>

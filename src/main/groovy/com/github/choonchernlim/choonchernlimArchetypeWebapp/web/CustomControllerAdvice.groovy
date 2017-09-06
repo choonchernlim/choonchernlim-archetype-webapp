@@ -1,19 +1,16 @@
 package com.github.choonchernlim.choonchernlimArchetypeWebapp.web
 
-import groovy.util.logging.Slf4j
 import org.springframework.beans.propertyeditors.StringTrimmerEditor
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.InitBinder
 
 /**
- * Global advice for all controllers.
+ * Advice for all controllers.
  */
-@Slf4j
 @ControllerAdvice
 @SuppressWarnings('GrMethodMayBeStatic')
-class GlobalControllerAdvice {
-
+class CustomControllerAdvice {
     /**
      * Trim string and set empty string as `null` value.
      *

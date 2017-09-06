@@ -40,7 +40,6 @@ currentPath="${FRONTEND_PATH}/src/js/app/components/MenuNavigation.js"
 replace_string_in_file "${currentPath}" 'https://github.com/choonchernlim/front-end-stack' 'https://github.com/choonchernlim/choonchernlim-archetype-webapp'
 
 cp archetype/frontend/src/js/app/components/Home.js ${FRONTEND_PATH}/src/js/app/components/Home.js
-cp archetype/frontend/src/js/app/components/MenuNavigation.js ${FRONTEND_PATH}/src/js/app/components/MenuNavigation.js
 
 cd ${FRONTEND_PATH}
 
