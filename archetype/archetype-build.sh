@@ -15,8 +15,8 @@ set -e
 # Include common functions
 source archetype/archetype-functions.sh
 
-# Must run script with Java 6 to prevent weird errors
-export JAVA_HOME="`/usr/libexec/java_home -v '1.7*'`"
+# Using Java 8
+export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
 
 # Get archetype version from `archetype/archetype.properties`
 ARCHETYPE_VERSION=`awk -F= '/^archetype.version/ { print $2 }' archetype/archetype.properties`
@@ -28,92 +28,84 @@ PROJECT_PATH="${TMP_PATH}/choonchernlim-archetype-webapp"
 
 ARCHETYPE_BASE_PATH="${PROJECT_PATH}/target/generated-sources/archetype"
 ARCHETYPE_RESOURCES_PATH="${ARCHETYPE_BASE_PATH}/src/main/resources/archetype-resources"
-ARCHETYPE_RESOURCES_EAR_PATH="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-ear"
-ARCHETYPE_RESOURCES_WAR_PATH="${ARCHETYPE_RESOURCES_PATH}/__rootArtifactId__-webapp/__rootArtifactId__-webapp-war"
-
 
 # ~/.m2 path for previously installed archetype
 ARCHETYPE_LOCAL_REPO_PATH="$HOME/.m2/repository/com/github/choonchernlim/choonchernlim-archetype-webapp/$ARCHETYPE_VERSION/"
 
-# Remove all `target` dirs first, if any
+echo "Performing Maven clean..."
 mvn clean
 
-# Recreate temp space
+echo "Recreating temp space..."
 rm -rf ${TMP_PATH}
 mkdir ${TMP_PATH}
 
-# Move archetype/ dir to be sibling of choonchernlim-archetype-webapp/ dir so that it won't get included
-# into the archetype itself
-rsync . ${TMP_PATH} -av \
---include="archetype/" \
---include="archetype.properties" \
---include="build.sh" \
---exclude="*" \
+echo "Removing unneeded files for the archetype..."
+rsync . ${PROJECT_PATH} -av                         \
+    --exclude="*.iml"                               \
+    --exclude="*.DS_Store"                          \
+    --exclude="LICENSE"                             \
+    --exclude="npm-debug.log"                       \
+    --exclude="README.md"                           \
+    --exclude="CHANGELOG.md"                        \
+    --exclude=".git/"                               \
+    --exclude=".idea/"                              \
+    --exclude="src/main/resources/static/assets/"   \
+    --exclude="src/main/webapp/WEB-INF/index.jsp"   \
+    --exclude="src/main/frontend/npm-debug.log"     \
+    --exclude="src/main/frontend/.webpack/"         \
+    --exclude="src/main/frontend/etc/"              \
+    --exclude="src/main/frontend/node/"             \
+    --exclude="src/main/frontend/node_modules/"
 
-# Remove all unneeded files for the archetype. `archetype/` dir cannot be removed at this point because
-# `mvn archetype:create-from-project` needs a property file that resides in it.
-rsync . ${PROJECT_PATH} -av \
---exclude="*.iml" \
---exclude="LICENSE" \
---exclude="npm-debug.log" \
---exclude="README.md" \
---exclude="CHANGELOG.md" \
---exclude=".git/" \
---exclude=".idea/" \
---exclude="archetype/" \
---exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/npm-debug.log" \
---exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/etc/" \
---exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/node/" \
---exclude="choonchernlim-archetype-webapp-webapp/choonchernlim-archetype-webapp-webapp-war/src/main/frontend/node_modules/"
-
+echo "Creating README.md and CHANGELOG.md..."
 echo '# Read Me' > ${PROJECT_PATH}/README.md
 echo '# Change Log' > ${PROJECT_PATH}/CHANGELOG.md
 
-# Change dir to the temp space
+echo "Changing dir to ${PROJECT_PATH}..."
 cd ${PROJECT_PATH}
 
-# Create archetype from existing project
 echo "Creating Maven archetype from existing project..."
-mvn clean archetype:create-from-project -Darchetype.properties=../archetype/archetype.properties
+mvn clean archetype:create-from-project -Darchetype.properties=archetype/archetype.properties
 display_line
 
-# Pluck out `<parent>...</parent>` from `pom.xml` and replace all line breaks with blank string to prevent `sed`
-# from throwing "unescaped newline inside substitute pattern" error. Then, use xmllint to reformat the file back.
-echo "Adding parent pom to archetype pom..."
-PARENT_POM=`awk '/<parent>/,/<\/parent>/' pom.xml | tr '\n' ' '`
-sed -i '' "s|</modelVersion>|</modelVersion> ${PARENT_POM}|g" "$ARCHETYPE_BASE_PATH/pom.xml"
-export XMLLINT_INDENT="    "
-xmllint --output "$ARCHETYPE_BASE_PATH/pom.xml" --format "$ARCHETYPE_BASE_PATH/pom.xml"
+echo "Copying ${PROJECT_PATH}/.gitignore to ${ARCHETYPE_RESOURCES_PATH}/.gitignore ..."
+cp "${PROJECT_PATH}/.gitignore" "${ARCHETYPE_RESOURCES_PATH}/.gitignore"
 
-currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/frontend/package.json"
-replace_string_in_file "${currentPath}" '"name": "choonchernlim-archetype-webapp"' '"name": "${rootArtifactId}"'
-replace_string_in_file "${currentPath}" '"context_root": "/choonchernlim-archetype-webapp"' '"context_root": "/${rootArtifactId}"'
-replace_string_in_file "${currentPath}" '"dist_uri": "/choonchernlim-archetype-webapp/assets"' '"dist_uri": "/${rootArtifactId}/assets"'
+echo "Copying ${PROJECT_PATH}/.gitattributes to ${ARCHETYPE_RESOURCES_PATH}/.gitattributes ..."
+cp "${PROJECT_PATH}/.gitattributes" "${ARCHETYPE_RESOURCES_PATH}/.gitattributes"
 
-currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/css/app.*.css`
-replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
+echo "Copying ${PROJECT_PATH}/archetype/pom.xml to ${ARCHETYPE_BASE_PATH}/pom.xml ..."
+cp "${PROJECT_PATH}/archetype/pom.xml" "${ARCHETYPE_BASE_PATH}/pom.xml"
 
-currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/js/app.*.js`
-replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
+currentPath="${ARCHETYPE_BASE_PATH}/pom.xml"
+replace_string_in_file "${currentPath}" "<version>0.0.0</version>" "<version>${ARCHETYPE_VERSION}</version>"
 
-currentPath=`ls -a ${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/assets/js/vendor.*.js`
-replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
+currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/frontend/src/js/app/components/Home.js"
+replace_string_in_file "${currentPath}" '<a href="https://github.com/choonchernlim/${artifactId}">${artifactId}</a>' '<a href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">choonchernlim-archetype-webapp</a>'
 
-currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/html/index.html"
-replace_string_in_file "${currentPath}" 'choonchernlim-archetype-webapp' '${rootArtifactId}'
+currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/frontend/src/js/app/components/MenuNavigation.js"
+replace_string_in_file "${currentPath}" 'https://github.com/choonchernlim/${artifactId}' 'https://github.com/choonchernlim/choonchernlim-archetype-webapp'
 
-currentPath="${ARCHETYPE_RESOURCES_WAR_PATH}/src/main/webapp/WEB-INF/web.xml"
-replace_string_in_file "${currentPath}" '<display-name>choonchernlim-archetype-webapp</display-name>' '<display-name>${rootArtifactId}</display-name>'
+currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/groovy/config/MailConfig.groovy"
+replace_string_in_file "${currentPath}" '${groupId}.springbootmail.config.SpringBootMailConfig' 'com.github.choonchernlim.springbootmail.config.SpringBootMailConfig'
 
-assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 5 '\${version}'
+currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/resources/application-local.yml"
+replace_string_in_file "${currentPath}" '${groupId}.choonchernlimArchetypeWebapp' '${package}'
+
+for currentPath in `find ${ARCHETYPE_RESOURCES_PATH} -type f -name '*.groovy'`; do
+    replace_string_in_file "${currentPath}" '${groupId}.choonchernlimArchetypeWebapp' '${package}'
+done
+
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 1 '\${version}'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 2 'choonchernlim-archetype-webapp'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'choonchernlimArchetypeWebapp'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 '__tests__'
 display_line
 
-echo "Remove existing archetype from local repository..."
-rm -rf "$ARCHETYPE_LOCAL_REPO_PATH"
+echo "Remove existing archetype from local repository [ ${ARCHETYPE_LOCAL_REPO_PATH} ]..."
+rm -rf "${ARCHETYPE_LOCAL_REPO_PATH}"
 display_line
 
 echo "Installing new archetype in local repository..."

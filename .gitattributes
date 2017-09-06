@@ -1,0 +1,2 @@
+# Make all JavaScript files end with LF on Windows so ESLint works
+*.js text eol=lf

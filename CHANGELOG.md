@@ -4,6 +4,7 @@
 
 * Spring Security: Set X-Frame-Options to DENY to prevent clickjacking attacks.
 * Spring Security: Disable OPTIONS method to prevent XST attacks.
+* Adding `.gitattributes`.
 
 ## 1.0.1 - 2016-05-23
 

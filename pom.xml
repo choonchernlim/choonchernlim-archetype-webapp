@@ -12,11 +12,8 @@
     <groupId>com.github.choonchernlim</groupId>
     <artifactId>choonchernlim-archetype-webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>0.0.0</version>
 
-    <!--
-    TODO LIMC Front-end-stack: image-loader bug: JPG doesn't get rendered properly!
-    -->
     <properties>
         <ssl.keystore>${project.basedir}/src/test/resources/tomcat/keystore.jks</ssl.keystore>
         <ssl.keypass>secret</ssl.keypass>
@@ -260,7 +257,7 @@
 
     <profiles>
         <!--
-        "skip-frontend-build" profile
+        "skip-frontend-build" profile.
 
         Profile to skip frontend production bundle build to speed up Maven lifecycle.
         -->
@@ -279,5 +276,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>
