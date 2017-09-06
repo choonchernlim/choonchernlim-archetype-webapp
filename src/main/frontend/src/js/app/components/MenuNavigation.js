@@ -10,7 +10,6 @@ import AssignmentIcon from 'material-ui/svg-icons/action/assignment';
 import BugReportIcon from 'material-ui/svg-icons/action/bug-report';
 import SchoolIcon from 'material-ui/svg-icons/social/school';
 import MoodIcon from 'material-ui/svg-icons/social/mood';
-import DescriptionIcon from 'material-ui/svg-icons/action/description';
 import styles from '../styles';
 
 type Props = {
@@ -24,8 +23,6 @@ const MenuNavigation = ({ open, router }: Props) => {
   return (
     <Drawer open={open} containerStyle={styles.layout.leftNav}>
       <MenuItem onTouchTap={push('/')} leftIcon={<HomeIcon />}>Home</MenuItem>
-
-      <MenuItem href="/swagger-ui.html" leftIcon={<DescriptionIcon />}>Swagger</MenuItem>
 
       <MenuItem onTouchTap={push('chuck-norris')} leftIcon={<MoodIcon />}>Chuck Norris</MenuItem>
 

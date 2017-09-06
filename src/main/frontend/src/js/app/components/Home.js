@@ -18,8 +18,6 @@ const invalidUrl: string = url('/invalid');
 // server-side URI that throws purposely throw an error to simulate 500
 const exceptionUrl: string = url('/test/throw-exception');
 
-const swaggerUrl: string = url('/swagger-ui.html');
-
 /* eslint-disable max-len */
 const Home = () => (
   <Container>
@@ -135,7 +133,7 @@ const Home = () => (
         </h3>
 
         <p>Any Swagger-annotated Spring controllers under this package can be viewed
-          at <a href={swaggerUrl}>{swaggerUrl}</a>.
+          at <a href="swagger-ui.html">/swagger-ui.html</a>.
         </p>
       </CardText>
     </Card>
