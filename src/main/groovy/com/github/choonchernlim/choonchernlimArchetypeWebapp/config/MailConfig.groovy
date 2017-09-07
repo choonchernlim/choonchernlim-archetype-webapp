@@ -6,9 +6,12 @@ import org.springframework.context.annotation.Import
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
 
+/**
+ * Mail configuration.
+ */
 // TODO Email - Enable email module
 //@Configuration
-@Import([SpringBootMailConfig])
+@Import(SpringBootMailConfig)
 class MailConfig {
     @Bean
     JavaMailSender javaMailSender() {

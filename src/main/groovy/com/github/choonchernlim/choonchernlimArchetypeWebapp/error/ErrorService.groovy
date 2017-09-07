@@ -21,7 +21,17 @@ class ErrorService {
         this.errorAttributes = errorAttributes
     }
 
+    /**
+     * Handles the error and returns the error info.
+     *
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @return Error info
+     */
     ErrorBean handle(final HttpServletRequest request, final HttpServletResponse response) {
+        assert request
+        assert response
+
         final Map<String, Object> attr = errorAttributes.getErrorAttributes(
                 new ServletRequestAttributes(request), true)
 

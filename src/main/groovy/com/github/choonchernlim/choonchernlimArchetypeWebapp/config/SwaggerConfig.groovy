@@ -11,6 +11,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 import java.time.LocalDateTime
 
+/**
+ * Configures Swagger.
+ */
 @Configuration
 @EnableSwagger2
 class SwaggerConfig {
@@ -20,9 +23,8 @@ class SwaggerConfig {
                 useDefaultResponseMessages(false).
                 directModelSubstitute(LocalDateTime, String).
                 select().
-                apis(
-                        RequestHandlerSelectors.basePackage(
-                                'com.github.choonchernlim.choonchernlimArchetypeWebapp.web.api')).
+                apis(RequestHandlerSelectors.basePackage(
+                        'com.github.choonchernlim.choonchernlimArchetypeWebapp.web.api')).
                 paths(PathSelectors.regex('/api/.*')).
                 build().
                 apiInfo(new ApiInfoBuilder().title('RESTful Web Services').build())

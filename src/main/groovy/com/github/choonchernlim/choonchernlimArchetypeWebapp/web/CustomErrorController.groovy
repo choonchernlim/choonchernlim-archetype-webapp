@@ -44,7 +44,7 @@ class CustomErrorController implements ErrorController {
     String main(final HttpServletRequest request, final HttpServletResponse response) {
         final ErrorBean errorBean = errorService.handle(request, response)
 
-        if (HttpStatus.valueOf(response.status) == HttpStatus.NOT_FOUND) {
+        if (HttpStatus.valueOf(errorBean.status) == HttpStatus.NOT_FOUND) {
             return "redirect:/error/page-not-found?path=${errorBean.path}"
         }
 
@@ -57,7 +57,7 @@ class CustomErrorController implements ErrorController {
      * @return View
      */
     @RequestMapping(value = '*', method = RequestMethod.GET)
-    String unexpected() {
+    String specificError() {
         return 'index'
     }
 }
