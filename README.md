@@ -2,6 +2,26 @@
 
 Groovy-based Maven WAR archetype using Spring Boot with the capability of generating static code analysis reports for Continuous Integration servers. 
 
+### Back-End Stack
+
+Handles app security and generates Restful web services for front-end stack to consume. Spring Boot serves as the backbone of this archetype.
+
+|  Key Dependencies                                                             | Description                                                             |
+|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+|[Swagger](https://swagger.io/swagger-ui/)                                      |RESTful web services documentation tool and viewer                       |
+|[Apache Tomcat](https://tomcat.apache.org/)                                    |Embedded JEE server (for local development)                              |
+|[H2](http://www.h2database.com/html/main.html)                                 |Embedded database (for local development)                                |
+|[Spring](http://projects.spring.io/spring-framework/)                          |Dependency injection, handles plumbing code                              |
+|[Spring Security](http://projects.spring.io/spring-security/)                  |App security                                                             |
+|[Spring Data JPA](http://projects.spring.io/spring-data-jpa/)                  |JPA-based repositories                                                   |
+|[Hibernate](http://hibernate.org/orm/)                                         |ORM framework                                                            |
+|[Spock](https://github.com/spockframework/spock)                               |Groovy test cases                                                        |
+|[Spring Boot CI](https://github.com/choonchernlim/spring-boot-ci)              |Static code analysis reports for Continuous Integration servers          |
+
+### Front-End Stack
+
+True single-page app from [front-end-stack](https://github.com/choonchernlim/front-end-stack).
+
 ## Prerequisites
 
 * Java version = 8.
@@ -38,30 +58,6 @@ mvn archetype:generate
 
 * Follow further instruction on that main page.
 
-## About This Archetype
-
-### Back-End Stack
-
-Handles app security and generates Restful web services for front-end stack to consume. Spring Boot serves as the backbone of this archetype.
-
-|  Key Dependencies                                                             | Description                                                             |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-|[Swagger](https://swagger.io/swagger-ui/)                                      |RESTful web services documentation tool and viewer                       |
-|[Apache Tomcat](https://tomcat.apache.org/)                                    |Embedded JEE server (for local development)                              |
-|[H2](http://www.h2database.com/html/main.html)                                 |Embedded database (for local development)                                |
-|[Spring](http://projects.spring.io/spring-framework/)                          |Dependency injection, handles plumbing code                              |
-|[Spring Security](http://projects.spring.io/spring-security/)                  |App security                                                             |
-|[Spring Data JPA](http://projects.spring.io/spring-data-jpa/)                  |JPA-based repositories                                                   |
-|[Hibernate](http://hibernate.org/orm/)                                         |ORM framework                                                            |
-|[Spock](https://github.com/spockframework/spock)                               |Groovy test cases                                                        |
-|[Spring Boot CI](https://github.com/choonchernlim/spring-boot-ci)              |Static code analysis reports for Continuous Integration servers          |
-
-### Front-End Stack
-
-True single-page app from [front-end-stack](https://github.com/choonchernlim/front-end-stack).
-
-Configure IntelliJ IDEA to use [intellij-config](https://github.com/choonchernlim/intellij-config) to satisfy ESLint rules.
-                                                                                                                                                      
 ## Spring Profiles
 
 * This archetype is preconfigured with 3 Spring Profiles:-
