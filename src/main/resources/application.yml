@@ -5,6 +5,9 @@ logging.level:
 
 
 spring:
+  # Default Spring profile is "middleware" if `spring.profiles.active` is not specified
+  profiles.active: middleware
+
   # To ensure logging messages are consistently shown in color regardless of console type (IntelliJ, Terminal, etc).
   output.ansi.enabled: ALWAYS
 
@@ -42,10 +45,6 @@ spring:
   # when deploying to Tomcat
   jmx.enabled: false
 
-# Disable default error page in order to use custom error page
-# server.error.whitelabel.enabled: false
-
-spring.mvc.throw-exception-if-no-handler-found: true
 
 # Actuator
 management:

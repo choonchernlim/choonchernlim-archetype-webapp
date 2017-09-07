@@ -1,12 +1,10 @@
 # choonchernlim-archetype-webapp
 
-This Maven archetype creates a dynamic web project that plays nicely with Jenkins and Sonar. 
-
-Although it primarily targets WebSphere 8.5.5, the bundled EAR/WAR file will also work with other application servers, such as Tomcat, Jetty, etc.
+Groovy-based Maven WAR archetype using Spring Boot with the capability of generating static code analysis reports for Continuous Integration servers. 
 
 ## Prerequisites
 
-* Java version >= 7.
+* Java version = 8.
 * Maven version >= 3.3.x.
 
 ## Latest Release
@@ -15,7 +13,7 @@ Although it primarily targets WebSphere 8.5.5, the bundled EAR/WAR file will als
 <dependency>
   <groupId>com.github.choonchernlim</groupId>
   <artifactId>choonchernlim-archetype-webapp</artifactId>
-  <version>1.0.1</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
@@ -26,120 +24,77 @@ mvn archetype:generate
 -DinteractiveMode=false 
 -DarchetypeGroupId=com.github.choonchernlim 
 -DarchetypeArtifactId=choonchernlim-archetype-webapp 
--DarchetypeVersion=1.0.1
+-DarchetypeVersion=2.0.0
 -DgroupId=com.github.choonchern.testProject 
 -DartifactId=testProject 
 -Dversion=1.0.0-SNAPSHOT
 ```
 
-## Back-End Stack
+## Getting Started
 
-Handles app security and generates Restful web services for front-end stack to consume.
+* Run `mvn clean spring-boot:run -Drun.profiles=local`.
+
+* Open `https://localhost:8443` in browser.
+
+* Follow further instruction on that main page.
+
+## About This Archetype
+
+### Back-End Stack
+
+Handles app security and generates Restful web services for front-end stack to consume. Spring Boot serves as the backbone of this archetype.
 
 |  Key Dependencies                                                             | Description                                                             |
 |-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-|[Jetty](http://www.eclipse.org/jetty/)                                         |JEE server (for app dev)                                                 |
-|[H2](http://www.h2database.com/html/main.html)                                 |Embedded database (for app dev)                                          |
+|[Swagger](https://swagger.io/swagger-ui/)                                      |RESTful web services documentation tool and viewer                       |
+|[Apache Tomcat](https://tomcat.apache.org/)                                    |Embedded JEE server (for local development)                              |
+|[H2](http://www.h2database.com/html/main.html)                                 |Embedded database (for local development)                                |
 |[Spring](http://projects.spring.io/spring-framework/)                          |Dependency injection, handles plumbing code                              |
 |[Spring Security](http://projects.spring.io/spring-security/)                  |App security                                                             |
 |[Spring Data JPA](http://projects.spring.io/spring-data-jpa/)                  |JPA-based repositories                                                   |
 |[Hibernate](http://hibernate.org/orm/)                                         |ORM framework                                                            |
-|[Guava](https://github.com/google/guava)                                       |Utility API, creates immutable collections, functional-style programming |  
 |[Spock](https://github.com/spockframework/spock)                               |Groovy test cases                                                        |
-|[Better Preconditions](https://github.com/choonchernlim/better-preconditions)  |Fluent precondition API                                                  |
-|[Build Reports](https://github.com/choonchernlim/build-reports)                |Static code analysis reports for Jenkins and Sonar                       |
-|[Pojo Builder](https://github.com/mkarneim/pojobuilder)                        |Creates immutable objects                                                |
+|[Spring Boot CI](https://github.com/choonchernlim/spring-boot-ci)              |Static code analysis reports for Continuous Integration servers          |
 
-## Front-End Stack
+### Front-End Stack
 
 True single-page app from [front-end-stack](https://github.com/choonchernlim/front-end-stack).
 
 Configure IntelliJ IDEA to use [intellij-config](https://github.com/choonchernlim/intellij-config) to satisfy ESLint rules.
-
-|  Key Dependencies                                                             | Description                                                             |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-|[Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin)     |Installs Node.js and NPM dependencies using Maven goals                  |
-|[NPM](https://www.npmjs.com/)                                                  |JavaScript package manager                                               |
-|[Node.js](https://nodejs.org)                                                  |Event-driven I/O server-side JavaScript environment (for app dev)        |
-|[Webpack](https://webpack.github.io/) 	                                        |Module bundler                                                           |
-|[Webpack Dev Server](https://github.com/webpack/webpack-dev-server)            |Live reloading server (for app dev)                                      |
-|[ES6](http://www.ecma-international.org/ecma-262/6.0/) and ES7                 |Latest and greatest JavaScript language                                  |
-|[Babel](https://babeljs.io/) 	                                                |Transpiles ES6+ to ES5 to maximize cross browser compatibility           |                   
-|[React](https://facebook.github.io/react/)                                     |Handles view layer                                                       |
-|[Redux](https://github.com/reactjs/redux)                                      |One-way data flow, inspired by Flux pattern                              |
-|[Saga](https://github.com/yelouafi/redux-saga) 	                            |Side Effects middleware using ES6 Generator                              |
-|[Immutable](https://facebook.github.io/immutable-js/) 	                        |Creates immutable objects                                                |
-|[Material UI](http://www.material-ui.com/) 	                                |UI components, adhering to [Google Material Design](https://www.google.com/design/spec/material-design/introduction.htm)|     
-|[Radium](https://github.com/FormidableLabs/radium) and [Radium Grid](https://github.com/FormidableLabs/radium-grid)|Inline CSS and grid layout           |
-|[ESLint](https://github.com/eslint/eslint) 	                                |Validates JavaScript, adhering to [Airbnb's JavaScript style guide](https://github.com/airbnb/javascript) |                    
-|[Mocha](https://mochajs.org/) 	                                                |JavaScript test framework                                                |                    
                                                                                                                                                       
-## Usage
+## Spring Profiles
 
-### Configuring VCS Ignore List
+* This archetype is preconfigured with 3 Spring Profiles:-
+    * `middleware` (default) - For generated WAR deployed in Middleware servers using JNDI data source. This is the default profile if `spring.profiles.active` is not specified.
+    * `local` - For local development using H2 data source.
+    * `test` - For running test cases.
 
-* The following directories should not be committed into VCS:-
-    * `target/`
-    * `**/src/main/frontend/etc/`
-    * `**/src/main/frontend/node/`   
-    * `**/src/main/frontend/node_modules/`
+## How To...
 
-### Starting Jetty Server for Back-End Development
+### Start Embedded Tomcat Server for Back-End Development
 
-* From `war` module, run `mvn clean jetty:run` to start Jetty server.
-
-* Go to `https://localhost:8443` and select the link to see the project main page.
-
-### Starting Webpack Dev Server for Front-End Development
-
-* Change directory to `frontend` dir.
-
-* Run `npm start`.
+* Run `mvn clean spring-boot:run -Drun.profiles=local`.
+    * By default, this will perform `yarn build` to bundle the front-end JS files first before starting the server.
+    * If there are no changes on front-end, you can speed it up by running `mvn clean spring-boot:run -Drun.profiles=local -Pskip-frontend-build`
     
-* Open `http://localhost:8080` in browser. 
+* Open `https://localhost:8443` in browser.
+
+### Start Webpack Dev Server for Front-End Development
+
+* Change directory to `src/main/frontend` dir.
+
+* Run `yarn start`.
+    
+* Open `https://localhost:8080` in browser. 
  
-### Creating EAR File
+### Create WAR File
 
-* From `root` module or `webapp` module, run `mvn clean package`.
+* Run `mvn clean package`.
 
-* This will create the WAR file and bundle it into the EAR file.
-
-### Creating WAR File
-
-From `war` module, run `mvn clean package`.
-
-This will create just the WAR file.
-
-### Configuring Jenkins
+### Configure Jenkins Job
 
 * Create a "Freestyle project" job.
 
 * Under "Add build steps, select "Invoke top-level Maven targets".
-    * Goals (without Sonarqube): `-U clean test site`
-    * Goals (with Sonarqube): `-U clean test site sonar:sonar -Psonarqube`
-    * POM: `[project]/[project]-war/pom.xml`
+    * Goals: `-U clean test site`
     
-## Version Restrictions
-
-Some dependencies and plugins cannot be upgraded to the latest version to ensure they are compatible with Websphere 8.5.5's specs: Java SE 7, Java EE 7, Servlet 3.0, JSP 2.2, JPA: 2.0.
-
-| Dependency                            | Version Used  | Why                                                     |
-| --------------------------------------|---------------|---------------------------------------------------------|
-| org.mortbay.jetty:jetty-maven-plugin  | 9.2.x         | 9.3.x requires Java 8                                   |
-| javax.servlet:javax.servlet-api       | 3.x           | 4.x requires Java 8                                     |
-| org.hibernate:hibernate-entitymanager | 4.2.x         | 4.3.x requires JPA 2.1                                  |
-| org.jadira.usertype:usertype.core     | 4.x           | 5.x requires Hibernate 5                                |
-            
-## Troubleshooting
-
-### Problem creating jar: Execution exception: Java heap space
-
-When packaging EAR file, you get this exception:-
-
-    [ERROR] Failed to execute goal org.apache.maven.plugins:maven-ear-plugin:2.10.1:ear (default-ear) 
-    on project myproject-webapp-ear: Error assembling EAR: Problem creating jar: Execution exception: 
-    Java heap space -> [Help 1]
-
-To fix this, add the following VM arguments to increase the heap space:-
-
-    -Xms2048m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m 

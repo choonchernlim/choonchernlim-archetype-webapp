@@ -3,6 +3,7 @@ package com.github.choonchernlim.choonchernlimArchetypeWebapp.error
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.ErrorAttributes
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.context.request.ServletRequestAttributes
 
@@ -33,7 +34,12 @@ class ErrorService {
                 trace: attr['trace']
         )
 
-        log.error("An error has occurred: ${errorBean}")
+        if (HttpStatus.valueOf(response.status) == HttpStatus.NOT_FOUND) {
+            log.warn("Resource not found... ${errorBean}")
+        }
+        else {
+            log.error("An error has occurred... ${errorBean}")
+        }
 
         // TODO Refine error handling other than displaying the error in console
 
