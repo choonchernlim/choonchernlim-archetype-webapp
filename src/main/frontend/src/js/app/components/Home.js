@@ -118,7 +118,7 @@ const Home = () => (
       <ToggleOff />
 
       <h3>
-        src/main/groovy/com/github/choonchernlim/choonchernlimArchetypeWebapp/config/MailConfig.groovy
+        src/main/groovy/[BASE_PACKAGE]/config/MailConfig.groovy
       </h3>
       <p>Uncomment <code>@Configuration</code>. Update SMTP hostname. Visit
         {' '} <a href="https://github.com/choonchernlim/spring-boot-mail">spring-boot-mail</a> to
@@ -132,7 +132,7 @@ const Home = () => (
       <ToggleOn />
 
       <h3>
-        src/main/groovy/com/github/choonchernlim/choonchernlimArchetypeWebapp/config/SecurityConfig.groovy
+        src/main/groovy/[BASE_PACKAGE]/config/SecurityConfig.groovy
       </h3>
       <p>This app is preconfigured to prevent:-</p>
       <ul>
@@ -156,13 +156,13 @@ const Home = () => (
       <ToggleOn />
 
       <h3>
-        src/main/groovy/com/github/choonchernlim/choonchernlimArchetypeWebapp/config/PrimaryDataSourceLocalConfig.groovy
+        src/main/groovy/[BASE_PACKAGE]/config/PrimaryDataSourceLocalConfig.groovy
       </h3>
 
       <p>When using <code>local</code> Spring profile, H2 database is used.</p>
 
       <h3>
-        src/main/groovy/com/github/choonchernlim/choonchernlimArchetypeWebapp/config/PrimaryDataSourceMiddlewareConfig.groovy
+        src/main/groovy/[BASE_PACKAGE]/config/PrimaryDataSourceMiddlewareConfig.groovy
       </h3>
 
       <p>When using <code>middleware</code> Spring profile, JNDI data source is used.</p>
@@ -194,13 +194,13 @@ const Home = () => (
       </p>
 
       <h3>
-        src/main/groovy/com/github/choonchernlim/choonchernlimArchetypeWebapp/config/SecondaryDataSourceLocalConfig.groovy
+        src/main/groovy/[BASE_PACKAGE]/config/SecondaryDataSourceLocalConfig.groovy
       </h3>
 
       <p>Uncomment <code>@Configuration</code>. Adjust configuration accordingly.</p>
 
       <h3>
-        src/main/groovy/com/github/choonchernlim/choonchernlimArchetypeWebapp/config/SecondaryDataSourceMiddlewareConfig.groovy
+        src/main/groovy/[BASE_PACKAGE]/config/SecondaryDataSourceMiddlewareConfig.groovy
       </h3>
 
       <p>Uncomment <code>@Configuration</code>.</p>
@@ -216,7 +216,7 @@ const Home = () => (
       <ToggleOn />
 
       <h3>
-        src/main/groovy/com/github/choonchernlim/choonchernlimArchetypeWebapp/web/api
+        src/main/groovy/[BASE_PACKAGE]/web/api
       </h3>
 
       <p>Any Swagger-annotated Spring controllers under this package can be viewed
