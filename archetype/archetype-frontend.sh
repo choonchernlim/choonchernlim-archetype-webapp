@@ -15,7 +15,6 @@ set -e
 # Include common functions
 source archetype/archetype-functions.sh
 
-WEBAPP_PATH="src/main/webapp"
 FRONTEND_PATH="src/main/frontend"
 
 echo "Deleting ${FRONTEND_PATH} dir..."
