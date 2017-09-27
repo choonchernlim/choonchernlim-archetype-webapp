@@ -3,12 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.github.choonchernlim</groupId>
+        <artifactId>spring-boot-ci</artifactId>
+        <version>0.2.3</version>
+    </parent>
+
     <groupId>com.github.choonchernlim</groupId>
     <artifactId>choonchernlim-archetype-webapp</artifactId>
     <version>0.0.0</version>
     <packaging>maven-archetype</packaging>
     <name>choonchernlim-archetype-webapp</name>
-    <description>Groovy-based Maven WAR archetype using Spring Boot with the capability of generating static code analysis reports for Continuous Integration servers.</description>
+    <description>Groovy-based Maven WAR archetype using Spring Boot with the capability of generating static code
+        analysis reports for Continuous Integration servers.
+    </description>
     <url>https://github.com/choonchernlim/choonchernlim-archetype-webapp</url>
 
     <licenses>
@@ -29,7 +37,8 @@
 
     <scm>
         <connection>scm:git:git@github.com:choonchernlim/choonchernlim-archetype-webapp.git</connection>
-        <developerConnection>scm:git:git@github.com:choonchernlim/choonchernlim-archetype-webapp.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:choonchernlim/choonchernlim-archetype-webapp.git
+        </developerConnection>
         <url>git@github.com:choonchernlim/choonchernlim-archetype-webapp.git</url>
     </scm>
 
@@ -60,5 +69,20 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <!--
+        To prevent the following error when generating archetype.
+
+        "Execution default of goal org.springframework.boot:spring-boot-maven-plugin:1.5.6.RELEASE:repackage failed: Unable to find main class -> [Help 1]"
+        -->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
