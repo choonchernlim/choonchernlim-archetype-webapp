@@ -7,6 +7,7 @@
 * Using Java 8, Groovy and Spring Boot.
 * Spring Security: Set X-Frame-Options to DENY to prevent clickjacking attacks.
 * Spring Security: Disable OPTIONS method to prevent XST attacks.
+* Configured `frontend-maven-plugin` to use `yarn` instead of `npm`.
 
 ## 1.0.1 - 2016-05-23
 
