@@ -45,7 +45,7 @@ class CustomErrorController implements ErrorController {
         final ErrorBean errorBean = errorService.handle(request, response)
 
         if (HttpStatus.valueOf(errorBean.status) == HttpStatus.NOT_FOUND) {
-            return "redirect:/error/page-not-found?path=${errorBean.path}"
+            return 'index'
         }
 
         return "redirect:/error/unexpected?path=${errorBean.path}"
