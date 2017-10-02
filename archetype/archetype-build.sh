@@ -80,11 +80,12 @@ cp "${PROJECT_PATH}/archetype/pom.xml" "${ARCHETYPE_BASE_PATH}/pom.xml"
 currentPath="${ARCHETYPE_BASE_PATH}/pom.xml"
 replace_string_in_file "${currentPath}" "<version>0.0.0</version>" "<version>${ARCHETYPE_VERSION}</version>"
 
-currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/frontend/src/js/app/components/Home.js"
-replace_string_in_file "${currentPath}" '<a href="https://github.com/choonchernlim/${artifactId}">${artifactId}</a>' '<a href="https://github.com/choonchernlim/choonchernlim-archetype-webapp">choonchernlim-archetype-webapp</a>'
-
-currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/frontend/src/js/app/components/MenuNavigation.js"
+currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/frontend/src/js/layout/components/Layout.js"
 replace_string_in_file "${currentPath}" 'https://github.com/choonchernlim/${artifactId}' 'https://github.com/choonchernlim/choonchernlim-archetype-webapp'
+
+currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/frontend/src/js/layout/components/Home.js"
+replace_string_in_file "${currentPath}" 'https://github.com/choonchernlim/${artifactId}' 'https://github.com/choonchernlim/choonchernlim-archetype-webapp'
+replace_string_in_file "${currentPath}" '  ${artifactId}' '  choonchernlim-archetype-webapp'
 
 currentPath="${ARCHETYPE_RESOURCES_PATH}/src/main/groovy/config/MailConfig.groovy"
 replace_string_in_file "${currentPath}" '${groupId}.springbootmail.config.SpringBootMailConfig' 'com.github.choonchernlim.springbootmail.config.SpringBootMailConfig'
@@ -97,7 +98,7 @@ for currentPath in `find ${ARCHETYPE_RESOURCES_PATH} -type f -name '*.groovy'`; 
 done
 
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 1 '\${version}'
-assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 2 'choonchernlim-archetype-webapp'
+assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 3 'choonchernlim-archetype-webapp'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'archetypes'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'com.github.choonchernlim.choonchernlimArchetypeWebapp'
 assert_string_occurrence "${ARCHETYPE_RESOURCES_PATH}" 0 'choonchernlimArchetypeWebapp'
