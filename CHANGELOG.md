@@ -1,6 +1,6 @@
 # Change Log
 
-## 2.0.0 - 2017-x-x
+## 2.0.0 - 2017-11-29
 
 * Migrated from WAS to Tomcat 8.
 * Converted EAR/WAR archetype to WAR archetype.
