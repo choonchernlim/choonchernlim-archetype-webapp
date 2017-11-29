@@ -4,10 +4,6 @@ Go to `archetype/archetype.properties`, and change this line:-
 
     archetype.version=X.X.X
 
-Go to `archetype/archetype-test.sh`, and change this line:-
-
-    -DarchetypeVersion=X.X.X
-
 ## Run Build Script
 
 In Terminal, navigate to `choonchernlim-archetype-webapp` directory:-
