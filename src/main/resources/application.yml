@@ -1,0 +1,51 @@
+# See https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+logging.level:
+  root: WARN
+
+
+spring:
+  # Default Spring profile is "middleware" if `spring.profiles.active` is not specified
+  profiles.active: middleware
+
+  # To ensure logging messages are consistently shown in color regardless of console type (IntelliJ, Terminal, etc).
+  output.ansi.enabled: ALWAYS
+
+  # Works in conjunction with `com.fasterxml.jackson.datatype:jackson-datatype-jsr310` dependency to show date and
+  # datetime as string instead of array.
+  jackson.serialization.write_dates_as_timestamps: false
+
+  datasource:
+    # Use Hikari instead of using connection pool provided by server.
+    # See https://stackoverflow.com/questions/43625061/spring-boot-with-hikari-cp-not-working-while-deployment-in-seperate-tomcat-s
+    type: com.zaxxer.hikari.HikariDataSource
+
+    # Don't run SQL scripts
+    initialize: false
+
+  jpa:
+    hibernate:
+      # To prevent column name `employeeId` from becoming `employee_id`.
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        # To reduce transaction deadlocks in highly concurrent systems.
+        order_updates: true
+        default_schema: dbo
+        show_sql: false
+        format_sql: false
+
+  mvc.view:
+    prefix: /WEB-INF/
+    suffix: .jsp
+
+  # Disabled to prevent "javax.management.InstanceAlreadyExistsException: com.zaxxer.hikari:name=XXXXX,type=HikariDataSource"
+  # when deploying to Tomcat
+  jmx.enabled: false
+
+
+# Actuator
+management:
+  context-path: /actuator

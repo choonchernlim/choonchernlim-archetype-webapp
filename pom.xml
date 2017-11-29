@@ -3,718 +3,277 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- This parent POM handles all build reports that are 100% compatible with Maven Site, Jenkins and Sonar. -->
     <parent>
         <groupId>com.github.choonchernlim</groupId>
-        <artifactId>build-reports</artifactId>
-        <version>0.3.2</version>
+        <artifactId>spring-boot-ci</artifactId>
+        <version>0.2.4</version>
     </parent>
 
     <groupId>com.github.choonchernlim</groupId>
     <artifactId>choonchernlim-archetype-webapp</artifactId>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
     <version>0.0.0</version>
-    <name>${project.artifactId}</name>
-
-    <modules>
-        <module>choonchernlim-archetype-webapp-webapp</module>
-    </modules>
-
-    <!-- Ensures all plugins abide by this maven version -->
-    <prerequisites>
-        <maven>${maven.min.version}</maven>
-    </prerequisites>
-
-    <!-- TODO Update SCM info! -->
-    <!--
-    This stub SCM block is needed to prevent `maven-project-info-reports-plugin` from throwing
-    "wrong effective scm url" warnings when generating site (ex: mvn site) because the SCM info
-    is inherited from `build-reports` by default.
-    -->
-    <scm>
-        <connection>scm:svn:https://server/project/trunk</connection>
-        <developerConnection>scm:svn:https://server/project/trunk</developerConnection>
-        <url>https://server/project/trunk</url>
-    </scm>
 
     <properties>
-        <!-- TODO Update Nexus server!-->
-        <nexus.id>panama</nexus.id>
-        <nexus.url>http://panama/nexus</nexus.url>
+        <ssl.keystore>${project.basedir}/src/test/resources/tomcat/keystore.jks</ssl.keystore>
+        <ssl.keypass>secret</ssl.keypass>
+        <ssl.storepass>secret</ssl.storepass>
 
-        <!-- TODO Update Sonarqube server!-->
-        <!-- Used by `sonarqube` profile -->
-        <sonarqube.url>http://panama/sonar</sonarqube.url>
-
-        <jdk.version>1.7</jdk.version>
-        <maven.min.version>3.3.0</maven.min.version>
-
-        <groovy-all.version>2.4.6</groovy-all.version>
-        <groovy-eclipse-compiler.version>2.9.2-01</groovy-eclipse-compiler.version>
-        <groovy-eclipse-batch.version>2.4.3-01</groovy-eclipse-batch.version>
-
-        <org.springframework.version>4.2.6.RELEASE</org.springframework.version>
-        <org.springframework.security.version>4.1.0.RELEASE</org.springframework.security.version>
-        <org.springframework.ws.version>2.3.0.RELEASE</org.springframework.ws.version>
-
-        <spring-data-jpa.version>1.10.1.RELEASE</spring-data-jpa.version>
-
-        <hibernate.version>4.2.20.Final</hibernate.version>
-        <slf4j.version>1.7.21</slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
-        <guava.version>19.0</guava.version>
-        <jackson.version>2.7.4</jackson.version>
-        <spock.version>1.0-groovy-2.4</spock.version>
-        <json-path.version>2.2.0</json-path.version>
-        <hamcrest.version>1.3</hamcrest.version>
-
-        <h2.version>1.4.191</h2.version>
-        <jconn4.version>7.0</jconn4.version>
-        <mysql.version>5.1.21</mysql.version>
-        <jtds.version>1.2.4</jtds.version>
-        <db2jcc4.version>9.7.0.5-FP005</db2jcc4.version>
-        <db2jcc4.classifier>FP005</db2jcc4.classifier>
+        <swagger.version>2.7.0</swagger.version>
+        <spring-boot-mail.version>0.1.1</spring-boot-mail.version>
     </properties>
-
-    <distributionManagement>
-        <!--
-        `site` configuration to prevent Maven from throwing these warnings:-
-        * No project URL defined - decoration links will not be relativized!
-        * Unable to find a URL to the parent project. The parent menu will NOT be added.
-        -->
-        <site>
-            <id>${nexus.id}-site</id>
-            <url>${nexus.url}/content/sites/site/${project.groupId}/${project.artifactId}</url>
-        </site>
-        <repository>
-            <id>${nexus.id}-releases</id>
-            <url>${nexus.url}/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>${nexus.id}-snapshots</id>
-            <url>${nexus.url}/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Scope = provided. -->
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
-                <scope>provided</scope>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
-                <scope>provided</scope>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
-            <dependency>
-                <groupId>net.karneim</groupId>
-                <artifactId>pojobuilder</artifactId>
-                <version>3.4.0</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- Logger. -->
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-
-            <!-- Jackson JSON Mapper -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-joda</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-
-            <!-- Utilities. -->
             <dependency>
                 <groupId>com.github.choonchernlim</groupId>
-                <artifactId>better-preconditions</artifactId>
-                <version>0.1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>1.5.0-b01</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpcore</artifactId>
-                <version>4.4.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.5.2</version>
-            </dependency>
-            <dependency>
-                <groupId>cglib</groupId>
-                <artifactId>cglib-nodep</artifactId>
-                <version>3.2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>findbugs</artifactId>
-                <version>3.0.1</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>xml-apis</groupId>
-                        <artifactId>xml-apis</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-                <version>2.9.3</version>
-            </dependency>
-
-            <!-- Commons. -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.4</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>2.5</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>4.1</version>
-            </dependency>
-
-            <!-- Hibernate. -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jadira.usertype</groupId>
-                <artifactId>usertype.core</artifactId>
-                <version>4.0.0.GA</version>
-            </dependency>
-
-            <!-- Spring. -->
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>${spring-data-jpa.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.ws</groupId>
-                <artifactId>spring-ws-core</artifactId>
-                <version>${org.springframework.ws.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-expression</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-orm</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-
-            <!-- Spring Security. -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
-                <version>${org.springframework.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>${org.springframework.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-web</artifactId>
-                <version>${org.springframework.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-taglibs</artifactId>
-                <version>${org.springframework.security.version}</version>
-            </dependency>
-
-            <!-- Scope = test. -->
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-                <version>${groovy-all.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.ws</groupId>
-                <artifactId>spring-ws-test</artifactId>
-                <version>${org.springframework.ws.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${org.springframework.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.spockframework</groupId>
-                <artifactId>spock-core</artifactId>
-                <version>${spock.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.spockframework</groupId>
-                <artifactId>spock-spring</artifactId>
-                <version>${spock.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava-testlib</artifactId>
-                <version>${guava.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path</artifactId>
-                <version>${json-path.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path-assert</artifactId>
-                <version>${json-path.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <version>${hamcrest.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
-                <version>${hamcrest.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.objenesis</groupId>
-                <artifactId>objenesis</artifactId>
-                <version>2.3</version>
-                <scope>test</scope>
+                <artifactId>spring-boot-mail</artifactId>
+                <version>${spring-boot-mail.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <!-- Scope: Provided -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Scope: Compile -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <exclusions>
+                <!-- Exclude Tomcat CP to use Hikari CP -->
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.jtds</groupId>
+            <artifactId>jtds</artifactId>
+        </dependency>
+
+        <!-- Scope: Compile: Custom -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.choonchernlim</groupId>
+            <artifactId>spring-boot-mail</artifactId>
+        </dependency>
+
+        <!-- Scope: Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Use Groovy compiler. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
-                    <configuration>
-                        <compilerId>groovy-eclipse-compiler</compilerId>
-                        <source>${jdk.version}</source>
-                        <target>${jdk.version}</target>
-                    </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.codehaus.groovy</groupId>
-                            <artifactId>groovy-eclipse-compiler</artifactId>
-                            <version>${groovy-eclipse-compiler.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.codehaus.groovy</groupId>
-                            <artifactId>groovy-eclipse-batch</artifactId>
-                            <version>${groovy-eclipse-batch.version}</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>1.8</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.0.0</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.6</version>
-                    <executions>
-                        <execution>
-                            <id>default-jar</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-ear-plugin</artifactId>
-                    <version>2.10.1</version>
-                    <!--
-                    Maven Archetype Plugin requires configuration and modules block to be defined to prevent NPE.
-                    https://issues.apache.org/jira/browse/ARCHETYPE-478
-                    -->
-                    <configuration>
-                        <modules/>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-archetype-plugin</artifactId>
-                    <version>2.4</version>
-                    <configuration>
-                        <archetypeFilteredExtentions>js,json,md,java,xml,txt,groovy,jsp,vm,html,properties
-                        </archetypeFilteredExtentions>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.4.1</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <version>1.0.0</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.2.14.v20151106</version>
-                </plugin>
-
                 <plugin>
                     <groupId>com.github.eirslett</groupId>
                     <artifactId>frontend-maven-plugin</artifactId>
-                    <version>1.0</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.2</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.4.0</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.5.1</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.7</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.19.1</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>keytool-maven-plugin</artifactId>
-                    <version>1.5</version>
+                    <version>1.6</version>
                 </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-            </plugin>
-
-
-            <!--
-            Generates source JAR file when doing `mvn deploy` to be pushed to Nexus.
-            -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <configuration>
+                    <workingDirectory>src/main/frontend</workingDirectory>
+                    <installDirectory>src/main/frontend</installDirectory>
+                </configuration>
                 <executions>
-                    <!--
-                    If these banned dependencies exist, fail the build right away.
-
-                    Xalan, Xerces and Xml-APIs cause the following exception in WAS:
-
-                        java.lang.ClassCastException: org.apache.xerces.jaxp.datatype.DatatypeFactoryImpl incompatible with
-                        javax.xml.datatype.DatatypeFactory
-
-                    http://stackoverflow.com/questions/11677572/dealing-with-xerces-hell-in-java-maven
-                    -->
+                    <!-- Install local node and yarn within the project to ensure everyone use the same version. -->
                     <execution>
-                        <id>enforce-banned-dependencies</id>
+                        <id>install-node-and-yarn</id>
                         <goals>
-                            <goal>enforce</goal>
+                            <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <fail>true</fail>
-                            <rules>
-                                <bannedDependencies>
-                                    <excludes>
-                                        <exclude>xalan</exclude>
-                                        <exclude>xerces</exclude>
-                                        <exclude>xml-apis</exclude>
-                                    </excludes>
-                                </bannedDependencies>
-                            </rules>
+                            <nodeVersion>v9.2.0</nodeVersion>
+                            <yarnVersion>v1.3.2</yarnVersion>
                         </configuration>
                     </execution>
-                    <!--
-                    Ensures everyone is using at least the specified Maven version or later.
-                    -->
+                    <!-- `yarn install` to install any dependencies listed in `package.json`. -->
                     <execution>
-                        <id>enforce-maven</id>
+                        <id>yarn-install</id>
                         <goals>
-                            <goal>enforce</goal>
+                            <goal>yarn</goal>
                         </goals>
+                    </execution>
+                    <!-- `yarn run build` in `generate-resources` phase to create production build. -->
+                    <execution>
+                        <id>production-build</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
                         <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>${maven.min.version}</version>
-                                </requireMavenVersion>
-                            </rules>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
+                    <!-- `yarn run ci` in `test` phase to run unit test/code coverage and generate CI reports. -->
+                    <execution>
+                        <id>ci-reports</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>ci</arguments>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+            <!--
+            For generating self-signed certificate to use HTTPS on embedded server.
+            To generate, run `mvn keytool:clean keytool:generateKeyPair`
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>keytool-maven-plugin</artifactId>
+                <configuration>
+                    <keystore>${ssl.keystore}</keystore>
+                    <keypass>${ssl.keypass}</keypass>
+                    <storepass>${ssl.storepass}</storepass>
+                    <dname>cn=localhost</dname>
+                    <alias>tomcat</alias>
+                    <keyalg>RSA</keyalg>
+                    <keysize>2048</keysize>
+                    <sigalg>SHA256withRSA</sigalg>
+                    <validity>99999</validity>
+                    <verbose>true</verbose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <configuration>
+                    <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <profiles>
         <!--
-        `sonarqube` profile to ensure `mvn sonar:sonar` works.
+        "skip-frontend-build" profile.
 
-        To date, this configuration isn't 100% perfect when configuring as polyglot project.
-
-        - When including JavaScript source, it complains about ES6 syntax.
-        - Not possible to hook up JavaScript unit and coverage result files.
-            - When using Istanbul's LCOV, it complains about line number starting with 0 instead of 1.
-                - "Problem during processing LCOV report: can't save DA data for line 0."
-                - The fix throws bunch of warnings that clutter the output file: https://jira.sonarsource.com/browse/SONARJS-547
-            - When using "Generic Test Coverage" plugin, it doesn't know how to interpret
-                result files from `mocha-junit-reporter` and `mocha-sonar-reporter`.
-        - Surefire reports
-            - SurefireSensor complains about not able to find Spock Groovy files.
-            - GroovySurefireSensor complains about not able to find JUnit Java files.
-            - The problem is because the sensor knows how to handle one file format, but not both.
+        Profile to skip frontend production bundle build to speed up Maven lifecycle.
         -->
         <profile>
-            <id>sonarqube</id>
-
-            <properties>
-                <sonar.host.url>${sonarqube.url}</sonar.host.url>
-
-                <!--
-                To prevent "SCM provider was set to "X" but no SCM provider found for this key" error.
-                -->
-                <sonar.scm.disabled>true</sonar.scm.disabled>
-
-                <!--
-                Ensure this property is not set to create polyglot project.
-                http://www.sonarqube.org/at-long-last-sonarqube-is-a-true-polyglot/
-                -->
-                <sonar.language/>
-
-                <sonar.sources>src/main/java</sonar.sources>
-                <sonar.tests>src/test/java,src/test/groovy,src/main/frontend/test</sonar.tests>
-                <sonar.exclusions>**/generated/**,**/scratch/**</sonar.exclusions>
-
-                <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-                <sonar.junit.reportsPath>${project.build.directory}/surefire-reports</sonar.junit.reportsPath>
-
-                <sonar.jacoco.reportPath>${jacoco.reportPath}</sonar.jacoco.reportPath>
-                <sonar.jacoco.itReportPath>${jacoco.itReportPath}</sonar.jacoco.itReportPath>
-
-                <sonar.groovy.reportPath>${jacoco.reportPath}</sonar.groovy.reportPath>
-                <sonar.groovy.itReportPath>${jacoco.itReportPath}</sonar.groovy.itReportPath>
-            </properties>
-
-            <!--
-            Dependencies to fix Sonar 5.x's "Class Not Found" error.
-            http://stackoverflow.com/questions/31528033/sonarqube-class-not-found-during-main-ast-scan
-            -->
-            <dependencies>
-                <dependency>
-                    <groupId>org.joda</groupId>
-                    <artifactId>joda-convert</artifactId>
-                    <version>1.8.1</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.google.code.findbugs</groupId>
-                    <artifactId>jsr305</artifactId>
-                    <version>3.0.1</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.projectlombok</groupId>
-                    <artifactId>lombok</artifactId>
-                    <version>1.16.8</version>
-                </dependency>
-            </dependencies>
+            <id>skip-frontend-build</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
-
 </project>

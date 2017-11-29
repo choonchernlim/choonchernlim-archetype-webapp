@@ -1,0 +1,24 @@
+# See https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+logging.level:
+  root: INFO
+  com.github.choonchernlim.choonchernlimArchetypeWebapp: DEBUG
+
+spring:
+  jpa.properties.hibernate:
+      show_sql: false
+      format_sql: false
+
+server:
+  port: 8443
+  ssl:
+    key-store: @ssl.keystore@
+    key-store-password: @ssl.storepass@
+    key-password: @ssl.keypass@
+
+management:
+  security.enabled: false
+  ssl:
+    key-store: @ssl.keystore@
+    key-store-password: @ssl.storepass@
+    key-password: @ssl.keypass@

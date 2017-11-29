@@ -1,0 +1,1 @@
+INSERT INTO dbo.appConfig (configName, configValue) VALUES ('TEST NAME', 'TEST VALUE');

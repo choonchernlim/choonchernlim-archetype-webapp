@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.0 - 2017-x-x
+
+* Migrated from WAS to Tomcat 8.
+* Converted EAR/WAR archetype to WAR archetype.
+* Using Java 8, Groovy and Spring Boot.
+* Spring Security: Set X-Frame-Options to DENY to prevent clickjacking attacks.
+* Spring Security: Disable OPTIONS method to prevent XST attacks.
+* Configured `frontend-maven-plugin` to use `yarn` instead of `npm`.
+
 ## 1.0.1 - 2016-05-23
 
 * `front-end-stack` from `0.2.0` to `0.3.0` - More cross-platform compatible NPM scripts (Mac and Windows).

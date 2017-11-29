@@ -1,0 +1,13 @@
+{
+  "require": [
+    "babel-register"
+  ],
+  "reporter": [
+    "html",
+    "cobertura"
+  ],
+  "sourceMap": false,
+  "instrument": false,
+  "all": true
+}
+
