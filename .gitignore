@@ -10,7 +10,6 @@ target/
 src/main/frontend/etc/
 src/main/frontend/node/
 src/main/frontend/node_modules/
-src/main/frontend/.webpack/
 src/main/resources/static/assets/
 src/main/webapp/WEB-INF/index.jsp
 
