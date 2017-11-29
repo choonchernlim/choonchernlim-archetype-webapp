@@ -115,7 +115,7 @@ const Home = ({ classes }: Props): Element<*> => (
 
       <List>
         <CustomListItem>
-          404 errors redirects to <code>/error/page-not-found</code> ( try it:
+          404 errors ( try it:
           <CustomLink href={invalidUrl}>{invalidUrl}</CustomLink> ).
         </CustomListItem>
         <CustomListItem>
