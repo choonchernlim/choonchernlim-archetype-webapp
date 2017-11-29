@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>spring-boot-ci</artifactId>
-        <version>0.2.3</version>
+        <version>0.2.4-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.choonchernlim</groupId>
@@ -183,8 +183,8 @@
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v8.6.0</nodeVersion>
-                            <yarnVersion>v1.1.0</yarnVersion>
+                            <nodeVersion>v9.2.0</nodeVersion>
+                            <yarnVersion>v1.3.2</yarnVersion>
                         </configuration>
                     </execution>
                     <!-- `yarn install` to install any dependencies listed in `package.json`. -->

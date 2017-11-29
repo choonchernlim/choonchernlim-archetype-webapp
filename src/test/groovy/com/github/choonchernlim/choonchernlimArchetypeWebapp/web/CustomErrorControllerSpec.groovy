@@ -50,13 +50,15 @@ class CustomErrorControllerSpec extends AbstractSpringBootSpock {
         )
         0 * _
 
-        response.andExpect(status().isFound()).
-                andExpect(view().name("redirect:${path}"))
+        response.andExpect(status().is(responseStatus.value())).
+                andExpect(view().name("${path}"))
 
+        // @formatter:off
         where:
-        label              | httpStatus                       | path
-        'missing resource' | HttpStatus.NOT_FOUND             | '/error/page-not-found?path=/path'
-        'unexpected error' | HttpStatus.INTERNAL_SERVER_ERROR | '/error/unexpected?path=/path'
+        label              | httpStatus                       | responseStatus   | path
+        'missing resource' | HttpStatus.NOT_FOUND             | HttpStatus.OK    | 'index'
+        'unexpected error' | HttpStatus.INTERNAL_SERVER_ERROR | HttpStatus.FOUND | 'redirect:/error/unexpected?path=/path'
+        // @formatter:on
     }
 
     def "specificError - given /error/bla, should return index view"() {
