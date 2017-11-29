@@ -92,5 +92,5 @@ mvn archetype:generate
 * Create a "Freestyle project" job.
 
 * Under "Add build steps, select "Invoke top-level Maven targets".
-    * Goals: `-U clean test site`
+    * Goals: `-U clean test site -Pdisable-frontend-production-build`
     

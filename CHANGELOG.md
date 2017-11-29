@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.0.X - 2017-XX-XX
+
+* Maven profile (`disable-frontend-production-build`) to disable `yarn build`. Particularly useful when running on CI.
+
 ## 2.0.0 - 2017-11-29
 
 * Migrated from WAS to Tomcat 8.
