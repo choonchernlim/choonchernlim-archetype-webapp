@@ -26,6 +26,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     void configure(final WebSecurity web) throws Exception {
-        web.ignoring().antMatchers('/assets/**')
+        web.ignoring().antMatchers('/assets/**', '/WEB-INF/**')
     }
 }

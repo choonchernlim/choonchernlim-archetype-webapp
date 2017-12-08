@@ -3,6 +3,7 @@
 ## 2.0.X - 2017-XX-XX
 
 * Maven profile (`disable-frontend-production-build`) to disable `yarn build`. Particularly useful when running on CI.
+* Spring Security - Configured security to ignore `/WEB-INF/**` on top of `/assets/**`. Without this, when app security is enabled, Spring Security gets tripped up when Spring MVC tries to resolve the view on unsecured pages and prompts user for login challenge instead and redirect them to `/WEB-INF/*.jsp` URL on successful login instead of resolving that view.
 
 ## 2.0.0 - 2017-11-29
 
