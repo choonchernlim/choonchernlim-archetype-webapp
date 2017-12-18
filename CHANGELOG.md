@@ -4,6 +4,8 @@
 
 * Maven profile (`disable-frontend-production-build`) to disable `yarn build`. Particularly useful when running on CI.
 * Spring Security - Configured security to ignore `/WEB-INF/**` on top of `/assets/**`. Without this, when app security is enabled, Spring Security gets tripped up when Spring MVC tries to resolve the view on unsecured pages and prompts user for login challenge instead and redirect them to `/WEB-INF/*.jsp` URL on successful login instead of resolving that view.
+* Disabled TLD scanning on embedded Tomcat to prevent it from throwing erroneous warnings regarding scanning failures. (ex: `Failed to scan [file:/path/findbugs/3.0.1/jFormatString.jar] from classloader hierarchy`)
+
 
 ## 2.0.0 - 2017-11-29
 

@@ -15,6 +15,9 @@ server:
     key-store: @ssl.keystore@
     key-store-password: @ssl.storepass@
     key-password: @ssl.keypass@
+  # Prevents embedded Tomcat from throwing erroneous warnings regarding scanning failures.
+  # (ex: `Failed to scan [file:/path/findbugs/3.0.1/jFormatString.jar] from classloader hierarchy`)
+  tomcat.additional-tld-skip-patterns: '*.jar'
 
 management:
   security.enabled: false
