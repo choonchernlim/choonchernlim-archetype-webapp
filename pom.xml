@@ -275,31 +275,5 @@
                 </plugins>
             </build>
         </profile>
-
-        <!--
-        "disable-frontend-production-build" profile.
-
-        When running on CI, perhaps there's no need to run production build... just run the test.
-        -->
-        <profile>
-            <id>disable-frontend-production-build</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <!-- disable production build. -->
-                            <execution>
-                                <id>production-build</id>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
     </profiles>
 </project>
