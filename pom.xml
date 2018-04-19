@@ -183,8 +183,9 @@
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v9.2.0</nodeVersion>
-                            <yarnVersion>v1.3.2</yarnVersion>
+                            <!-- Use latest LTS version... check here: https://nodejs.org/en/ -->
+                            <nodeVersion>v8.11.1</nodeVersion>
+                            <yarnVersion>v1.5.1</yarnVersion>
                         </configuration>
                     </execution>
                     <!-- `yarn install` to install any dependencies listed in `package.json`. -->
@@ -193,6 +194,13 @@
                         <goals>
                             <goal>yarn</goal>
                         </goals>
+                        <!--
+                        To fix "There appears to be trouble with your network connection. Retrying..." on Windows.
+                        See https://github.com/yarnpkg/yarn/issues/4890
+                        -->
+                        <configuration>
+                            <arguments>--network-timeout 1000000</arguments>
+                        </configuration>
                     </execution>
                     <!-- `yarn run build` in `generate-resources` phase to create production build. -->
                     <execution>
