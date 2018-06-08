@@ -52,7 +52,7 @@ mvn archetype:generate
 
 ## Getting Started
 
-* Run `mvn clean spring-boot:run -Drun.profiles=local`.
+* Run `mvn clean spring-boot:run -Dspring-boot.run.profiles=local`.
 
 * Open `https://localhost:8443` in browser.
 
@@ -69,9 +69,9 @@ mvn archetype:generate
 
 ### Start Embedded Tomcat Server for Back-End Development
 
-* Run `mvn clean spring-boot:run -Drun.profiles=local`.
+* Run `mvn clean spring-boot:run -Dspring-boot.run.profiles=local`.
     * By default, this will perform `yarn build` to bundle the front-end JS files first before starting the server.
-    * If there are no changes on front-end, you can speed it up by running `mvn clean spring-boot:run -Drun.profiles=local -Pskip-frontend-build`
+    * If there are no changes on front-end, you can speed it up by running `mvn clean spring-boot:run -Dspring-boot.run.profiles=local -Pskip-frontend-build`
     
 * Open `https://localhost:8443` in browser.
 

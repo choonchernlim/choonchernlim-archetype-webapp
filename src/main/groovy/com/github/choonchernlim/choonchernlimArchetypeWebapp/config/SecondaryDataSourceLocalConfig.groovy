@@ -1,8 +1,8 @@
 package com.github.choonchernlim.choonchernlimArchetypeWebapp.config
 
 import com.github.choonchernlim.choonchernlimArchetypeWebapp.common.constant.SpringProfile
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Profile
 import org.springframework.context.annotation.PropertySource
 
@@ -41,6 +41,6 @@ class SecondaryDataSourceLocalConfig extends SecondaryDataSourceAbstractConfig {
     @Override
     @ConfigurationProperties(prefix = 'secondary.datasource')
     DataSource dataSource() {
-        return DataSourceBuilder.create().build()
+        return (DataSource) DataSourceBuilder.create().build()
     }
 }

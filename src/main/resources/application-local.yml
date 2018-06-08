@@ -20,8 +20,7 @@ server:
   tomcat.additional-tld-skip-patterns: '*.jar'
 
 management:
-  security.enabled: false
-  ssl:
+  server.ssl:
     key-store: @ssl.keystore@
     key-store-password: @ssl.storepass@
     key-password: @ssl.keypass@

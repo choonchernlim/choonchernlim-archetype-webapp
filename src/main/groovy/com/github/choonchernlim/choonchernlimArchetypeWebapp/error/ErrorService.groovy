@@ -2,10 +2,10 @@ package com.github.choonchernlim.choonchernlimArchetypeWebapp.error
 
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.web.ErrorAttributes
+import org.springframework.boot.web.servlet.error.ErrorAttributes
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
-import org.springframework.web.context.request.ServletRequestAttributes
+import org.springframework.web.context.request.ServletWebRequest
 
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -32,8 +32,7 @@ class ErrorService {
         assert request
         assert response
 
-        final Map<String, Object> attr = errorAttributes.getErrorAttributes(
-                new ServletRequestAttributes(request), true)
+        final Map<String, Object> attr = errorAttributes.getErrorAttributes(new ServletWebRequest(request), true)
 
         final ErrorBean errorBean = new ErrorBean(
                 status: response.status,

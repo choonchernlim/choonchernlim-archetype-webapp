@@ -7,6 +7,12 @@
 * Spring Boot - Used UTF-8 encoding to resolve certain characters displayed as `?`.
 * BUG - "There appears to be trouble with your network connection. Retrying..." error when running Yarn on Windows.
 
+```text
+com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.3.0
+
+${swagger.version} ................................... 2.7.0 -> 2.8.0
+```
+  
 ## 2.0.0 - 2017-11-29
 
 * Migrated from WAS to Tomcat 8.

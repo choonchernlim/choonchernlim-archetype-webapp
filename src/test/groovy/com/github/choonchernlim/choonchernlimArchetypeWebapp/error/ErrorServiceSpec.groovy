@@ -1,6 +1,6 @@
 package com.github.choonchernlim.choonchernlimArchetypeWebapp.error
 
-import org.springframework.boot.autoconfigure.web.ErrorAttributes
+import org.springframework.boot.web.servlet.error.ErrorAttributes
 import org.springframework.mock.web.MockHttpServletRequest
 import org.springframework.mock.web.MockHttpServletResponse
 import org.springframework.web.context.request.ServletRequestAttributes
