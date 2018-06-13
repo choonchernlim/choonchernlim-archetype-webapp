@@ -50,13 +50,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- TODO LIMC remove this after migrating to 2.x -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-properties-migrator</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- Scope: Provided -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -186,8 +179,8 @@
                         </goals>
                         <configuration>
                             <!-- Use latest LTS version... check here: https://nodejs.org/en/ -->
-                            <nodeVersion>v8.11.1</nodeVersion>
-                            <yarnVersion>v1.5.1</yarnVersion>
+                            <nodeVersion>v8.11.3</nodeVersion>
+                            <yarnVersion>v1.7.0</yarnVersion>
                         </configuration>
                     </execution>
                     <!-- `yarn install` to install any dependencies listed in `package.json`. -->
