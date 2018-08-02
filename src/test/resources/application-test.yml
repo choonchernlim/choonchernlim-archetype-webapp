@@ -4,6 +4,7 @@ logging.level.root: OFF
 
 spring:
   datasource:
+    initialization-mode: embedded
     platform: h2
     url: jdbc:h2:mem:test;MODE=MSSQLServer;DATABASE_TO_UPPER=false;MVCC=true;DB_CLOSE_DELAY=-1
 

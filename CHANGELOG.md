@@ -2,10 +2,12 @@
 
 ## 2.0.X - 2017-XX-XX
 
+* Moved to Spring Boot v2.x.
 * Spring Security - Configured security to ignore `/WEB-INF/**` on top of `/assets/**`. Without this, when app security is enabled, Spring Security gets tripped up when Spring MVC tries to resolve the view on unsecured pages and prompts user for login challenge instead and redirect them to `/WEB-INF/*.jsp` URL on successful login instead of resolving that view.
 * Disabled TLD scanning on embedded Tomcat to prevent it from throwing erroneous warnings regarding scanning failures. (ex: `Failed to scan [file:/path/findbugs/3.0.1/jFormatString.jar] from classloader hierarchy`)
 * Spring Boot - Used UTF-8 encoding to resolve certain characters displayed as `?`.
 * BUG - "There appears to be trouble with your network connection. Retrying..." error when running Yarn on Windows.
+* Spring Boot v2.x uses H2 `v1.4.197` onwards, which causes an error when dropping the schema. See https://github.com/flyway/flyway/issues/1989
 
 ```text
 com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.3.0
