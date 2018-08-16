@@ -10,8 +10,9 @@
 * Spring Boot v2.x uses H2 `v1.4.197` onwards, which causes an error when dropping the schema. See https://github.com/flyway/flyway/issues/1989
 
 ```text
-com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.3.0
+com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.3.1
 
+${spring-boot-mail.version} .......................... 0.1.1 -> 0.1.2
 ${swagger.version} ................................... 2.7.0 -> 2.8.0
 ```
   
