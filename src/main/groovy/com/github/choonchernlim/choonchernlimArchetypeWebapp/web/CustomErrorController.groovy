@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.web.servlet.error.ErrorController
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
 
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse
  * This class replaces Spring Boot's "WhiteLabel" error page with a custom error page.
  */
 @Controller
-@RequestMapping(value = CustomErrorController.@ERROR_PATH)
+@RequestMapping(value = CustomErrorController.ERROR_PATH)
 @SuppressWarnings('UnnecessaryQualifiedReference')
 class CustomErrorController implements ErrorController {
-    static final String ERROR_PATH = '/error'
+    public static final String ERROR_PATH = '/error'
 
     final ErrorService errorService
 
@@ -40,7 +40,7 @@ class CustomErrorController implements ErrorController {
      * @param response Response
      * @return Redirect URI
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     String main(final HttpServletRequest request, final HttpServletResponse response) {
         final ErrorBean errorBean = errorService.handle(request, response)
 
@@ -56,7 +56,7 @@ class CustomErrorController implements ErrorController {
      *
      * @return View
      */
-    @RequestMapping(value = '*', method = RequestMethod.GET)
+    @GetMapping(value = '*')
     String specificError() {
         return 'index'
     }

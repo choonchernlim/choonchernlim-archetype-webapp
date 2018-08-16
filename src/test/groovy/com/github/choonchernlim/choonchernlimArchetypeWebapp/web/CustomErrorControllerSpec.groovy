@@ -1,15 +1,8 @@
 package com.github.choonchernlim.choonchernlimArchetypeWebapp.web
 
-import com.github.choonchernlim.choonchernlimArchetypeWebapp.core.AbstractSpringBootSpock
 import com.github.choonchernlim.choonchernlimArchetypeWebapp.error.ErrorBean
 import com.github.choonchernlim.choonchernlimArchetypeWebapp.error.ErrorService
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.TestConfiguration
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Import
 import org.springframework.http.HttpStatus
-import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.ResultActions
 import spock.lang.Unroll
 
@@ -20,23 +13,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
 
-@WithMockUser
-@Import(TestConfig)
-class CustomErrorControllerSpec extends AbstractSpringBootSpock {
+class CustomErrorControllerSpec extends AbstractControllerSpec {
 
-    @TestConfiguration
-    static class TestConfig {
-        @Bean
-        ErrorService errorService() {
-            return detachedMock(ErrorService)
-        }
-    }
+    def errorService = Mock ErrorService
 
-    @Autowired
-    MockMvc mockMvc
-
-    @Autowired
-    ErrorService mockErrorService
+    def mockMvc = getMockMvc(new CustomErrorController(errorService))
 
     @Unroll
     def "main - given #label, should redirect to #path"() {
@@ -44,7 +25,7 @@ class CustomErrorControllerSpec extends AbstractSpringBootSpock {
         ResultActions response = mockMvc.perform(get('/error'))
 
         then:
-        1 * mockErrorService.handle(_ as HttpServletRequest, _ as HttpServletResponse) >> new ErrorBean(
+        1 * errorService.handle(_ as HttpServletRequest, _ as HttpServletResponse) >> new ErrorBean(
                 status: httpStatus.value(),
                 path: '/path'
         )
