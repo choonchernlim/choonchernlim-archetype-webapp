@@ -36,6 +36,7 @@ spring:
         default_schema: dbo
         show_sql: false
         format_sql: false
+    open-in-view: true
 
   mvc.view:
     prefix: /WEB-INF/
