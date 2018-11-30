@@ -22,6 +22,7 @@ class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2).
                 useDefaultResponseMessages(false).
                 directModelSubstitute(LocalDateTime, String).
+                ignoredParameterTypes(MetaClass).
                 select().
                 apis(RequestHandlerSelectors.basePackage(
                         'com.github.choonchernlim.choonchernlimArchetypeWebapp.web.api')).

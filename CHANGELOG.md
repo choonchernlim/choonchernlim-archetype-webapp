@@ -8,6 +8,7 @@
 * Spring Boot - Used UTF-8 encoding to resolve certain characters displayed as `?`.
 * BUG - "There appears to be trouble with your network connection. Retrying..." error when running Yarn on Windows.
 * Spring Boot v2.x uses H2 `v1.4.197` onwards, which causes an error when dropping the schema. See https://github.com/flyway/flyway/issues/1989
+* Swagger: Ignored Groovy's `Metaclass` when generating models because it clutters the payload and it takes much longer for the browser to display the page.
 
 ```text
 com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.3.1
