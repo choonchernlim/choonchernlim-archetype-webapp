@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.choonchernlim</groupId>
         <artifactId>spring-boot-ci</artifactId>
-        <version>0.3.1</version>
+        <version>0.4.0</version>
         <relativePath/>
     </parent>
 
@@ -21,7 +21,7 @@
         <ssl.storepass>secret</ssl.storepass>
 
         <swagger.version>2.8.0</swagger.version>
-        <spring-boot-mail.version>0.1.2</spring-boot-mail.version>
+        <spring-boot-mail.version>0.1.4</spring-boot-mail.version>
     </properties>
 
     <dependencyManagement>
@@ -40,11 +40,6 @@
                 <groupId>com.github.choonchernlim</groupId>
                 <artifactId>spring-boot-mail</artifactId>
                 <version>${spring-boot-mail.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.spockframework</groupId>
-                <artifactId>spock-spring</artifactId>
-                <version>${spock.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -76,7 +71,7 @@
         <!-- Scope: Compile -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
+            <artifactId>groovy</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
