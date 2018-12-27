@@ -6,8 +6,8 @@ logging.level:
 
 spring:
   jpa.properties.hibernate:
-      show_sql: false
-      format_sql: false
+    show_sql: false
+    format_sql: false
 
 server:
   port: 8443
@@ -18,9 +18,3 @@ server:
   # Prevents embedded Tomcat from throwing erroneous warnings regarding scanning failures.
   # (ex: `Failed to scan [file:/path/findbugs/3.0.1/jFormatString.jar] from classloader hierarchy`)
   tomcat.additional-tld-skip-patterns: '*.jar'
-
-management:
-  server.ssl:
-    key-store: @ssl.keystore@
-    key-store-password: @ssl.storepass@
-    key-password: @ssl.keypass@

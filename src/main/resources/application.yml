@@ -11,10 +11,13 @@ spring:
   # To ensure logging messages are consistently shown in color regardless of console type (IntelliJ, Terminal, etc).
   output.ansi.enabled: ALWAYS
 
-  # Works in conjunction with `com.fasterxml.jackson.datatype:jackson-datatype-jsr310` dependency to show date and
-  # datetime as string instead of array.
-  jackson.serialization.write_dates_as_timestamps: false
-
+  jackson.serialization:
+    # Works in conjunction with `com.fasterxml.jackson.datatype:jackson-datatype-jsr310` dependency to show date and
+    # datetime as string instead of array.
+    write_dates_as_timestamps: false
+    # Pretty print JSON
+    indent_output: true
+    
   datasource:
     # Use Hikari instead of using connection pool provided by server.
     # See https://stackoverflow.com/questions/43625061/spring-boot-with-hikari-cp-not-working-while-deployment-in-seperate-tomcat-s
@@ -56,8 +59,8 @@ spring:
     # Force the encoding to the configured charset on HTTP requests and responses.
     force: true
 
-# Actuator
 management:
-  server:
-    servlet:
-      context-path: /actuator
+  endpoints.web.exposure.include: '*'
+  # To fix health status being always DOWN:
+  # See https://stackoverflow.com/questions/46916921/spring-boot-actuator-ldap-health-endpoint-throwing-npe
+  health.ldap.enabled: false

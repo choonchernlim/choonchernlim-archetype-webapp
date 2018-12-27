@@ -1,5 +1,6 @@
 package com.github.choonchernlim.choonchernlimArchetypeWebapp.config
 
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -20,6 +21,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 frameOptions().deny(). // set X-FRAME-OPTIONS to DENY to prevent clickjacking attacks
                 and().
                 authorizeRequests().
+                requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
                 antMatchers(HttpMethod.OPTIONS, '/**').denyAll(). // disable OPTIONS method to prevent XST attacks
                 antMatchers('/**').permitAll()
     }

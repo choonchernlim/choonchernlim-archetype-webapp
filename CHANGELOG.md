@@ -10,6 +10,7 @@
 * Spring Boot v2.x uses H2 `v1.4.197` onwards, which causes an error when dropping the schema. See https://github.com/flyway/flyway/issues/1989
 * Swagger: Ignored Groovy's `Metaclass` when generating models because it clutters the payload and it takes much longer for the browser to display the page.
 * Replaced `groovy-all` to `groovy` due to big change in v2.5.4.
+* Refactored actuator configuration.
 
 ```text
 com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.4.0
