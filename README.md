@@ -65,6 +65,12 @@ mvn archetype:generate
     * `local` - For local development using H2 data source.
     * `test` - For running test cases.
 
+## Pre-configured Modules
+
+* `https://localhost:8443/h2-console` - Accessing H2 database when using `local` Spring Profile. Set `JDBC URL` to `jdbc:h2:mem:testdb;schema=dbo`.
+* `https://localhost:8443/actuator` - Spring Boot Actuator endpoints.
+* `https://localhost:8443/swagger-ui.html` - Swagger UI for interacting with Rest controllers with `/api/**` prefix.
+
 ## How To...
 
 ### Start Embedded Tomcat Server for Back-End Development
