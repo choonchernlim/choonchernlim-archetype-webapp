@@ -16,14 +16,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+        // Set X-FRAME-OPTIONS to `SAMEORIGIN` to prevent clickjacking attacks
+        // While `DENY` is stricter, it prevents H2 console from working because it uses iframes.
         http.
                 headers().
-                frameOptions().deny(). // set X-FRAME-OPTIONS to DENY to prevent clickjacking attacks
-                and().
+                frameOptions().sameOrigin()
+
+        http.
                 authorizeRequests().
                 requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
                 antMatchers(HttpMethod.OPTIONS, '/**').denyAll(). // disable OPTIONS method to prevent XST attacks
                 antMatchers('/**').permitAll()
+
+        // Allow H2 console to work properly because it uses POST without CSRF token
+        http.
+                csrf().ignoringAntMatchers('/h2-console/**')
     }
 
     @Override

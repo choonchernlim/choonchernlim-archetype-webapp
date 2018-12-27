@@ -11,6 +11,7 @@
 * Swagger: Ignored Groovy's `Metaclass` when generating models because it clutters the payload and it takes much longer for the browser to display the page.
 * Replaced `groovy-all` to `groovy` due to big change in v2.5.4.
 * Refactored actuator configuration.
+* Enabled H2 console: https://localhost:8443/h2-console
 
 ```text
 com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.4.0
