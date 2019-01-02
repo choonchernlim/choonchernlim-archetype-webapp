@@ -12,6 +12,7 @@
 * Replaced `groovy-all` to `groovy` due to big change in v2.5.4.
 * Refactored actuator configuration.
 * Enabled H2 console: https://localhost:8443/h2-console
+* Configured `frontend-maven-plugin` not to auto-install Git hooks with Husky on `yarn install` because some CI like TFS Build will hang for some reason.
 
 ```text
 com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.4.0

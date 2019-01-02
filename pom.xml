@@ -185,12 +185,19 @@
                         <goals>
                             <goal>yarn</goal>
                         </goals>
-                        <!--
-                        To fix "There appears to be trouble with your network connection. Retrying..." on Windows.
-                        See https://github.com/yarnpkg/yarn/issues/4890
-                        -->
                         <configuration>
-                            <arguments>--network-timeout 1000000</arguments>
+                            <!--
+                            To fix "There appears to be trouble with your network connection. Retrying..." on Windows.
+                            See https://github.com/yarnpkg/yarn/issues/4890
+                            -->
+                            <arguments>--ignore-optional --network-timeout 1000000</arguments>
+                            <environmentVariables>
+                                <!--
+                                Don't auto install Git hook with Husky because TFS Build will hang for some reason.
+                                See https://github.com/typicode/husky/blob/master/DOCS.md
+                                -->
+                                <HUSKY_SKIP_INSTALL>true</HUSKY_SKIP_INSTALL>
+                            </environmentVariables>
                         </configuration>
                     </execution>
                     <!-- `yarn run build` in `generate-resources` phase to create production build. -->
