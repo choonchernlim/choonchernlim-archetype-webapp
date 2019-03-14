@@ -64,3 +64,4 @@ management:
   # To fix health status being always DOWN:
   # See https://stackoverflow.com/questions/46916921/spring-boot-actuator-ldap-health-endpoint-throwing-npe
   health.ldap.enabled: false
+  endpoint.health.show-details: always
