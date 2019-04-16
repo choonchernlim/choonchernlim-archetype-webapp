@@ -247,6 +247,21 @@
             </plugin>
 
             <!--
+            Additional build info for Spring Boot Actuator's "info" endpoint.
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
              For providing Git info for Spring Boot Actuator's "info" endpoint.
              -->
             <plugin>
@@ -254,6 +269,7 @@
                 <artifactId>git-commit-id-plugin</artifactId>
                 <version>${git-commit-id-plugin.version}</version>
             </plugin>
+
         </plugins>
     </build>
 

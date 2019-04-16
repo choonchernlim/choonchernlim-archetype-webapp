@@ -13,6 +13,7 @@
 * Refactored actuator configuration.
 * Enabled H2 console: https://localhost:8443/h2-console
 * Configured `frontend-maven-plugin` not to auto-install Git hooks with Husky on `yarn install` because some CI like TFS Build will hang for some reason.
+* Displayed Maven build info in Spring Actuator.
 
 ```text
 com.github.choonchernlim:spring-boot-ci............... 0.2.4 -> 0.4.0
