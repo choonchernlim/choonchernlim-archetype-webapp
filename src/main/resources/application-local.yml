@@ -9,6 +9,8 @@ spring:
     show_sql: false
     format_sql: false
 
+  flyway.enabled: true
+
 server:
   port: 8443
   ssl:

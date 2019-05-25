@@ -115,6 +115,10 @@
             <groupId>net.sourceforge.jtds</groupId>
             <artifactId>jtds</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
 
         <!-- Scope: Compile: Custom -->
         <dependency>

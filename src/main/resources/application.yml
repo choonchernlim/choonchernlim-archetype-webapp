@@ -17,7 +17,7 @@ spring:
     write_dates_as_timestamps: false
     # Pretty print JSON
     indent_output: true
-    
+
   datasource:
     # Use Hikari instead of using connection pool provided by server.
     # See https://stackoverflow.com/questions/43625061/spring-boot-with-hikari-cp-not-working-while-deployment-in-seperate-tomcat-s
@@ -58,6 +58,9 @@ spring:
     enabled: true
     # Force the encoding to the configured charset on HTTP requests and responses.
     force: true
+
+  # By default, disable Flyway. 
+  flyway.enabled: false
 
 management:
   endpoints.web.exposure.include: '*'
